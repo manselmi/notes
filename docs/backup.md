@@ -33,7 +33,7 @@ Also, if restic is good enough for CERN, it's good enough for me!
 --8<-- "docs/assets/backup/sequence-diagram.mmd"
 ```
 
-The diagram may also be navigated with interactive controls
+The diagram may also be viewed with interactive controls
 [here](https://github.com/manselmi/notes/blob/main/docs/assets/backup/sequence-diagram.mmd).
 
 !!! note
