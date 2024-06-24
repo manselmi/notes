@@ -1,0 +1,39 @@
+# vim: set ft=yaml :
+#
+# https://taskfile.dev
+
+
+version: '3'
+
+set: ['errexit', 'nounset', 'pipefail']
+
+tasks:
+
+  bootout:
+    desc: 'Remove launchd service definition from domain.'
+    requires:
+      vars: ['DOMAIN_TARGET', 'SERVICE_NAME']
+    cmds:
+      - 'launchctl bootout {{ .DOMAIN_TARGET | shellQuote }}{{ .SERVICE_NAME | shellQuote }}'
+    status:
+      - '! launchctl print {{ .DOMAIN_TARGET | shellQuote }}{{ .SERVICE_NAME | shellQuote }} &> /dev/null'
+
+  bootstrap:
+    desc: 'Bootstrap launchd service definition into domain.'
+    requires:
+      vars: ['DOMAIN_TARGET', 'SERVICE_PATH']
+    cmds:
+      - 'launchctl bootstrap {{ .DOMAIN_TARGET | shellQuote }} {{ .SERVICE_PATH | shellQuote }}'
+
+  kickstart:
+    desc: 'Run launchd service immediately, regardless of configured launch conditions.'
+    requires:
+      vars: ['DOMAIN_TARGET', 'SERVICE_NAME']
+    cmds:
+      - 'launchctl kickstart {{ .DOMAIN_TARGET | shellQuote }}{{ .SERVICE_NAME | shellQuote }}'
+
+  reload:
+    desc: 'Remove and then bootstrap launchd service definition from/to domain.'
+    cmds:
+      - task: 'bootout'
+      - task: 'bootstrap'

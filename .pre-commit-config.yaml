@@ -1,0 +1,60 @@
+# vim: set ft=yaml :
+
+
+# See https://pre-commit.com for more information.
+# See https://pre-commit.com/hooks.html for more hooks.
+
+minimum_pre_commit_version: '3.7.1'
+
+default_language_version:
+  python: 'python3.12'
+
+repos:
+
+  - repo: 'https://github.com/pre-commit/pre-commit-hooks'
+    rev: 'v4.6.0'
+    hooks:
+      - id: 'check-case-conflict'
+        stages:
+          - 'commit'
+          - 'manual'
+      - id: 'check-json'
+        stages:
+          - 'commit'
+          - 'manual'
+      - id: 'check-symlinks'
+        stages:
+          - 'commit'
+          - 'manual'
+      - id: 'check-toml'
+        exclude: '/resticprofile/profiles\.toml\Z'
+        stages:
+          - 'commit'
+          - 'manual'
+      - id: 'check-vcs-permalinks'
+        stages:
+          - 'commit'
+          - 'manual'
+      - id: 'check-yaml'
+        exclude: '\Amkdocs\.yaml\Z'
+        stages:
+          - 'commit'
+          - 'manual'
+      - id: 'destroyed-symlinks'
+        stages:
+          - 'commit'
+          - 'manual'
+      - id: 'end-of-file-fixer'
+        stages:
+          - 'commit'
+          - 'manual'
+      - id: 'fix-byte-order-marker'
+        stages:
+          - 'commit'
+          - 'manual'
+      - id: 'trailing-whitespace'
+        args:
+          - '--markdown-linebreak-ext=md'
+        stages:
+          - 'commit'
+          - 'manual'

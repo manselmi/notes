@@ -1,0 +1,5 @@
+# vim: set ft=requirements :
+
+
+mkdocs>=1.6.0
+mkdocs-material[git,imaging,recommended] @ git+ssh://git-personal/squidfunk/mkdocs-material-insiders.git@c68238a01c8643d8cc3508c0acc411bb40b1c25d

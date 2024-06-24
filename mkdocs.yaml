@@ -1,0 +1,125 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+# vim: set ft=yaml :
+
+
+edit_uri: edit/main/docs
+repo_name: manselmi/notes
+repo_url: https://github.com/manselmi/notes
+site_author: Mike Anselmi
+site_name: Mike Anselmi's notes
+site_url: https://manselmi.github.io/notes
+strict: true
+
+extra:
+  annotate:
+    json:
+      - .s2
+  generator: true
+  tags:
+    aws: aws
+    cryptography: cryptography
+    git: git
+    gnupg: gnupg
+    launchd: launchd
+    mermaid: mermaid
+    python: python
+    rclone: rclone
+    security: security
+    shell: shell
+    ssh: ssh
+    taskfile: taskfile
+    tmux: tmux
+    windows: windows
+
+markdown_extensions:
+
+  # Python Markdown
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      auto_append:
+        - includes/glossary.md
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+nav:
+  - Home: index.md
+  - Tags: tags.md
+  - Pages:
+      - Automated backup: backup.md
+      - aws-vault: aws-vault.md
+      - devpi: devpi.md
+      - Git: git.md
+      - GnuPG key management: gnupg-key-management.md
+      - JupyterLab: jupyterlab.md
+      - Rclone: rclone.md
+      - tar over SSH: tar-ssh.md
+      - tmux environment variable sync: tmux-env-var-sync.md
+      - Windows Subsystem for Linux: wsl.md
+
+plugins:
+  - optimize
+  - search
+  - tags
+
+theme:
+  icon:
+    edit: material/file-edit-outline
+    repo: fontawesome/brands/git-alt
+    view: material/file-eye-outline
+  features:
+    - content.action.edit
+    - content.action.view
+    - content.code.copy
+    - content.code.select
+    - content.tooltips
+    - navigation.expand
+    - navigation.path
+    - navigation.prune
+    - navigation.sections
+    - navigation.tracking
+    - toc.follow
+  language: en
+  name: material
+  palette:
+    scheme: slate
+
+validation:
+  absolute_links: relative_to_docs
+  anchors: warn
+  omitted_files: warn
+  unrecognized_links: warn

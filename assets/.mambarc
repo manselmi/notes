@@ -1,0 +1,9 @@
+# vim: set ft=yaml :
+
+
+auto_activate_base: false
+channels:
+  - 'conda-forge'
+  - 'nodefaults'
+channel_priority: 'strict'
+use_lockfiles: true  # https://mamba.readthedocs.io/en/latest/user_guide/troubleshooting.html#hangs-during-package-installation-on-nfs-network-file-systems

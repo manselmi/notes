@@ -1,0 +1,89 @@
+# vim: set ft=yaml :
+#
+# https://taskfile.dev
+
+
+version: '3'
+
+set: ['errexit', 'nounset', 'pipefail']
+
+tasks:
+
+  preflight:
+    desc: 'Execute pre-flight checks and commands.'
+    summary: |
+      Execute pre-flight checks and commands.
+
+      Ensure sops command exists ( https://github.com/getsops/sops#readme ).
+    internal: true
+    silent: true
+    run: 'once'
+    preconditions:
+      - sh: 'command -v -- sops'
+        msg: 'sops command does not exist.'
+
+  decrypt:
+    desc: 'Decrypt secrets in specified files matching "BASENAME.sops.*" and write output to
+            "BASENAME".'
+    deps: ['preflight']
+    cmds:
+      - 'find -- {{ if .DECRYPT_CLI_ARGS }}{{ .DECRYPT_CLI_ARGS }}{{ else }}{{ .CLI_ARGS }}{{ end }}
+          -type d -name .git -prune -o
+          -type f \( -name "*.sops.*" \! -name .sops.yaml \)
+          -exec zsh -efuc "for ARG; do printf \"%s → %s\\n\" \"\${ARG}\" \"\${ARG:r:r}\";
+            sops decrypt --output=\"\${ARG:r:r}\" -- \"\${ARG}\"; done" zsh {} +'
+    status:
+      - '{{ empty .DECRYPT_CLI_ARGS | ternary "true" "false" }}'
+      - '{{ empty .CLI_ARGS | ternary "true" "false" }}'
+
+  decrypt-all:
+    desc: 'Decrypt secrets in all files matching "BASENAME.sops.*" and write output to "BASENAME".'
+    deps: ['preflight']
+    cmds:
+      - task: 'decrypt'
+        vars:
+          DECRYPT_CLI_ARGS: '.'
+
+  encrypt:
+    desc: 'Encrypt secrets in specified files with specified FILETYPE ("binary", "dotenv", "ini",
+            "json" or "yaml") and write output to "BASENAME.sops.FILETYPE".'
+    deps: ['preflight']
+    requires:
+      vars: ['FILETYPE']
+    cmds:
+      # https://github.com/getsops/sops/blob/v3.8.1/cmd/sops/formats/formats.go
+      - 'find -- {{ if .ENCRYPT_CLI_ARGS }}{{ .ENCRYPT_CLI_ARGS }}{{ else }}{{ .CLI_ARGS }}{{ end }}
+          -type d -name .git -prune -o
+          -exec zsh -efuc "FILETYPE=\"\${1}\"; if [[ \"\${FILETYPE}\" == \"dotenv\" ]];
+            then EXT=sops.env; else EXT=\"sops.\${FILETYPE}\"; fi; shift; for ARG; do
+            printf \"%s → %s\\n\" \"\${ARG}\" \"\${ARG}.\${EXT}\";
+            sops encrypt --input-type=\"\${FILETYPE}\" --output-type=\"\${FILETYPE}\"
+              --output=\"\${ARG}.\${EXT}\" -- \"\${ARG}\";
+            done" zsh {{ .FILETYPE | shellQuote }} {} +'
+    status:
+      - '{{ empty .ENCRYPT_CLI_ARGS | ternary "true" "false" }}'
+      - '{{ empty .CLI_ARGS | ternary "true" "false" }}'
+
+  update-keys:
+    desc: 'Update identity encryption keys and rotate data encryption keys in specified files
+            matching "*.sops.*".'
+    deps: ['preflight']
+    cmds:
+      - 'find -- {{ if .UPDATE_KEYS_CLI_ARGS }}{{ .UPDATE_KEYS_CLI_ARGS }}{{ else }}{{ .CLI_ARGS }}{{ end }}
+          -type d -name .git -prune -o
+          -type f \( -name "*.sops.*" \! -name .sops.yaml \)
+          -print
+          -exec sops updatekeys --yes -- {} \;
+          -exec sops rotate --in-place -- {} \;'
+    status:
+      - '{{ empty .UPDATE_KEYS_CLI_ARGS | ternary "true" "false" }}'
+      - '{{ empty .CLI_ARGS | ternary "true" "false" }}'
+
+  update-keys-all:
+    desc: 'Update identity encryption keys and rotate data encryption keys in all files
+            matching "*.sops.*".'
+    deps: ['preflight']
+    cmds:
+      - task: 'update-keys'
+        vars:
+          UPDATE_KEYS_CLI_ARGS: '.'

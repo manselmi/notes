@@ -1,0 +1,16 @@
+# vim: set ft=yaml :
+#
+# micromamba create --channel-priority=flexible --file=environment.yaml
+
+
+name: 'tar-ssh'
+channels:
+  - 'conda-forge'
+  - 'dnachun'
+  - 'nodefaults'
+dependencies:
+  - 'findutils>=4.9.0'
+  - 'gawk'
+  - 'sed'
+  - 'tar'
+  - 'zsh'

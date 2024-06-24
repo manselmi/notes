@@ -1,0 +1,44 @@
+# vim: set ft=yaml :
+#
+# https://taskfile.dev
+
+
+version: '3'
+
+set: ['errexit', 'nounset', 'pipefail']
+
+vars:
+  USER_ID:
+    sh: 'id -u'
+
+includes:
+
+  launchctl:
+    taskfile: '{{ env "TASKFILE_INCLUDE_ROOT_DIR" }}/launchctl'
+    vars:
+      DOMAIN_TARGET: 'gui/{{ .USER_ID }}/'
+      SERVICE_NAME: 'com.manselmi.jupyterlab.server'
+      SERVICE_PATH: '{{ env "HOME" }}/Library/LaunchAgents/{{ .SERVICE_NAME }}.plist'
+
+  micromamba:
+    taskfile: '{{ env "TASKFILE_INCLUDE_ROOT_DIR" }}/micromamba'
+    vars:
+      CONDA_ENV_NAME: 'jupyterlab'
+
+tasks:
+
+  remove-default-kernels:
+    cmds:
+      - 'find -- "${MAMBA_ROOT_PREFIX}/envs/jupyterlab/share/jupyter/kernels" -mindepth 1 -delete'
+    preconditions:
+      - sh: 'test -n "${MAMBA_ROOT_PREFIX-}"'
+        msg: 'The MAMBA_ROOT_PREFIX environment variable must be set to a non-empty value.'
+
+  upgrade:
+    aliases: ['default']
+    cmds:
+      - task: 'launchctl:bootout'
+      - task: 'micromamba:upgrade'
+      - task: 'micromamba:sync'
+      - task: 'remove-default-kernels'
+      - task: 'launchctl:bootstrap'

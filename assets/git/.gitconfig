@@ -1,0 +1,99 @@
+; vim: set ft=gitconfig :
+
+
+[alias]
+	ba = branch --list --all --verbose --verbose
+	br = branch --list --verbose --verbose
+	bl = blame
+	ci = commit --verbose
+	co = checkout
+	ct = "!zsh -fc 'env LC_ALL=POSIX gcomm -23z <(git ls-files -coz --exclude-standard | env LC_ALL=POSIX sort -z) <(git ls-files -dz --exclude-standard | env LC_ALL=POSIX sort -z) | git check-attr -z --stdin text | env LC_ALL=POSIX gawk '\"'\"'BEGIN { RS = \"\\0\"; ORS = \"\\n\" } { path = $0; getline; getline info; if (info == \"set\") { print path } }'\"'\"' | ctags -GV --tag-relative --input-encoding=UTF-8 -f .git/tags -L - 2> .git/tags.log'"
+	dc = diff --full-index --cached
+	df = diff --full-index
+	dt = difftool
+	fp = format-patch --full-index
+	gr = grep -I --break --heading
+	lg = log --full-index --no-abbrev --show-signature
+	lp = log --patch --full-index --no-abbrev --show-signature
+	ls = log --pretty=format:"%C(yellow)%h%Creset\\ %C(cyan)[%ad\\ %an]%Creset\\ %C(magenta)[%cd\\ %cn]%Creset\\ %s%C(auto)%d" --date=short --graph --topo-order
+	ll = log --pretty=format:"%C(yellow)%h%Creset\\ %C(cyan)[%ad\\ %an]%Creset\\ %C(magenta)[%cd\\ %cn]%Creset\\ %s%C(auto)%d%n" --date=short --graph --topo-order --numstat --show-signature
+	mg = merge
+	mt = mergetool
+	op = "!f() { git fsck --full --strict && git reflog expire --expire=all --all && git repack -A -d -f --depth=50 --window=250 && git gc --prune=now ; } ; f"
+	rb = rebase
+	rt = remote --verbose
+	se = send-email --full-index
+	sh = show --full-index --no-abbrev --show-signature
+	sr = count-objects --verbose --human-readable
+	st = status
+	sw = switch
+	vi = log --pretty=format:"%C(yellow)%h%Creset\\ %C(cyan)[%ad\\ %an]%Creset\\ %C(magenta)[%cd\\ %cn]%Creset\\ %s%C(auto)%d" --date=short --graph --topo-order --all
+[apply]
+	whitespace = fix
+[color]
+	ui = auto
+[commit]
+	gpgSign = true
+[core]
+	abbrev = 7
+	editor = vim
+	eol = native
+	pager = less -FRX -S --tabs=1,3
+	precomposeUnicode = true
+	quotePath = false
+	whitespace = space-before-tab,trailing-space,tabwidth=2
+[diff]
+	algorithm = histogram
+	indentHeuristic = true
+	mnemonicPrefix = true
+	renames = copies
+	tool = vimdiff
+[diff "sopsDiff"]
+	textconv = sops -d --
+[fetch]
+	all = true
+	prune = true
+	pruneTags = true
+[format]
+	coverLetter = auto
+	numbered = auto
+	pretty = fuller
+	thread = shallow
+[gpg]
+	format = openpgp
+[gpg "openpgp"]
+	program = gpg
+[gpg "ssh"]
+	allowedSignersFile = ~/.ssh/allowed_signers
+[grep]
+	lineNumber = true
+	patternType = perl
+[init]
+	defaultBranch = main
+	templatedir = ~/.gittemplates
+[interactive]
+	diffFilter = diff-highlight
+[log]
+	date = iso
+	decorate = short
+[merge]
+	conflictStyle = zdiff3
+	tool = vim-fugitive
+[mergetool "vim-fugitive"]
+	cmd = vim +Gdiff $MERGED
+[pager]
+	diff = diff-highlight | less -FRX -S --tabs=1,3
+	log = diff-highlight | less -FRX -S --tabs=1,3
+	show = diff-highlight | less -FRX -S --tabs=1,3
+[pull]
+	ff = only
+[push]
+	default = simple
+	gpgSign = if-asked
+[svn]
+	rmdir = true
+[tag]
+	gpgSign = true
+[user]
+	name = Mike Anselmi
+	email = git@manselmi.com

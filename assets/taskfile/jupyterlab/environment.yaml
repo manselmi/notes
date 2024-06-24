@@ -1,0 +1,15 @@
+# vim: set ft=yaml :
+#
+# https://conda.github.io/conda-lock/src_environment_yml/
+
+
+channels:
+  - 'conda-forge'
+  - 'nodefaults'
+dependencies:
+  - 'ipywidgets'
+  - 'jupyterlab'
+  - pip:
+    - 'jupyterlab-quarto'
+platforms:
+  - 'osx-arm64'

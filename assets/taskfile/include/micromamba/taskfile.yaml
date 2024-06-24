@@ -1,0 +1,156 @@
+# vim: set ft=yaml :
+#
+# https://taskfile.dev
+
+
+version: '3'
+
+set: ['errexit', 'nounset', 'pipefail']
+
+vars:
+  # Cache Directory Tagging Specification
+  #   https://bford.info/cachedir/
+  CACHEDIR_TAG: 'CACHEDIR.TAG'
+  CONDA_ENV_LOCK_FILE: '{{ .CONDA_ENV_LOCK_FILE | default "conda-lock.yaml" }}'
+  CONDA_ENV_SPEC_FILE: '{{ .CONDA_ENV_SPEC_FILE | default "environment.yaml" }}'
+  CONDA_LOCK_ENV_NAME: '{{ .CONDA_LOCK_ENV_NAME | default "conda-lock" }}'
+  PRINTF_CACHEDIR_TAG_CONTENT: 'printf %s Signature:\ 8a477f597d28d172789f06886806bc55'
+
+tasks:
+
+  preflight:
+    desc: 'Execute pre-flight checks and commands.'
+    summary: |
+      Execute pre-flight checks and commands.
+
+      Ensure micromamba command exists
+      ( https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html ).
+
+      Ensure the MAMBA_ROOT_PREFIX environment variable is set to a non-empty value
+      ( https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html ).
+
+      Add {{ .CACHEDIR_TAG | shellQuote }} to .task directory ( https://bford.info/cachedir/ ).
+    internal: true
+    silent: true
+    run: 'once'
+    requires:
+      vars: ['MAMBA_ROOT_PREFIX']
+    cmds:
+      - 'mkdir -p -- .task'
+      - '{{ .PRINTF_CACHEDIR_TAG_CONTENT }} > .task/{{ .CACHEDIR_TAG | shellQuote }}'
+    preconditions:
+      - sh: 'command -v -- micromamba'
+        msg: 'micromamba command does not exist.'
+      - sh: 'test -n "${MAMBA_ROOT_PREFIX-}"'
+        msg: 'The MAMBA_ROOT_PREFIX environment variable must be set to a non-empty value.'
+
+  install-conda-lock:
+    desc: 'Install the conda-lock package into the {{ .CONDA_LOCK_ENV_NAME | shellQuote }} conda
+            environment.'
+    summary: |
+      Install the conda-lock package into the {{ .CONDA_LOCK_ENV_NAME | shellQuote }} conda
+      environment.
+
+      Add {{ .CACHEDIR_TAG | shellQuote }} to the root of the
+      {{ .CONDA_LOCK_ENV_NAME | shellQuote }} conda environment.
+    deps: ['preflight']
+    cmds:
+      - 'rm -f -- {{ env "MAMBA_ROOT_PREFIX" | shellQuote }}/envs/{{ .CONDA_LOCK_ENV_NAME | shellQuote }}/.create.success'
+      - 'micromamba --yes create
+          --name={{ .CONDA_LOCK_ENV_NAME | shellQuote }}
+          --override-channels
+          --channel=conda-forge
+          -- conda-lock'
+      - '{{ .PRINTF_CACHEDIR_TAG_CONTENT }} > {{ env "MAMBA_ROOT_PREFIX" | shellQuote }}/envs/{{ .CONDA_LOCK_ENV_NAME | shellQuote }}/{{ .CACHEDIR_TAG | shellQuote }}'
+      - 'touch -- {{ env "MAMBA_ROOT_PREFIX" | shellQuote }}/envs/{{ .CONDA_LOCK_ENV_NAME | shellQuote }}/.create.success'
+    status:
+      - 'test -f {{ env "MAMBA_ROOT_PREFIX" | shellQuote }}/envs/{{ .CONDA_LOCK_ENV_NAME | shellQuote }}/.create.success'
+      - 'micromamba list --name={{ .CONDA_LOCK_ENV_NAME | shellQuote }} &> /dev/null'
+
+  upgrade-conda-lock:
+    desc: 'Upgrade all packages in the {{ .CONDA_LOCK_ENV_NAME | shellQuote }} conda environment.'
+    deps: ['preflight', 'install-conda-lock']
+    cmds:
+      - 'micromamba --yes update
+          --all
+          --name={{ .CONDA_LOCK_ENV_NAME | shellQuote }}
+          --override-channels
+          --channel=conda-forge'
+
+  remove-conda-lock:
+    desc: 'Remove the {{ .CONDA_LOCK_ENV_NAME | shellQuote }} conda environment.'
+    deps: ['preflight']
+    cmds:
+      - 'micromamba --yes env remove --name={{ .CONDA_LOCK_ENV_NAME | shellQuote }}'
+
+  compile:
+    aliases: ['lock']
+    desc: 'Compile conda environment specification with conda-lock.'
+    summary: |
+      Compile conda environment specification with conda-lock.
+
+      Additional CLI args may be passed to conda-lock like so:
+
+        task {{ .TASK | shellQuote }} [-- <CONDA_LOCK_CLI_ARG>…]
+
+      For example, to upgrade all conda packages in {{ .CONDA_ENV_LOCK_FILE | shellQuote }}:
+
+        task {{ .TASK | shellQuote }} -- --update=
+    deps: ['preflight', 'install-conda-lock']
+    cmds:
+      - '{{ env "MAMBA_ROOT_PREFIX" | shellQuote }}/envs/{{ .CONDA_LOCK_ENV_NAME | shellQuote }}/bin/conda-lock lock
+          --file={{ .CONDA_ENV_SPEC_FILE | shellQuote }}
+          --lockfile={{ .CONDA_ENV_LOCK_FILE | shellQuote }}
+          --micromamba
+          {{ if .COMPILE_CLI_ARGS }}{{ .COMPILE_CLI_ARGS }}{{ else }}{{ .CLI_ARGS }}{{ end }}'
+    sources:
+      - '{{ .CONDA_ENV_SPEC_FILE }}'
+    generates:
+      - '{{ .CONDA_ENV_LOCK_FILE }}'
+    status:
+      - '{{ empty .COMPILE_CLI_ARGS | ternary "true" "false" }}'
+      - '{{ empty .CLI_ARGS | ternary "true" "false" }}'
+
+  sync:
+    aliases: ['env', 'install']
+    desc: 'Sync {{ .CONDA_ENV_LOCK_FILE | shellQuote }} to the {{ .CONDA_ENV_NAME | shellQuote }}
+            conda environment.'
+    summary: |
+      Sync {{ .CONDA_ENV_LOCK_FILE | shellQuote }} to the {{ .CONDA_ENV_NAME | shellQuote }} conda
+      environment.
+
+      Packages in the {{ .CONDA_ENV_NAME | shellQuote }} conda environment will be added, removed,
+      upgraded or downgraded according to {{ .CONDA_ENV_LOCK_FILE | shellQuote }}.
+
+      Add {{ .CACHEDIR_TAG | shellQuote }} to the root of the {{ .CONDA_ENV_NAME | shellQuote }}
+      conda environment.
+    deps: ['preflight']
+    requires:
+      vars: ['CONDA_ENV_NAME']
+    cmds:
+      - 'rm -f -- {{ env "MAMBA_ROOT_PREFIX" | shellQuote }}/envs/{{ .CONDA_ENV_NAME | shellQuote }}/.create.success'
+      - 'micromamba --yes create
+          --file={{ .CONDA_ENV_LOCK_FILE | shellQuote }}
+          --name={{ .CONDA_ENV_NAME | shellQuote }}'
+      - '{{ .PRINTF_CACHEDIR_TAG_CONTENT }} > {{ env "MAMBA_ROOT_PREFIX" | shellQuote }}/envs/{{ .CONDA_ENV_NAME | shellQuote }}/{{ .CACHEDIR_TAG | shellQuote }}'
+      - 'touch -- {{ env "MAMBA_ROOT_PREFIX" | shellQuote }}/envs/{{ .CONDA_ENV_NAME | shellQuote }}/.create.success'
+    sources:
+      - '{{ .CONDA_ENV_LOCK_FILE }}'
+    status:
+      - 'test -f {{ env "MAMBA_ROOT_PREFIX" | shellQuote }}/envs/{{ .CONDA_ENV_NAME | shellQuote }}/.create.success'
+      - 'micromamba list --name={{ .CONDA_ENV_NAME | shellQuote }} &> /dev/null'
+
+  remove:
+    desc: 'Remove the {{ .CONDA_ENV_NAME | shellQuote }} conda environment.'
+    deps: ['preflight']
+    requires:
+      vars: ['CONDA_ENV_NAME']
+    cmds:
+      - 'micromamba --yes env remove --name={{ .CONDA_ENV_NAME | shellQuote }}'
+
+  upgrade:
+    desc: 'Upgrade conda environment specification with conda-lock.'
+    cmds:
+      - task: 'compile'
+        vars:
+          COMPILE_CLI_ARGS: '--update='
