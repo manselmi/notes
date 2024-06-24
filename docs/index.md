@@ -4,7 +4,7 @@
 
 * [Git repository](https://github.com/manselmi/notes/#readme)
 
-* [Published site](https://github.com/pages/manselmi/notes/)
+* [Published site](https://manselmi.github.io/notes/)
 
 ## Introduction
 
