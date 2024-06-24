@@ -30,47 +30,11 @@ Also, if restic is good enough for CERN, it's good enough for me!
 ### PC
 
 ``` mermaid
-sequenceDiagram
-
-  participant KC as macOS "login" keychain
-  participant 1P as 1Password
-
-  participant LD as launchd
-  participant ER as exec-resticprofile
-  participant RP as resticprofile
-  participant RE as restic
-  participant RC as rclone
-
-  participant PC as pCloud
-  participant HC as Healthchecks.io
-
-  LD ->> ER: Execute
-  ER ->> KC: 1Password service account token?
-  KC ->> ER: 1Password service account token
-  ER ->> RP: Execute w/ 1P svc acct token in env
-  RP ->> 1P: Healthcheck endpoint UUID?
-  1P ->> RP: Healthcheck endpoint UUID
-  RP ->> HC: Ping healthcheck endpoint
-  RP ->> RE: Execute
-  RE ->> 1P: restic repo password?
-  1P ->> RE: restic repo password
-  RE ->> RC: Start HTTP server
-  RC ->> 1P: rclone config password?
-  1P ->> RC: rclone config password
-  RC ->> RE: HTTP connection established
-
-  loop Data transfer: backup, forget old snapshots
-    RE ->> RC: HTTP
-    RC ->> PC: HTTPS
-    PC ->> RC: HTTPS
-    RC ->> RE: HTTP
-  end
-
-  RE ->> RP: Return status
-  RP ->> 1P: Healthcheck endpoint UUID?
-  1P ->> RP: Healthcheck endpoint UUID
-  RP ->> HC: Ping healthcheck endpoint w/ status and log file
+--8<-- "docs/assets/backup/sequence-diagram.mmd"
 ```
+
+The diagram may also be navigated with interactive controls
+[here](https://github.com/manselmi/notes/blob/main/docs/assets/backup/sequence-diagram.mmd).
 
 !!! note
 
