@@ -33,12 +33,11 @@ feature rich, customizable experience compared to Jupyter Notebook.
 
 First, [install
 Micromamba](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html).
-Please note that Micromamba installation and configuration instructions
-are outside of the scope of this document, although this page assumes the
-`MAMBA_ROOT_PREFIX` environment variable is set to `~/.prefix/sw/mamba` (see example
-[`~/.zshrc`](https://github.com/manselmi/notes/blob/main/assets/.zshrc) configuration file). Also,
-here is an example [`~/.mambarc`](https://github.com/manselmi/notes/blob/main/assets/.mambarc)
-configuration file.
+Please note that Micromamba installation and configuration instructions are outside of the scope
+of this document, although this page assumes the `MAMBA_ROOT_PREFIX` environment variable is
+set to `~/.prefix/sw/mamba` (see example [`~/.zshrc`]({{ prefix_repo_url("assets/.zshrc foo") }})
+configuration file). Also, here is an example
+[`~/.mambarc`]({{ prefix_repo_url("assets/.mambarc") }}) configuration file.
 
 Let's create an isolated environment in which we'll install JupyterLab, and then remove JupyterLab's
 default kernels.
@@ -55,13 +54,13 @@ mkdir -p -- "${HOME}/.jupyterlab" "${HOME}/Documents/Jupyter" "${HOME}/Library/L
 ```
 
 Add this [JupyterLab configuration
-file](https://github.com/manselmi/notes/blob/main/assets/jupyterlab/jupyter_lab_config.py) to the
-`~/.jupyter` directory.
+file]({{ prefix_repo_url("assets/jupyterlab/jupyter_lab_config.py") }}) to the `~/.jupyter`
+directory.
 
 Now let's create a launchd service that will make it easy to automatically start and stop
 JupyterLab. Add this [JupyterLab launchd service
-definition](https://github.com/manselmi/notes/blob/main/assets/jupyterlab/org.jupyter.jupyterlab.server.plist)
-to the `~/Library/LaunchAgents` directory.
+definition]({{ prefix_repo_url("assets/jupyterlab/org.jupyter.jupyterlab.server.plist") }}) to the
+`~/Library/LaunchAgents` directory.
 
 If you would like to learn more about launchd, please see [Creating Launch Daemons and
 Agents](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html).
@@ -121,10 +120,10 @@ Congratulations! 🥳
 ## Maintenance
 
 Routine maintenance tasks may be automated with [Task](https://taskfile.dev) and these
-[taskfiles](https://github.com/manselmi/notes/tree/main/assets/taskfile). Add those taskfiles
-to the `~/.taskfile` directory (create it if necessary), and ensure that the environment
-variables `TASKFILE_LIBRARY_ROOT_DIR` and `TASKFILE_INCLUDE_ROOT_DIR` are set as in
-[`~/.zshrc`](https://github.com/manselmi/notes/blob/main/assets/.zshrc).
+[taskfiles]({{ prefix_repo_url("assets/taskfile/") }}). Add those taskfiles to the
+`~/.taskfile` directory (create it if necessary), and ensure that the environment variables
+`TASKFILE_LIBRARY_ROOT_DIR` and `TASKFILE_INCLUDE_ROOT_DIR` are set as in
+[`~/.zshrc`]({{ prefix_repo_url("assets/.zshrc")}}).
 
 Here are some common tasks:
 

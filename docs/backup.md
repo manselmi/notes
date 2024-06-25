@@ -34,7 +34,7 @@ Also, if restic is good enough for CERN, it's good enough for me!
 ```
 
 The diagram may also be viewed with interactive controls
-[here](https://github.com/manselmi/notes/blob/main/docs/assets/backup/sequence-diagram.mmd).
+[here]({{ prefix_repo_url("docs/assets/backup/sequence-diagram.mmd") }}).
 
 !!! note
 
@@ -79,44 +79,44 @@ bkp
 
 ### launchd
 
-* [`~/Library/LaunchAgents/com.manselmi.resticprofile.nidoking.backup.plist`](https://github.com/manselmi/notes/blob/main/assets/backup/root/Users/manselmi/Library/LaunchAgents/com.manselmi.resticprofile.nidoking.backup.plist)
+* [`~/Library/LaunchAgents/com.manselmi.resticprofile.nidoking.backup.plist`]({{ prefix_repo_url("assets/backup/root/Users/manselmi/Library/LaunchAgents/com.manselmi.resticprofile.nidoking.backup.plist") }})
   (triggered daily)
 
-* [`~/Library/LaunchAgents/com.manselmi.resticprofile.gdrive.backup.plist`](https://github.com/manselmi/notes/blob/main/assets/backup/root/Users/manselmi/Library/LaunchAgents/com.manselmi.resticprofile.gdrive.backup.plist)
+* [`~/Library/LaunchAgents/com.manselmi.resticprofile.gdrive.backup.plist`]({{ prefix_repo_url("assets/backup/root/Users/manselmi/Library/LaunchAgents/com.manselmi.resticprofile.gdrive.backup.plist") }})
   (triggered manually)
 
-* [`~/Library/LaunchAgents/com.manselmi.resticprofile.onedrive.backup.plist`](https://github.com/manselmi/notes/blob/main/assets/backup/root/Users/manselmi/Library/LaunchAgents/com.manselmi.resticprofile.onedrive.backup.plist)
+* [`~/Library/LaunchAgents/com.manselmi.resticprofile.onedrive.backup.plist`]({{ prefix_repo_url("assets/backup/root/Users/manselmi/Library/LaunchAgents/com.manselmi.resticprofile.onedrive.backup.plist") }})
   (triggered manually)
 
 ### fdautil
 
-* [`/Library/Preferences/com.soma-zone.LaunchControl.fdautil.plist`](https://github.com/manselmi/notes/blob/main/assets/backup/root/Library/Preferences/com.soma-zone.LaunchControl.fdautil.plist)
+* [`/Library/Preferences/com.soma-zone.LaunchControl.fdautil.plist`]({{ prefix_repo_url("assets/backup/root/Library/Preferences/com.soma-zone.LaunchControl.fdautil.plist") }})
 
 ### resticprofile
 
-* [`~/.prefix/bin/exec-resticprofile`](https://github.com/manselmi/notes/blob/main/assets/backup/root/Users/manselmi/.prefix/bin/exec-resticprofile)
+* [`~/.prefix/bin/exec-resticprofile`]({{ prefix_repo_url("assets/backup/root/Users/manselmi/.prefix/bin/exec-resticprofile") }})
 
-* [`~/.config/resticprofile/profiles.toml`](https://github.com/manselmi/notes/blob/main/assets/backup/root/Users/manselmi/.config/resticprofile/profiles.toml)
+* [`~/.config/resticprofile/profiles.toml`]({{ prefix_repo_url("assets/backup/root/Users/manselmi/.config/resticprofile/profiles.toml") }})
 
-* [`~/.config/resticprofile/`](https://github.com/manselmi/notes/tree/main/assets/backup/root/Users/manselmi/.config/resticprofile/)
+* [`~/.config/resticprofile/`]({{ prefix_repo_url("assets/backup/root/Users/manselmi/.config/resticprofile/") }})
 
 ### Sudo
 
-* [`/private/etc/sudoers.d/`](https://github.com/manselmi/notes/tree/main/assets/backup/root/private/etc/sudoers.d/)
+* [`/private/etc/sudoers.d/`]({{ prefix_repo_url("assets/backup/root/private/etc/sudoers.d/") }})
 
 ### Rclone
 
-* [`~/.prefix/bin/exec-rclone`](https://github.com/manselmi/notes/blob/main/assets/backup/root/Users/manselmi/.prefix/bin/exec-rclone)
+* [`~/.prefix/bin/exec-rclone`]({{ prefix_repo_url("assets/backup/root/Users/manselmi/.prefix/bin/exec-rclone") }})
 
-* [`~/.config/rclone/rclone.conf`](https://github.com/manselmi/notes/blob/main/assets/backup/root/Users/manselmi/.config/rclone/rclone.conf)
+* [`~/.config/rclone/rclone.conf`]({{ prefix_repo_url("assets/backup/root/Users/manselmi/.config/rclone/rclone.conf") }})
 
 ### 1Password
 
-* [`~/.prefix/bin/exec-op-token`](https://github.com/manselmi/notes/blob/main/assets/backup/root/Users/manselmi/.prefix/bin/exec-op-token)
+* [`~/.prefix/bin/exec-op-token`]({{ prefix_repo_url("assets/backup/root/Users/manselmi/.prefix/bin/exec-op-token") }})
 
 ### Zsh
 
-* [`~/.zshrc`](https://github.com/manselmi/notes/blob/main/assets/backup/root/Users/manselmi/.zshrc)
+* [`~/.zshrc`]({{ prefix_repo_url("assets/backup/root/Users/manselmi/.zshrc") }})
 
 ## Components
 

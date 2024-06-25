@@ -10,7 +10,7 @@ tags:
 
 ### Global
 
-* [`~/.gitconfig`](https://github.com/manselmi/notes/blob/main/assets/git/.gitconfig)
+* [`~/.gitconfig`]({{ prefix_repo_url("assets/git/.gitconfig") }})
 
 ## gitattributes and gitignore tips
 

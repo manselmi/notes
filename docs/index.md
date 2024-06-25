@@ -2,9 +2,9 @@
 
 ## Project URL
 
-* [Git repository](https://github.com/manselmi/notes/#readme)
+* [Git repository]({{ [config.repo_url, "#readme"] | join("/") }})
 
-* [Published site](https://manselmi.github.io/notes/)
+* [Published site]({{ config.site_url }})
 
 ## Introduction
 

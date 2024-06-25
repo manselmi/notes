@@ -92,6 +92,10 @@ nav:
       - Windows Subsystem for Linux: wsl.md
 
 plugins:
+  - macros:
+      module_name: macros
+      on_error_fail: true
+      on_undefined: strict
   - optimize
   - search
   - tags
