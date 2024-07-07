@@ -120,7 +120,7 @@ bkp
 
 * [`~/.zshrc`]({{ prefix_repo_url("assets/backup/macos/root/Users/manselmi/.zshrc") }})
 
-### Ubuntu
+### Ubuntu (VPS)
 
 #### systemd
 
