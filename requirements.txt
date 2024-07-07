@@ -12,7 +12,7 @@ cairocffi==1.7.1
     # via cairosvg
 cairosvg==2.7.1
     # via mkdocs-material
-certifi==2024.6.2
+certifi==2024.7.4
     # via requests
 cffi==1.16.0
     # via cairocffi
@@ -92,7 +92,7 @@ mkdocs-minify-plugin==0.8.0
     # via mkdocs-material
 mkdocs-redirects==1.2.1
     # via mkdocs-material
-mkdocs-rss-plugin==1.14.0
+mkdocs-rss-plugin==1.15.0
     # via mkdocs-material
 msgpack==1.0.8
     # via cachecontrol
