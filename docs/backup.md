@@ -27,7 +27,7 @@ Also, if restic is good enough for CERN, it's good enough for me!
 
 ## Sequence diagram
 
-### PC
+### macOS
 
 ``` mermaid
 --8<-- "docs/assets/backup/sequence-diagram.mmd"
@@ -52,10 +52,10 @@ The diagram may also be viewed with interactive controls
 
 ## Examples
 
-### PC
+### macOS
 
 ``` shell
-# Manually start PC backup and tail the backup log.
+# Manually start backup and tail the backup log.
 bk
 
 # Log current backup progress.
