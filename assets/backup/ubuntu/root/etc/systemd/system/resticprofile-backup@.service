@@ -1,0 +1,20 @@
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+AmbientCapabilities=CAP_DAC_READ_SEARCH
+CapabilityBoundingSet=CAP_DAC_READ_SEARCH
+Environment=PATH=/home/ubuntu/.prefix/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+ExecStart=/home/ubuntu/.prefix/bin/exec-resticprofile --lock-wait 5m --log /home/ubuntu/.config/resticprofile/log/%i/backup.log --no-ansi --no-prio -- %i.backup
+ExecStartPre=/usr/bin/truncate -s 0 -- /home/ubuntu/.config/resticprofile/log/%i/backup.log
+Group=ubuntu
+LimitNOFILE=infinity
+NoNewPrivileges=true
+SecureBits=keep-caps
+Type=oneshot
+User=ubuntu
+
+[Unit]
+After=network-online.target
+Description=Backup resticprofile profile %I
+Wants=network-online.target

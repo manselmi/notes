@@ -1,0 +1,153 @@
+#:schema https://creativeprojects.github.io/resticprofile/jsonschema/config-1.json
+# vim: set ft=toml :
+
+
+{{ define "ping_healthcheck_failure" }}
+'''
+env -u TMPDIR -- op inject -i '{{ .ConfigDir }}/curlrc/{{ .Profile.Name }}.curlrc' \
+  | sed -e '\|^url[[:blank:]:=]|s|$|/fail|' \
+  | {
+      DATA="$(env -u TMPDIR -- mktemp)"
+      env -- LC_ALL=POSIX tail -c 100000 -- '{{ .ConfigDir }}/log/{{ .Profile.Name }}/backup.log' >> "${DATA}"
+      curl -qK - -H 'content-type: text/plain' --data-binary "@${DATA}"
+      rm -f -- "${DATA}"
+    }
+'''
+{{ end }}
+
+{{ define "ping_healthcheck_start" }}
+'''
+env -u TMPDIR -- op inject -i '{{ .ConfigDir }}/curlrc/{{ .Profile.Name }}.curlrc' \
+  | sed -e '\|^url[[:blank:]:=]|s|$|/start|' \
+  | curl -qK -
+'''
+{{ end }}
+
+{{ define "ping_healthcheck_success" }}
+'''
+env -u TMPDIR -- op inject -i '{{ .ConfigDir }}/curlrc/{{ .Profile.Name }}.curlrc' \
+  | {
+      DATA="$(env -u TMPDIR -- mktemp)"
+      env -- LC_ALL=POSIX tail -c 100000 -- '{{ .ConfigDir }}/log/{{ .Profile.Name }}/backup.log' >> "${DATA}"
+      curl -qK - -H 'content-type: text/plain' --data-binary "@${DATA}"
+      rm -f -- "${DATA}"
+    }
+'''
+{{ end }}
+
+{{ define "print_versions" }}
+'''
+printf '%s %s\n' op "$(env -u TMPDIR -- op --version)"
+rclone version
+restic version
+resticprofile version
+'''
+{{ end }}
+
+
+{{ define "repository_untrusted" }}
+lock = '''{{ .TempDir }}/resticprofile-untrusted.lock'''
+password-command = 'env -u TMPDIR -- op read --no-newline -- op://<vault-name>/<item-name>/[section-name/]<field-name>'
+repository = 'rclone:restic-untrusted:'
+{{ end }}
+
+
+{{ define "hostname" }}'vps.manselmi.com'{{ end }}
+
+
+version = '1'
+
+
+[global]
+restic-lock-retry-after = '1m'
+restic-stale-lock-age = '1h'
+shell = 'zsh'
+
+
+[base]
+group-by = 'host,tags'
+human-readable = true
+keep-within-daily = '7d'
+keep-within-weekly = '1m'
+keep-within-monthly = '1y'
+keep-within-yearly = '100y'
+long = true
+option = [
+  'rclone.program=exec-rclone',
+]
+pack-size = 128  # MiB
+path = false
+status-file = '''{{ .ConfigDir }}/status/{{ .Profile.Name }}.json'''
+
+[base.backup]
+check-after = false
+exclude-caches = true
+exclude-file = [
+  '''{{ .ConfigDir }}/exclude/{{ .Profile.Name }}/pre-base.exclude''',
+  '''{{ .ConfigDir }}/exclude/base.exclude''',
+  '''{{ .ConfigDir }}/exclude/{{ .Profile.Name }}/post-base.exclude''',
+]
+read-concurrency = 8
+run-after = [
+  {{ template "ping_healthcheck_success" . }},
+]
+run-after-fail = [
+  {{ template "ping_healthcheck_failure" . }},
+]
+run-before = [
+  {{ template "ping_healthcheck_start" . }},
+  {{ template "print_versions" . }},
+]
+verbose = true
+
+[base.cache]
+cleanup = true
+max-age = 30
+
+[base.diff]
+metadata = false
+
+[base.env]
+RCLONE_PASSWORD_COMMAND = 'env -u TMPDIR -- op read --no-newline -- op://<vault-name>/<item-name>/[section-name/]<field-name>'
+TZ = 'UTC'
+
+[base.forget]
+prune = false
+tag = true
+
+# Uncomment before initializing a repository, then comment out afterwards. Only `restic key add`
+# supports `--host` and `--user` (and not `restic key {list,passwd,remove}`).
+#
+# [base.key]
+# host = {{ template "hostname" . }}
+# user = 'ubuntu'
+
+[base.prune]
+max-unused = '0'
+verbose = true
+
+[base.repair-snapshots]
+forget = true
+tag = true
+
+[base.retention]
+after-backup = true
+prune = false
+tag = true
+
+
+[untrusted]
+inherit = 'base'
+{{ template "repository_untrusted" . }}
+
+
+[vps]
+host = {{ template "hostname" . }}
+inherit = 'base'
+{{ template "repository_untrusted" . }}
+
+[vps.backup]
+source = [
+  '/etc',
+  '/home/ubuntu',
+]

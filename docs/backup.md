@@ -120,6 +120,33 @@ bkp
 
 * [`~/.zshrc`]({{ prefix_repo_url("assets/backup/macos/root/Users/manselmi/.zshrc") }})
 
+### Ubuntu
+
+#### systemd
+
+* [`/etc/systemd/system/resticprofile-backup@.service`]({{ prefix_repo_url("assets/backup/ubuntu/root/etc/systemd/system/resticprofile-backup@.service") }})
+
+* [`/etc/systemd/system/resticprofile-backup@.timer`]({{ prefix_repo_url("assets/backup/ubuntu/root/etc/systemd/system/resticprofile-backup@.timer") }})
+  (triggered daily)
+
+#### resticprofile
+
+* [`~/.prefix/bin/exec-resticprofile`]({{ prefix_repo_url("assets/backup/ubuntu/root/home/ubuntu/.prefix/bin/exec-resticprofile") }})
+
+* [`~/.config/resticprofile/profiles.toml`]({{ prefix_repo_url("assets/backup/ubuntu/root/home/ubuntu/.config/resticprofile/profiles.toml") }})
+
+* [`~/.config/resticprofile/`]({{ prefix_repo_url("assets/backup/ubuntu/root/home/ubuntu/.config/resticprofile/") }})
+
+#### Rclone
+
+* [`~/.prefix/bin/exec-rclone`]({{ prefix_repo_url("assets/backup/ubuntu/root/home/ubuntu/.prefix/bin/exec-rclone") }})
+
+* [`~/.config/rclone/rclone.conf`]({{ prefix_repo_url("assets/backup/ubuntu/root/home/ubuntu/.config/rclone/rclone.conf") }})
+
+#### 1Password
+
+* [`~/.prefix/bin/exec-op-token`]({{ prefix_repo_url("assets/backup/ubuntu/root/home/ubuntu/.prefix/bin/exec-op-token") }})
+
 ## Components
 
 ### restic
@@ -362,6 +389,28 @@ You get the benefit of Apple’s new security feature and can use scripts with F
 
 launchd is an init and operating system service management daemon created by Apple Inc. as part of
 macOS to replace its BSD-style init and SystemStarter.
+
+### systemd
+
+#### Project URL
+
+[The systemd System and Service Manager](https://systemd.io/)
+
+#### Project description
+
+systemd is a suite of basic building blocks for a Linux system. It provides a system and service
+manager that runs as PID 1 and starts the rest of the system.
+
+systemd provides aggressive parallelization capabilities, uses socket and D-Bus activation for
+starting services, offers on-demand starting of daemons, keeps track of processes using Linux
+control groups, maintains mount and automount points, and implements an elaborate transactional
+dependency-based service control logic. systemd supports SysV and LSB init scripts and works as a
+replacement for sysvinit.
+
+Other parts include a logging daemon, utilities to control basic system configuration like the
+hostname, date, locale, maintain a list of logged-in users and running containers and virtual
+machines, system accounts, runtime directories and settings, and daemons to manage simple network
+configuration, network time synchronization, log forwarding, and name resolution.
 
 [1]: https://support.apple.com/guide/keychain-access/if-you-need-to-update-your-keychain-password-kyca2429/mac
 [2]: https://support.apple.com/guide/keychain-access/mac-keychain-password-kyca1242/mac

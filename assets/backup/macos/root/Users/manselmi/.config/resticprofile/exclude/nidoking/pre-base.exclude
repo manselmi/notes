@@ -16,7 +16,6 @@
  /Users/manselmi/.aspnet/
  /Users/manselmi/.cache/
  /Users/manselmi/.cargo/
- /Users/manselmi/.conda/
  /Users/manselmi/.config/JetBrains/
  /Users/manselmi/.config/pulse/
  /Users/manselmi/.config/rclone/**/*.log
@@ -32,6 +31,7 @@
  /Users/manselmi/.gnupg_pre_2.1/
  /Users/manselmi/.gradle/
  /Users/manselmi/.groovy/
+ /Users/manselmi/.hawtjni/
  /Users/manselmi/.ipython/**/history.sqlite
  /Users/manselmi/.ivy2/
  /Users/manselmi/.jupyter/lab/workspaces/
@@ -45,7 +45,6 @@
  /Users/manselmi/.local/share/rstudio/
  /Users/manselmi/.local/share/virtualenv/
  /Users/manselmi/.m2/
- /Users/manselmi/.mamba/
  /Users/manselmi/.mc/session/
  /Users/manselmi/.megaCmd/*.db
  /Users/manselmi/.megaCmd/*.db-shm

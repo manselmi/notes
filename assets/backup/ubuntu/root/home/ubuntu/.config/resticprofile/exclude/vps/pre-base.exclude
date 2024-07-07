@@ -1,0 +1,191 @@
+ /etc/*
+!/etc/apt/
+!/etc/caddy/
+ /etc/caddy/.*
+!/etc/networkd-dispatcher/
+!/etc/stdiscosrv/
+ /etc/stdiscosrv/*.db
+!/etc/step-ca/
+ /etc/step-ca/db/
+!/etc/strelaysrv/
+!/etc/ssh/
+!/etc/sudoers
+!/etc/sudoers.d/
+!/etc/sysctl.conf
+!/etc/sysctl.d/
+!/etc/systemd/
+ /etc/systemd/*
+!/etc/systemd/system/
+ /etc/systemd/system/*
+!/etc/systemd/system/caddy.*
+!/etc/systemd/system/cert-renewer@.*
+!/etc/systemd/system/cert-renewer@*.service.d/
+!/etc/systemd/system/resticprofile-backup@.*
+!/etc/systemd/system/resticprofile-backup@*.service.d/
+!/etc/systemd/system/stdiscosrv.*
+!/etc/systemd/system/step-ca.*
+!/etc/systemd/system/strelaysrv.*
+
+ /home/ubuntu/*_helpers/
+ /home/ubuntu/.android/
+ /home/ubuntu/.ansible/
+ /home/ubuntu/.aspnet/
+ /home/ubuntu/.cache/
+ /home/ubuntu/.cargo/
+ /home/ubuntu/.config/JetBrains/
+ /home/ubuntu/.config/pulse/
+ /home/ubuntu/.config/rclone/**/*.log
+ /home/ubuntu/.config/resticprofile/log/**/*.log
+ /home/ubuntu/.config/resticprofile/status/**/*.json
+ /home/ubuntu/.cookiecutters/
+ /home/ubuntu/.devpi/server/
+ /home/ubuntu/.docker/
+ /home/ubuntu/.duckdb/extensions/
+ /home/ubuntu/.gnupg/.#*
+ /home/ubuntu/.gnupg/reader_*.status
+ /home/ubuntu/.gnupg/S.*
+ /home/ubuntu/.gnupg_pre_2.1/
+ /home/ubuntu/.gradle/
+ /home/ubuntu/.groovy/
+ /home/ubuntu/.hawtjni/
+ /home/ubuntu/.ipython/**/history.sqlite
+ /home/ubuntu/.ivy2/
+ /home/ubuntu/.jupyter/lab/workspaces/
+ /home/ubuntu/.kube/cache/
+ /home/ubuntu/.kube/http-cache/
+ /home/ubuntu/.kuberlr/
+ /home/ubuntu/.local/bin/
+ /home/ubuntu/.local/share/containers/
+ /home/ubuntu/.local/share/JetBrains/
+ /home/ubuntu/.local/share/podman-desktop/
+ /home/ubuntu/.local/share/rstudio/
+ /home/ubuntu/.local/share/virtualenv/
+ /home/ubuntu/.m2/
+ /home/ubuntu/.mc/session/
+ /home/ubuntu/.megaCmd/*.db
+ /home/ubuntu/.megaCmd/*.db-shm
+ /home/ubuntu/.megaCmd/*.db-wal
+ /home/ubuntu/.megaCmd/*.log
+ /home/ubuntu/.megaCmd/apiFolder_*/
+ /home/ubuntu/.megaCmd/ebackup/
+ /home/ubuntu/.megaCmd/lockMCMD
+ /home/ubuntu/.minio/data/
+ /home/ubuntu/.net/
+ /home/ubuntu/.nextflow/cache/
+ /home/ubuntu/.nextflow/capsule/
+ /home/ubuntu/.nextflow/framework/
+ /home/ubuntu/.nextflow/plr/
+ /home/ubuntu/.nextflow/plugins/
+ /home/ubuntu/.nextflow/tmp/
+ /home/ubuntu/.npm/
+ /home/ubuntu/.openjfx/
+ /home/ubuntu/.parallel/tmp/
+ /home/ubuntu/.pcloud/
+ /home/ubuntu/.pdfbox.cache
+ /home/ubuntu/.ploomber/
+ /home/ubuntu/.podman-desktop/
+ /home/ubuntu/.prefix/*
+!/home/ubuntu/.prefix/bin/
+ /home/ubuntu/.prefix/bin/*
+!/home/ubuntu/.prefix/bin/*.sh
+!/home/ubuntu/.prefix/bin/exec-*
+!/home/ubuntu/.prefix/bin/provision-*
+!/home/ubuntu/.prefix/bin/renew-*
+!/home/ubuntu/.prefix/bin/ssh-*
+!/home/ubuntu/.prefix/sw/
+ /home/ubuntu/.prefix/sw/*
+!/home/ubuntu/.prefix/sw/texlive/
+ /home/ubuntu/.prefix/sw/texlive/*
+!/home/ubuntu/.prefix/sw/texlive/texmf-local/
+ /home/ubuntu/.rd/
+ /home/ubuntu/.rnd
+ /home/ubuntu/.sage/
+ /home/ubuntu/.ssh/control_sockets/
+ /home/ubuntu/.ssh/known_hosts.old
+ /home/ubuntu/.step/plugins/
+ /home/ubuntu/.swiftpm/
+ /home/ubuntu/.Trash/
+ /home/ubuntu/.vim/backup/
+ /home/ubuntu/.vim/bundle/
+ /home/ubuntu/.vim/swap/
+ /home/ubuntu/.viminfo
+ /home/ubuntu/.virtualenvs/
+ /home/ubuntu/.vscode/
+ /home/ubuntu/.vscode-server/
+ /home/ubuntu/.zcompcache/
+ /home/ubuntu/.zcompdump
+ /home/ubuntu/.zsh_sessions/
+ /home/ubuntu/Applications*/
+ /home/ubuntu/bin/
+ /home/ubuntu/Gaming/ni-roms/
+ /home/ubuntu/go/
+ /home/ubuntu/ISO/
+ /home/ubuntu/Library/*
+!/home/ubuntu/Library/Application Support/
+ /home/ubuntu/Library/Application Support/*
+!/home/ubuntu/Library/Application Support/Code/
+ /home/ubuntu/Library/Application Support/Code/*
+!/home/ubuntu/Library/Application Support/Code/User/
+ /home/ubuntu/Library/Application Support/Code/User/*
+!/home/ubuntu/Library/Application Support/Code/User/settings.json
+!/home/ubuntu/Library/Application Support/Code/User/snippets/
+!/home/ubuntu/Library/Application Support/Firefox/
+ /home/ubuntu/Library/Application Support/Firefox/*
+!/home/ubuntu/Library/Application Support/Firefox/Profiles/
+ /home/ubuntu/Library/Application Support/Firefox/Profiles/*/crashes/
+ /home/ubuntu/Library/Application Support/Firefox/Profiles/*/datareporting/
+ /home/ubuntu/Library/Application Support/Firefox/Profiles/*/gmp/
+ /home/ubuntu/Library/Application Support/Firefox/Profiles/*/gmp-*/
+ /home/ubuntu/Library/Application Support/Firefox/Profiles/*/storage/
+ /home/ubuntu/Library/Application Support/Firefox/Profiles/**/*.db-shm
+ /home/ubuntu/Library/Application Support/Firefox/Profiles/**/*.db-wal
+ /home/ubuntu/Library/Application Support/Firefox/Profiles/**/*.sqlite-shm
+ /home/ubuntu/Library/Application Support/Firefox/Profiles/**/*.sqlite-wal
+!/home/ubuntu/Library/Application Support/k9s/
+!/home/ubuntu/Library/Application Support/Name Mangler/
+!/home/ubuntu/Library/Application Support/obsidian/
+!/home/ubuntu/Library/Application Support/rancher-desktop/
+ /home/ubuntu/Library/Application Support/rancher-desktop/lima/*
+!/home/ubuntu/Library/Application Support/rancher-desktop/lima/_config/
+!/home/ubuntu/Library/Application Support/rancher-desktop/lima/_networks/
+!/home/ubuntu/Library/Application Support/sops/
+!/home/ubuntu/Library/Application Support/Sublime Text/
+ /home/ubuntu/Library/Application Support/Sublime Text/Installed Packages/
+ /home/ubuntu/Library/Application Support/Sublime Text/Lib/
+ /home/ubuntu/Library/Application Support/Sublime Text/Log/
+!/home/ubuntu/Library/Application Support/Syncthing/
+ /home/ubuntu/Library/Application Support/Syncthing/*.ldb
+ /home/ubuntu/Library/Application Support/Syncthing/index-*/
+!/home/ubuntu/Library/Audio/
+!/home/ubuntu/Library/Fonts/
+!/home/ubuntu/Library/Jupyter/
+ /home/ubuntu/Library/Jupyter/runtime/
+!/home/ubuntu/Library/Keychains/
+ /home/ubuntu/Library/Keychains/*
+!/home/ubuntu/Library/Keychains/*.keychain-db
+!/home/ubuntu/Library/LaunchAgents/
+!/home/ubuntu/Library/Preferences/
+!/home/ubuntu/Library/Screen Savers/
+!/home/ubuntu/Library/Scripts/
+!/home/ubuntu/Library/Services/
+!/home/ubuntu/Library/Sounds/
+!/home/ubuntu/Library/Spelling/
+!/home/ubuntu/Library/Workflows/
+!/home/ubuntu/Library/yWorks/
+ /home/ubuntu/Library/**/*.log
+ /home/ubuntu/mnt/
+ /home/ubuntu/Movies/.MakeMKV/
+ /home/ubuntu/Movies/Infuse/
+ /home/ubuntu/Movies/TV/
+ /home/ubuntu/Music/Music/Music Library.musiclibrary/
+ /home/ubuntu/Music/Music/Previous Libraries.localized/
+ /home/ubuntu/No Backup/
+ /home/ubuntu/Parallels/
+ /home/ubuntu/Pictures/Photo Booth Library/
+ /home/ubuntu/Pictures/Photos Library.photoslibrary/
+ /home/ubuntu/Public/
+ /home/ubuntu/R/**/*-library/
+ /home/ubuntu/R/**/library/
+ /home/ubuntu/Virtual Machines.localized/
+ /home/ubuntu/VirtualBox VMs/
+ /home/ubuntu/virtualenv/
