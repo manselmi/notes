@@ -77,7 +77,9 @@ bkp
 
 ## Configuration / support files
 
-### launchd
+### macOS
+
+#### launchd
 
 * [`~/Library/LaunchAgents/com.manselmi.resticprofile.nidoking.backup.plist`]({{ prefix_repo_url("assets/backup/macos/root/Users/manselmi/Library/LaunchAgents/com.manselmi.resticprofile.nidoking.backup.plist") }})
   (triggered daily)
@@ -88,11 +90,11 @@ bkp
 * [`~/Library/LaunchAgents/com.manselmi.resticprofile.onedrive.backup.plist`]({{ prefix_repo_url("assets/backup/macos/root/Users/manselmi/Library/LaunchAgents/com.manselmi.resticprofile.onedrive.backup.plist") }})
   (triggered manually)
 
-### fdautil
+#### fdautil
 
 * [`/Library/Preferences/com.soma-zone.LaunchControl.fdautil.plist`]({{ prefix_repo_url("assets/backup/macos/root/Library/Preferences/com.soma-zone.LaunchControl.fdautil.plist") }})
 
-### resticprofile
+#### resticprofile
 
 * [`~/.prefix/bin/exec-resticprofile`]({{ prefix_repo_url("assets/backup/macos/root/Users/manselmi/.prefix/bin/exec-resticprofile") }})
 
@@ -100,21 +102,21 @@ bkp
 
 * [`~/.config/resticprofile/`]({{ prefix_repo_url("assets/backup/macos/root/Users/manselmi/.config/resticprofile/") }})
 
-### Sudo
+#### Sudo
 
 * [`/private/etc/sudoers.d/`]({{ prefix_repo_url("assets/backup/macos/root/private/etc/sudoers.d/") }})
 
-### Rclone
+#### Rclone
 
 * [`~/.prefix/bin/exec-rclone`]({{ prefix_repo_url("assets/backup/macos/root/Users/manselmi/.prefix/bin/exec-rclone") }})
 
 * [`~/.config/rclone/rclone.conf`]({{ prefix_repo_url("assets/backup/macos/root/Users/manselmi/.config/rclone/rclone.conf") }})
 
-### 1Password
+#### 1Password
 
 * [`~/.prefix/bin/exec-op-token`]({{ prefix_repo_url("assets/backup/macos/root/Users/manselmi/.prefix/bin/exec-op-token") }})
 
-### Zsh
+#### Zsh
 
 * [`~/.zshrc`]({{ prefix_repo_url("assets/backup/macos/root/Users/manselmi/.zshrc") }})
 
