@@ -15,6 +15,8 @@ for me and my family. I manage it headlessly over SSH (see [tar over SSH](/tar-s
 [`fdautil`](#launchcontrol-fdautil) I can modify things without needing to authorize [Full Disk
 Access via the System Settings GUI](https://apple.stackexchange.com/a/352009).
 
+Recently I've also begun backing up my Ubuntu VPS with this approach as well.
+
 Also, if restic is good enough for CERN, it's good enough for me!
 
 * [Empowering CERNBox users with self-service restore
@@ -30,11 +32,11 @@ Also, if restic is good enough for CERN, it's good enough for me!
 ### macOS
 
 ``` mermaid
---8<-- "docs/assets/backup/sequence-diagram.mmd"
+--8<-- "docs/assets/backup/macos-sequence-diagram.mmd"
 ```
 
 The diagram may also be viewed with interactive controls
-[here]({{ prefix_repo_url("docs/assets/backup/sequence-diagram.mmd") }}).
+[here]({{ prefix_repo_url("docs/assets/backup/macos-sequence-diagram.mmd") }}).
 
 !!! note
 
@@ -50,9 +52,18 @@ The diagram may also be viewed with interactive controls
 
     !["login" keychain settings](/assets/backup/login-keychain-settings.png)
 
+### Ubuntu (VPS)
+
+``` mermaid
+--8<-- "docs/assets/backup/ubuntu-sequence-diagram.mmd"
+```
+
+The diagram may also be viewed with interactive controls
+[here]({{ prefix_repo_url("docs/assets/backup/ubuntu-sequence-diagram.mmd") }}).
+
 ## Examples
 
-### macOS
+### macOS / Ubuntu (VPS)
 
 ``` shell
 # Manually start backup and tail the backup log.
@@ -146,6 +157,10 @@ bkp
 #### 1Password
 
 * [`~/.prefix/bin/exec-op-token`]({{ prefix_repo_url("assets/backup/ubuntu/root/home/ubuntu/.prefix/bin/exec-op-token") }})
+
+#### Zsh
+
+* [`~/.zshrc`]({{ prefix_repo_url("assets/backup/ubuntu/root/home/ubuntu/.zshrc") }})
 
 ## Components
 

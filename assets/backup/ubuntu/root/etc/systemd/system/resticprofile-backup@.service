@@ -11,7 +11,7 @@ Group=ubuntu
 LimitNOFILE=infinity
 NoNewPrivileges=true
 SecureBits=keep-caps
-Type=oneshot
+Type=exec
 User=ubuntu
 
 [Unit]
