@@ -1,8 +1,3 @@
- /private/etc/*
-!/private/etc/ssh/
-!/private/etc/sudoers
-!/private/etc/sudoers.d/
-
  /Library/*
 !/Library/Preferences/
  /Library/Preferences/*

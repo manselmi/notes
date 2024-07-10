@@ -1,30 +1,13 @@
- /etc/*
-!/etc/apt/
-!/etc/caddy/
  /etc/caddy/.*
-!/etc/networkd-dispatcher/
-!/etc/stdiscosrv/
  /etc/stdiscosrv/*.db
-!/etc/step-ca/
  /etc/step-ca/db/
-!/etc/strelaysrv/
-!/etc/ssh/
-!/etc/sudoers
-!/etc/sudoers.d/
-!/etc/sysctl.conf
-!/etc/sysctl.d/
-!/etc/systemd/
- /etc/systemd/*
-!/etc/systemd/system/
- /etc/systemd/system/*
-!/etc/systemd/system/caddy.*
-!/etc/systemd/system/cert-renewer@.*
-!/etc/systemd/system/cert-renewer@*.service.d/
-!/etc/systemd/system/resticprofile-backup@.*
-!/etc/systemd/system/resticprofile-backup@*.service.d/
-!/etc/systemd/system/stdiscosrv.*
-!/etc/systemd/system/step-ca.*
-!/etc/systemd/system/strelaysrv.*
+
+ /usr/*
+!/usr/local/
+ /usr/local/*
+!/usr/local/share/
+ /usr/local/share/*
+!/usr/local/share/ca-certificates/
 
  /home/ubuntu/*_helpers/
  /home/ubuntu/.android/
