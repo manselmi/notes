@@ -27,8 +27,8 @@ I would like to be able to do the following programatically:
 
 ## Configuration
 
-1. Create IAM user `manselmi-work-sts`. The user is so named because it's for my use, and will only
-   be able to do anything useful by assuming a privileged role via STS.
+1. Create IAM user `manselmi-work-sts`. The user is so named because it's for my occasional use at
+   work, and will only be able to do anything useful by assuming a privileged role via STS.
 
 1. Create IAM user group `work`, and assign the user `manselmi-work-sts` to the group.
 
