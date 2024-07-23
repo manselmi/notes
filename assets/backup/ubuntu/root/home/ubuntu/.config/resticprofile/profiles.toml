@@ -80,7 +80,7 @@ path = false
 status-file = '''{{ .ConfigDir }}/status/{{ .Profile.Name }}.json'''
 
 [base.backup]
-check-after = false
+check-after = true
 exclude-caches = true
 exclude-file = [
   '''{{ .ConfigDir }}/exclude/{{ .Profile.Name }}/pre-base.exclude''',
