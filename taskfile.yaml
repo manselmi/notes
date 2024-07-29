@@ -14,7 +14,7 @@ vars:
 includes:
 
   uv:
-    taskfile: '{{ env "TASKFILE_INCLUDE_ROOT_DIR" }}/uv'
+    taskfile: '.taskfile-library/include/uv'
     vars:
       PYTHON_MINOR_VERSION: '3.12'
       VENV: '{{ .VENV }}'
