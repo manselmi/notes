@@ -84,7 +84,7 @@ mkdocs-git-revision-date-localized-plugin==1.2.6
     # via mkdocs-material
 mkdocs-macros-plugin==1.0.5
     # via -r requirements.in
-mkdocs-material @ git+ssh://git-personal/squidfunk/mkdocs-material-insiders.git@2fcb87fe9f685cae13e7161daf459177d2da08c0
+mkdocs-material @ git+ssh://git-personal/squidfunk/mkdocs-material-insiders.git@998c574347f699a71064b1b5f9eb72b6f69f1fa0
     # via -r requirements.in
 mkdocs-material-extensions==1.3.1
     # via mkdocs-material

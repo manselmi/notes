@@ -3,4 +3,4 @@
 
 mkdocs>=1.6.0
 mkdocs-macros-plugin
-mkdocs-material[git,imaging,recommended] @ git+ssh://git-personal/squidfunk/mkdocs-material-insiders.git@9.5.31-insiders-4.53.12
+mkdocs-material[git,imaging,recommended] @ git+ssh://git-personal/squidfunk/mkdocs-material-insiders.git@998c574347f699a71064b1b5f9eb72b6f69f1fa0
