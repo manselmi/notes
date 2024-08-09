@@ -29,3 +29,17 @@ deploy = { depends-on = 'push', env = { REMOTE = 'personal' }, cmd = [
   '--no-history',
   '--remote-name', '$REMOTE',
 ] }
+
+
+[environments]
+lint = { features = ['lint'] }
+
+
+[feature.lint.pypi-dependencies]
+pre-commit = { version = '*' }
+pre-commit-hooks = { version = '*' }
+
+[feature.lint.tasks]
+lint = { depends-on = ['pre-commit-run'] }
+pre-commit-install = { cmd = ['pre-commit', 'install'] }
+pre-commit-run = { cmd = ['pre-commit', 'run', '--all-files'] }

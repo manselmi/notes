@@ -1,60 +1,84 @@
 # vim: set ft=yaml :
 
 
-# See https://pre-commit.com for more information.
-# See https://pre-commit.com/hooks.html for more hooks.
+# To learn more about pre-commit, please see:
+#
+#   https://pre-commit.com
+#   https://pre-commit.com/hooks.html
 
-minimum_pre_commit_version: '3.8.0'
-
-default_language_version:
-  python: 'python3.12'
+default_stages: ['commit']
 
 repos:
 
-  - repo: 'https://github.com/pre-commit/pre-commit-hooks'
-    rev: 'v4.6.0'
+  - repo: 'local'
     hooks:
+
+      - id: 'pixi-install'
+        name: 'pixi-install'
+        entry: 'pixi install -e lint'
+        language: 'system'
+        always_run: true
+        pass_filenames: false
+        require_serial: true
+
       - id: 'check-case-conflict'
-        stages:
-          - 'commit'
-          - 'manual'
+        name: 'check-case-conflict'
+        entry: 'pixi run -e lint -- check-case-conflict'
+        language: 'system'
+        types: ['text']
+
       - id: 'check-json'
-        stages:
-          - 'commit'
-          - 'manual'
+        name: 'check-json'
+        entry: 'pixi run -e lint -- check-json'
+        language: 'system'
+        types: ['json']
+
       - id: 'check-symlinks'
-        stages:
-          - 'commit'
-          - 'manual'
+        name: 'check-symlinks'
+        entry: 'pixi run -e lint -- check-symlinks'
+        language: 'system'
+        types: ['symlink']
+
       - id: 'check-toml'
+        name: 'check-toml'
+        entry: 'pixi run -e lint -- check-toml'
+        language: 'system'
         exclude: '/resticprofile/profiles\.toml\Z'
-        stages:
-          - 'commit'
-          - 'manual'
+        types: ['toml']
+
       - id: 'check-vcs-permalinks'
-        stages:
-          - 'commit'
-          - 'manual'
+        name: 'check-vcs-permalinks'
+        entry: 'pixi run -e lint -- check-vcs-permalinks'
+        language: 'system'
+        types: ['text']
+
       - id: 'check-yaml'
+        name: 'check-yaml'
+        entry: 'pixi run -e lint -- check-yaml'
+        language: 'system'
         exclude: '\Amkdocs\.yaml\Z'
-        stages:
-          - 'commit'
-          - 'manual'
+        types: ['yaml']
+
       - id: 'destroyed-symlinks'
-        stages:
-          - 'commit'
-          - 'manual'
+        name: 'destroyed-symlinks'
+        entry: 'pixi run -e lint -- destroyed-symlinks'
+        language: 'system'
+        types: ['file']
+
       - id: 'end-of-file-fixer'
-        stages:
-          - 'commit'
-          - 'manual'
+        name: 'end-of-file-fixer'
+        entry: 'pixi run -e lint -- end-of-file-fixer'
+        language: 'system'
+        types: ['text']
+
       - id: 'fix-byte-order-marker'
-        stages:
-          - 'commit'
-          - 'manual'
-      - id: 'trailing-whitespace'
-        args:
-          - '--markdown-linebreak-ext=md'
-        stages:
-          - 'commit'
-          - 'manual'
+        name: 'fix-byte-order-marker'
+        entry: 'pixi run -e lint -- fix-byte-order-marker'
+        language: 'system'
+        types: ['text']
+
+      - id: 'trailing-whitespace-fixer'
+        name: 'trailing-whitespace-fixer'
+        entry: 'pixi run -e lint -- trailing-whitespace-fixer --markdown-linebreak-ext=md'
+        language: 'system'
+        types: ['text']
