@@ -30,7 +30,8 @@ deploy = { depends-on = 'push', cmd = [
 
 
 [environments]
-lint = { features = ['lint'] }
+default = { solve-group = 'default' }
+lint = { features = ['lint'], solve-group = 'default' }
 
 
 [feature.lint.pypi-dependencies]
