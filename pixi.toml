@@ -8,7 +8,7 @@ platforms = ['osx-arm64']
 
 
 [dependencies]
-python = '3.12.*'
+python = '*'
 
 
 [pypi-dependencies]
