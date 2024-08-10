@@ -17,17 +17,15 @@ mkdocs-macros-plugin = { version = '*' }
 
 [pypi-dependencies.mkdocs-material]
 git = 'ssh://git-personal/squidfunk/mkdocs-material-insiders.git'
-rev = '998c574347f699a71064b1b5f9eb72b6f69f1fa0'
+rev = 'master'
 extras = ['git', 'imaging', 'recommended']
 
 
 [tasks]
 serve = { cmd = ['mkdocs', 'serve', '--open'] }
-push = { env = { REMOTE = 'personal' }, cmd = ['git', 'push', '--', '$REMOTE'] }
-deploy = { depends-on = 'push', env = { REMOTE = 'personal' }, cmd = [
-  'mkdocs', 'gh-deploy',
-  '--no-history',
-  '--remote-name', '$REMOTE',
+push = { cmd = ['git', 'push', '--', 'personal'] }
+deploy = { depends-on = 'push', cmd = [
+  'mkdocs', 'gh-deploy','--no-history', '--remote-name', 'personal',
 ] }
 
 
@@ -41,5 +39,46 @@ pre-commit-hooks = { version = '*' }
 
 [feature.lint.tasks]
 lint = { depends-on = ['pre-commit-run'] }
-pre-commit-install = { cmd = ['pre-commit', 'install'] }
+pre-commit-install = { depends-on = [
+  'pre-commit-install-commit-msg',
+  'pre-commit-install-post-checkout',
+  'pre-commit-install-post-commit',
+  'pre-commit-install-post-merge',
+  'pre-commit-install-post-rewrite',
+  'pre-commit-install-pre-commit',
+  'pre-commit-install-pre-merge-commit',
+  'pre-commit-install-pre-push',
+  'pre-commit-install-pre-rebase',
+  'pre-commit-install-prepare-commit-msg',
+] }
+pre-commit-install-commit-msg = { cmd = [
+  'pre-commit', 'install', '-f', '-t', 'commit-msg',
+] }
+pre-commit-install-post-checkout = { cmd = [
+  'pre-commit', 'install', '-f', '-t', 'post-checkout',
+] }
+pre-commit-install-post-commit = { cmd = [
+  'pre-commit', 'install', '-f', '-t', 'post-commit',
+] }
+pre-commit-install-post-merge = { cmd = [
+  'pre-commit', 'install', '-f', '-t', 'post-merge',
+] }
+pre-commit-install-post-rewrite = { cmd = [
+  'pre-commit', 'install', '-f', '-t', 'post-rewrite',
+] }
+pre-commit-install-pre-commit = { cmd = [
+  'pre-commit', 'install', '-f', '-t', 'pre-commit',
+] }
+pre-commit-install-pre-merge-commit = { cmd = [
+  'pre-commit', 'install', '-f', '-t', 'pre-merge-commit',
+] }
+pre-commit-install-pre-push = { cmd = [
+  'pre-commit', 'install', '-f', '-t', 'pre-push',
+] }
+pre-commit-install-pre-rebase = { cmd = [
+  'pre-commit', 'install', '-f', '-t', 'pre-rebase',
+] }
+pre-commit-install-prepare-commit-msg = { cmd = [
+  'pre-commit', 'install', '-f', '-t', 'prepare-commit-msg',
+] }
 pre-commit-run = { cmd = ['pre-commit', 'run', '--all-files'] }
