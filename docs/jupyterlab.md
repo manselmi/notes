@@ -39,21 +39,17 @@ default kernels. This page assumes the `JUPYTERLAB_ROOT_PREFIX` environment vari
 `~/.prefix/sw/jupyterlab` (see the example [`~/.zshrc`]({{ prefix_repo_url("assets/.zshrc") }})
 configuration file).
 
-``` { .shell .annotate }
+``` shell
 rm -fr -- "${JUPYTERLAB_ROOT_PREFIX}"
 mkdir -p -- "${JUPYTERLAB_ROOT_PREFIX}"
 pushd -q -- "${JUPYTERLAB_ROOT_PREFIX}"
-# Place `taskfile.yaml` here.  (1)!
-# Place `pixi.toml` here.  (2)!
+# Place `taskfile.yaml` here: {{ prefix_repo_url("assets/jupyterlab/taskfile.yaml") }}
+# Place `pixi.toml` here: {{ prefix_repo_url("assets/jupyterlab/pixi.toml") }}
 pixi update
 pixi install
 find -- .pixi/envs/default/share/jupyter/kernels -mindepth 1 -delete
 popd -q
 ```
-
-1. [`taskfile.yaml`]({{ prefix_repo_url("assets/jupyterlab/taskfile.yaml") }})
-
-2. [`pixi.toml`]({{ prefix_repo_url("assets/jupyterlab/pixi.toml") }})
 
 Create some directories we'll need.
 
