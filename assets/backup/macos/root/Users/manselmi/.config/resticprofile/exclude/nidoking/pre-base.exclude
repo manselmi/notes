@@ -5,11 +5,9 @@
 
  /opt/manselmi/rclone/mnt/
 
- /Users/manselmi/*_helpers/
  /Users/manselmi/.android/
  /Users/manselmi/.ansible/
  /Users/manselmi/.aspnet/
- /Users/manselmi/.cache/
  /Users/manselmi/.cargo/
  /Users/manselmi/.config/JetBrains/
  /Users/manselmi/.config/pulse/
@@ -38,7 +36,6 @@
  /Users/manselmi/.local/share/JetBrains/
  /Users/manselmi/.local/share/podman-desktop/
  /Users/manselmi/.local/share/rstudio/
- /Users/manselmi/.local/share/virtualenv/
  /Users/manselmi/.m2/
  /Users/manselmi/.mc/session/
  /Users/manselmi/.megaCmd/*.db
@@ -57,6 +54,9 @@
  /Users/manselmi/.nextflow/plugins/
  /Users/manselmi/.nextflow/tmp/
  /Users/manselmi/.npm/
+ /Users/manselmi/.orbstack/data/
+ /Users/manselmi/.orbstack/log/
+ /Users/manselmi/.orbstack/run/
  /Users/manselmi/.openjfx/
  /Users/manselmi/.parallel/tmp/
  /Users/manselmi/.pcloud/
@@ -79,18 +79,15 @@
  /Users/manselmi/.rd/
  /Users/manselmi/.rnd
  /Users/manselmi/.sage/
- /Users/manselmi/.ssh/control_sockets/
  /Users/manselmi/.ssh/known_hosts.old
+ /Users/manselmi/.ssh/sockets/
  /Users/manselmi/.step/plugins/
  /Users/manselmi/.swiftpm/
- /Users/manselmi/.Trash/
  /Users/manselmi/.vim/backup/
  /Users/manselmi/.vim/bundle/
  /Users/manselmi/.vim/swap/
  /Users/manselmi/.viminfo
- /Users/manselmi/.virtualenvs/
  /Users/manselmi/.vscode/
- /Users/manselmi/.vscode-server/
  /Users/manselmi/.zcompcache/
  /Users/manselmi/.zcompdump
  /Users/manselmi/.zsh_sessions/
@@ -157,6 +154,7 @@
  /Users/manselmi/Music/Music/Music Library.musiclibrary/
  /Users/manselmi/Music/Music/Previous Libraries.localized/
  /Users/manselmi/No Backup/
+ /Users/manselmi/OrbStack/
  /Users/manselmi/Parallels/
  /Users/manselmi/Pictures/Photo Booth Library/
  /Users/manselmi/Pictures/Photos Library.photoslibrary/
@@ -165,4 +163,3 @@
  /Users/manselmi/R/**/library/
  /Users/manselmi/Virtual Machines.localized/
  /Users/manselmi/VirtualBox VMs/
- /Users/manselmi/virtualenv/

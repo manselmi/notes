@@ -45,7 +45,11 @@
 
 # Obsidian
 #   https://help.obsidian.md/Files+and+folders/How+Obsidian+stores+data#Vault+settings
- **/.obsidian/workspace.json
+ .obsidian/workspace.json
+
+# Pixi
+#   https://pixi.sh
+ .pixi/
 
 # Plex Media Server
  .streams/
