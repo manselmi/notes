@@ -120,7 +120,7 @@ Congratulations! 🥳
 ## Maintenance
 
 Routine maintenance tasks may be automated with [Task](https://taskfile.dev) and these
-[taskfiles]({{ prefix_repo_url("assets/taskfile/") }}). Add those taskfiles to the
+[taskfiles](https://github.com/manselmi/taskfile-library#readme). Add those taskfiles to the
 `~/.taskfile` directory (create it if necessary), and ensure that the environment variables
 `TASKFILE_LIBRARY_ROOT_DIR` and `TASKFILE_INCLUDE_ROOT_DIR` are set as in
 [`~/.zshrc`]({{ prefix_repo_url("assets/.zshrc")}}).
