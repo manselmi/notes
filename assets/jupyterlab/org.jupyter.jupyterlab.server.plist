@@ -21,7 +21,7 @@
 	<string>org.jupyter.jupyterlab.server</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/Users/manselmi/.prefix/sw/mamba/envs/jupyterlab/bin/jupyter-lab</string>
+		<string>/Users/manselmi/.prefix/sw/jupyterlab/.pixi/envs/default/bin/jupyter-lab</string>
 	</array>
 </dict>
 </plist>

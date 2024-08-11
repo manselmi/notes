@@ -31,21 +31,29 @@ feature rich, customizable experience compared to Jupyter Notebook.
 
 ## Installation instructions
 
-First, [install
-Micromamba](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html).
-Please note that Micromamba installation and configuration instructions are outside of the scope
-of this document, although this page assumes the `MAMBA_ROOT_PREFIX` environment variable is
-set to `~/.prefix/sw/mamba` (see example [`~/.zshrc`]({{ prefix_repo_url("assets/.zshrc foo") }})
-configuration file). Also, here is an example
-[`~/.mambarc`]({{ prefix_repo_url("assets/.mambarc") }}) configuration file.
+First, install [Pixi](https://pixi.sh). Please note that Pixi installation and configuration
+instructions are outside of the scope of this document.
 
 Let's create an isolated environment in which we'll install JupyterLab, and then remove JupyterLab's
-default kernels.
+default kernels. This page assumes the `JUPYTERLAB_ROOT_PREFIX` environment variable is set to
+`~/.prefix/sw/jupyterlab` (see the example [`~/.zshrc`]({{ prefix_repo_url("assets/.zshrc") }})
+configuration file).
 
-``` shell
-micromamba create --name jupyterlab -- jupyterlab
-find -- "${MAMBA_ROOT_PREFIX}/envs/jupyterlab/share/jupyter/kernels" -mindepth 1 -delete
+``` { .shell .annotate }
+rm -fr -- "${JUPYTERLAB_ROOT_PREFIX}"
+mkdir -p -- "${JUPYTERLAB_ROOT_PREFIX}"
+pushd -q -- "${JUPYTERLAB_ROOT_PREFIX}"
+# Place `taskfile.yaml` here.  (1)!
+# Place `pixi.toml` here.  (2)!
+pixi update
+pixi install
+find -- .pixi/envs/default/share/jupyter/kernels -mindepth 1 -delete
+popd -q
 ```
+
+1. [`taskfile.yaml`]({{ prefix_repo_url("assets/jupyterlab/taskfile.yaml") }})
+
+2. [`pixi.toml`]({{ prefix_repo_url("assets/jupyterlab/pixi.toml") }})
 
 Create some directories we'll need.
 
@@ -60,7 +68,7 @@ directory.
 Now let's create a launchd service that will make it easy to automatically start and stop
 JupyterLab. Add this [JupyterLab launchd service
 definition]({{ prefix_repo_url("assets/jupyterlab/org.jupyter.jupyterlab.server.plist") }}) to the
-`~/Library/LaunchAgents` directory.
+`~/Library/LaunchAgents` directory, editing usernames and pathnames as needed.
 
 If you would like to learn more about launchd, please see [Creating Launch Daemons and
 Agents](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html).
@@ -83,23 +91,21 @@ Let's create a Python environment specific to the `foo` project. In addition to 
 environment must contain [`ipykernel`](https://ipykernel.readthedocs.io).
 
 ``` shell
-micromamba create --name foo -- 'python=3.12.*' ipykernel
+pixi init
+pixi add -- 'python[version=3.12.*]' ipykernel
 ```
 
 Now create a kernel to register the environment with JupyterLab.
 
 ``` { .shell .annotate }
-micromamba run --name foo \  # (1)!
-  python -m ipykernel install --user \
-    --name foo \  # (2)!
-    --display-name Foo  # (3)!
+pixi run -- python -m ipykernel install --user \
+  --name foo \  # (1)!
+  --display-name Foo  # (2)!
 ```
 
-1. The conda environment name is `foo`.
+1. The kernel name is set to `foo`.
 
-2. The kernel name is set to `foo`.
-
-3. The kernel display name is set to `Foo`.
+2. The kernel display name is set to `Foo`.
 
 Now let's confirm that we can start a notebook using our new kernel. Navigate your browser to
 [http://localhost:8888](http://localhost:8888). You should see a screen like this with the `Foo`
@@ -120,41 +126,41 @@ Congratulations! 🥳
 ## Maintenance
 
 Routine maintenance tasks may be automated with [Task](https://taskfile.dev) and these
-[taskfiles](https://github.com/manselmi/taskfile-library#readme). Add those taskfiles to the
-`~/.taskfile` directory (create it if necessary), and ensure that the environment variables
-`TASKFILE_LIBRARY_ROOT_DIR` and `TASKFILE_INCLUDE_ROOT_DIR` are set as in
-[`~/.zshrc`]({{ prefix_repo_url("assets/.zshrc")}}).
+[taskfiles](https://github.com/manselmi/taskfile-library/tree/main/include). Place those taskfile
+directories in the `~/.taskfile/include` directory (create it if necessary), and ensure that the
+environment variable `TASKFILE_INCLUDE_ROOT_DIR` is set to the same directory, as in
+[`~/.zshrc`]({{ prefix_repo_url("assets/.zshrc") }}).
 
 Here are some common tasks:
 
 To stop the JupyterLab service, run:
 
 ``` shell
-task -d "${TASKFILE_LIBRARY_ROOT_DIR}/jupyterlab" launchctl:bootout
+task -d "${JUPYTERLAB_ROOT_PREFIX}" launchctl:bootout
 ```
 
 To start the JupyterLab service (if not already running), run:
 
 ``` shell
-task -d "${TASKFILE_LIBRARY_ROOT_DIR}/jupyterlab" launchctl:bootstrap
+task -d "${JUPYTERLAB_ROOT_PREFIX}" launchctl:bootstrap
 ```
 
-To upgrade the JupyterLab conda environment and remove any default kernel, run:
+To upgrade the JupyterLab environment and remove any default kernel, run:
 
 ``` shell
-pushd -- "${TASKFILE_LIBRARY_ROOT_DIR}/jupyterlab"
+pushd -q -- "${JUPYTERLAB_ROOT_PREFIX}"
 task launchctl:bootout
-task micromamba:upgrade
-task micromamba:sync
+task pixi:update
+task pixi:install
 task remove-default-kernels
 task launchctl:bootstrap
-popd
+popd -q
 ```
 
 To perform the previous operations with a single command, run:
 
 ``` shell
-task -d "${TASKFILE_LIBRARY_ROOT_DIR}/jupyterlab" upgrade
+task -d "${JUPYTERLAB_ROOT_PREFIX}" upgrade
 ```
 
 To disable JupyterLab, within `~/Library/LaunchAgents/org.jupyter.jupyterlab.server.plist` change
@@ -174,13 +180,13 @@ to
 then run:
 
 ``` shell
-task -d "${TASKFILE_LIBRARY_ROOT_DIR}/jupyterlab" launchctl:bootout
+task -d "${JUPYTERLAB_ROOT_PREFIX}" launchctl:bootout
 ```
 
 To uninstall JupyterLab, first disable it and then run:
 
 ``` shell
-micromamba env remove --name jupyterlab
+task -d "${JUPYTERLAB_ROOT_PREFIX}" pixi:clean
 ```
 
 

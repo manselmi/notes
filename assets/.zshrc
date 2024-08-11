@@ -21,6 +21,7 @@ HISTFILE="${HOME}/.zhistory"
 HISTSIZE=1000
 HOMEBREW_INSTALL_DIR="${INSTALL_SW_DIR}/homebrew"
 JAVA_HOME="$(/usr/libexec/java_home --version 21)"
+JUPYTERLAB_ROOT_PREFIX="${INSTALL_SW_DIR}/jupyterlab"
 KEYTIMEOUT=1
 LANG=en_US.UTF-8
 MAMBA_ROOT_PREFIX="${INSTALL_SW_DIR}/mamba"
@@ -46,6 +47,7 @@ RPS2="${RPS1}"
 # https://zsh.sourceforge.io/Doc/Release/Shell-Builtin-Commands.html#index-export-1
 
 export JAVA_HOME
+export JUPYTERLAB_ROOT_PREFIX
 export LANG
 export MAMBA_ROOT_PREFIX
 export TASKFILE_LIBRARY_ROOT_DIR
@@ -192,6 +194,7 @@ alias zln='zmv -L'
 typeset -U -- fpath path
 fpath=(
   "${ZSH_COMPLETION_DIR}"
+  "${HOMEBREW_INSTALL_DIR}/share/zsh/site-functions"
   "${fpath[@]}"
 )
 path=(
@@ -201,6 +204,29 @@ path=(
   "${path[@]}"
 )
 hash -r
+
+#######################################
+# Autoloaded autocompletion functions #
+#######################################
+
+# Array Parameters
+# https://zsh.sourceforge.io/Doc/Release/Parameters.html#Array-Parameters
+#
+# whence
+# https://zsh.sourceforge.io/Doc/Release/Shell-Builtin-Commands.html#index-whence
+
+typeset -A -- _ASSOC_ARRAY
+_ASSOC_ARRAY=(
+  [op]='"$(whence -p -- op)" completion zsh > "${ZSH_COMPLETION_DIR}/_op"'
+  [rclone]='"$(whence -p -- rclone)" completion zsh "${ZSH_COMPLETION_DIR}/_rclone"'
+  [restic]='"$(whence -p -- restic)" generate --quiet --zsh-completion "${ZSH_COMPLETION_DIR}/_restic"'
+)
+for _NAME _CMD in "${(@kv)_ASSOC_ARRAY}"; do
+  if whence -p -- "${_NAME}" > /dev/null; then
+    eval -- "${_CMD}"
+  fi
+done
+unset -- _ASSOC_ARRAY _CMD _NAME
 
 ########################
 # Autoloaded functions #
@@ -230,18 +256,15 @@ hash -r
 autoload -Uz -- bashcompinit colors compinit vcs_info zargs zmv
 bashcompinit; colors; compinit; vcs_info
 
-##################
-# Autocompletion #
-##################
+##########################################
+# "Eval"ed autocompletion/hook functions #
+##########################################
 
 # complete
 # https://www.gnu.org/software/bash/manual/html_node/Programmable-Completion-Builtins.html#index-complete
 #
 # eval
 # https://zsh.sourceforge.io/Doc/Release/Shell-Builtin-Commands.html#index-eval
-#
-# whence
-# https://zsh.sourceforge.io/Doc/Release/Shell-Builtin-Commands.html#index-whence
 
 DIRENV_EXE="$(whence -p -- direnv || true)"
 if [[ -n "${DIRENV_EXE}" ]]; then
@@ -249,30 +272,26 @@ if [[ -n "${DIRENV_EXE}" ]]; then
 fi
 unset -- DIRENV_EXE
 
-MICROMAMBA_EXE="$(whence -p -- micromamba || true)"
-if [[ -n "${MICROMAMBA_EXE}" ]]; then
-  eval -- "$("${MICROMAMBA_EXE}" shell hook -s zsh)"
+RESTICPROFILE_EXE="$(whence -p -- resticprofile || true)"
+if [[ -n "${RESTICPROFILE_EXE}" ]]; then
+  eval -- "$("${RESTICPROFILE_EXE}" generate --zsh-completion)"
+  if command -v -- rp > /dev/null && [[
+    "$({ whence -w -- _resticprofile || true ; } | awk -- '{ print $NF }')" == 'function'
+  ]]; then
+    complete -F _resticprofile -- rp
+  fi
 fi
-unset -- MICROMAMBA_EXE
+unset -- RESTICPROFILE_EXE
 
-RCLONE_EXE="$(whence -p -- rclone || true)"
-if [[ -n "${RCLONE_EXE}" ]]; then
-  eval -- "$("${RCLONE_EXE}" completion zsh -)"
-fi
-unset -- RCLONE_EXE
+#############################
+# Activate Pixi environment #
+#############################
 
-##############################
-# Activate Mamba environment #
-##############################
-
-# MAMBA_ENV=default
-# if [[
-#   -d "${MAMBA_ROOT_PREFIX}/envs/${MAMBA_ENV}" &&
-#   "$({ whence -w -- micromamba || true ; } | awk -- '{ print $NF }')" == 'function'
-# ]]; then
-#   micromamba activate "${MAMBA_ENV}"
+# PIXI_MANIFEST=…
+# if command -v -- pixi > /dev/null && [[ -f "${PIXI_MANIFEST}" ]]; then
+#   eval -- "$(pixi shell-hook --shell zsh --change-ps1 false --manifest-path "${PIXI_MANIFEST}")"
 # fi
-# unset -- MAMBA_ENV
+# unset -- PIXI_MANIFEST
 
 #################
 # Finalize path #
