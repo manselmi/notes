@@ -34,37 +34,50 @@ feature rich, customizable experience compared to Jupyter Notebook.
 First, install [Pixi](https://pixi.sh). Please note that Pixi installation and configuration
 instructions are outside of the scope of this document.
 
-Let's create an isolated environment in which we'll install JupyterLab, and then remove JupyterLab's
-default kernels. This page assumes the `JUPYTERLAB_ROOT_PREFIX` environment variable is set to
+This page assumes the `JUPYTERLAB_ROOT_PREFIX` environment variable is set to
 `~/.prefix/sw/jupyterlab` (see the example [`~/.zshrc`]({{ prefix_repo_url("assets/.zshrc") }})
 configuration file).
 
+Create some directories we'll need:
+
 ``` shell
-rm -fr -- "${JUPYTERLAB_ROOT_PREFIX}"
-mkdir -p -- "${JUPYTERLAB_ROOT_PREFIX}"
+mkdir -p -- \
+  "${HOME}/.jupyterlab" \
+  "${HOME}/Documents/Jupyter" \
+  "${HOME}/Library/LaunchAgents" \
+  "${JUPYTERLAB_ROOT_PREFIX}"
+```
+
+Place the Pixi manifest file in the `${JUPYTERLAB_ROOT_PREFIX}` directory:
+
+``` toml title="pixi.toml"
+--8<-- "docs/assets/jupyterlab/pixi-jupyterlab.toml"
+```
+
+Create an isolated environment in which we'll install JupyterLab, then remove JupyterLab's default
+kernels:
+
+``` shell
 pushd -q -- "${JUPYTERLAB_ROOT_PREFIX}"
-# Place `taskfile.yaml` here: {{ prefix_repo_url("assets/jupyterlab/taskfile.yaml") }}
-# Place `pixi.toml` here: {{ prefix_repo_url("assets/jupyterlab/pixi.toml") }}
 pixi update
 pixi install
 find -- .pixi/envs/default/share/jupyter/kernels -mindepth 1 -delete
 popd -q
 ```
 
-Create some directories we'll need.
+Add this JupyterLab configuration file to the `~/.jupyter` directory:
 
-``` shell
-mkdir -p -- "${HOME}/.jupyterlab" "${HOME}/Documents/Jupyter" "${HOME}/Library/LaunchAgents"
+``` python title="jupyter_lab_config.py"
+--8<-- "docs/assets/jupyterlab/jupyter_lab_config.py"
 ```
 
-Add this [JupyterLab configuration
-file]({{ prefix_repo_url("assets/jupyterlab/jupyter_lab_config.py") }}) to the `~/.jupyter`
-directory.
-
 Now let's create a launchd service that will make it easy to automatically start and stop
-JupyterLab. Add this [JupyterLab launchd service
-definition]({{ prefix_repo_url("assets/jupyterlab/org.jupyter.jupyterlab.server.plist") }}) to the
-`~/Library/LaunchAgents` directory, editing usernames and pathnames as needed.
+JupyterLab. Add this JupyterLab launchd service definition] to the `~/Library/LaunchAgents`
+directory, editing usernames and pathnames as needed:
+
+``` xml title="org.jupyter.jupyterlab.server.plist"
+--8<-- "docs/assets/jupyterlab/org.jupyter.jupyterlab.server.plist"
+```
 
 If you would like to learn more about launchd, please see [Creating Launch Daemons and
 Agents](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html).
@@ -86,12 +99,20 @@ Now let's confirm that JupyterLab is up and running. Navigate your browser to
 Let's create a Python environment specific to the `foo` project. In addition to Python, the
 environment must contain [`ipykernel`](https://ipykernel.readthedocs.io).
 
-``` shell
-pixi init
-pixi add -- 'python[version=3.12.*]' ipykernel
+Create this project-specific Pixi manifest file:
+
+``` toml title="pixi.toml"
+--8<-- "docs/assets/jupyterlab/pixi-foo.toml"
 ```
 
-Now create a kernel to register the environment with JupyterLab.
+Create the Python environment:
+
+``` shell
+pixi upgrade
+pixi install
+```
+
+Create a kernel to register the environment with JupyterLab:
 
 ``` { .shell .annotate }
 pixi run -- python -m ipykernel install --user \
@@ -121,11 +142,18 @@ Congratulations! 🥳
 
 ## Maintenance
 
-Routine maintenance tasks may be automated with [Task](https://taskfile.dev) and these
-[taskfiles](https://github.com/manselmi/taskfile-library/tree/main/include). Place those taskfile
-directories in the `~/.taskfile/include` directory (create it if necessary), and ensure that the
-environment variable `TASKFILE_INCLUDE_ROOT_DIR` is set to the same directory, as in
-[`~/.zshrc`]({{ prefix_repo_url("assets/.zshrc") }}).
+Routine maintenance tasks may be automated with [Task](https://taskfile.dev). Please install it.
+
+Place [these taskfile directories](https://github.com/manselmi/taskfile-library/tree/main/include)
+in the `~/.taskfile/include` directory (create it if necessary), and ensure that the environment
+variable `TASKFILE_INCLUDE_ROOT_DIR` is set to the same directory, as in the example
+[`~/.zshrc`]({{ prefix_repo_url("assets/.zshrc") }}) configuration file.
+
+Additionally, place this JupyterLab taskfile in the `${JUPYTERLAB_ROOT_PREFIX}` directory:
+
+``` yaml title="taskfile.yaml"
+--8<-- "docs/assets/jupyterlab/taskfile.yaml"
+```
 
 Here are some common tasks:
 

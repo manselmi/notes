@@ -6,7 +6,7 @@ from pathlib import Path
 c = get_config()  # noqa:F821
 
 c.ExtensionApp.open_browser = False
-c.FileContentsManager.preferred_dir = "Documents/Jupyter"
+c.FileContentsManager.preferred_dir = str(Path("Documents").joinpath("Jupyter"))
 c.IdentityProvider.token = ""
 c.KernelSpecManager.ensure_native_kernel = False
 c.ServerApp.ip = "localhost"
