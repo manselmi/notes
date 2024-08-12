@@ -1,0 +1,19 @@
+# vim: set ft=toml :
+
+
+[project]
+name = 'tar-ssh'
+channels = ['dnachun', 'conda-forge']
+platforms = [
+  'linux-64',
+  'osx-64',
+  'osx-arm64',
+]
+
+
+[dependencies]
+findutils = '>=4.9.0'
+gawk = '*'
+sed = '*'
+tar = '*'
+zsh = '*'

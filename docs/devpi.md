@@ -104,114 +104,67 @@ that enforces such a prefix.
 
 ## Installation instructions
 
-First, install Micromamba or Miniconda. I use Micromamba so you'll see it referenced in upcoming
-code snippets, and to make writing this page easier, I'm going to assume you've installed
-Micromamba. Please note that Micromamba/Miniconda installation and configuration instructions are
-outside of the scope of this document.
+First, install [Pixi](https://pixi.sh). Please note that Pixi installation and configuration
+instructions are outside of the scope of this document.
 
-Let's create an isolated environment in which we'll install devpi. I suggest running these specific
-commands one at a time.
+Create some directories we'll need:
 
 ``` shell
-micromamba create --name devpi -- devpi-client devpi-server python
-micromamba activate devpi
-mkdir -p -- "${HOME}/.devpi"
-devpi-init \
+mkdir -p -- \
+  "${HOME}/.devpi" \
+  "${HOME}/.taskfile/devpi" \
+  "${HOME}/Library/LaunchAgents"
+```
+
+Place the Pixi manifest file in the `~/.taskfile/devpi` directory:
+
+``` toml title="pixi.toml"
+--8<-- "docs/assets/devpi/pixi.toml"
+```
+
+Create an isolated environment in which we'll install devpi, then initialize devpi:
+
+``` shell
+pushd -q -- "${HOME}/.taskfile/devpi"
+pixi update
+pixi install
+pixi run -- devpi-init \
   --role standalone \
   --root-passwd root \
   --serverdir "${HOME}/.devpi/server" \
   --storage sqlite
-DEVPI_PREFIX="$(python -c 'import sys; print(sys.prefix)')"
-micromamba deactivate
+popd -q
 ```
 
-Now let's create two files that will make it easy to automatically start and stop devpi.
+Now let's create a launchd service that will make it easy to automatically start and stop devpi. Add
+this devpi launchd service definition to the `~/Library/LaunchAgents` directory, editing usernames
+and pathnames as needed:
 
-First, let's create a launchd service. The following code snippet does this for us, but assumes that
-the `DEVPI_PREFIX` shell variable is still set from the previous step. You may run the entire code
-snippet by copy-pasting it all at once.
-
-``` shell
-mkdir -p -- "${HOME}/Library/LaunchAgents"
-cat > "${HOME}/Library/LaunchAgents/com.manselmi.devpi.server.plist" << EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>Disabled</key>
-    <false/>
-    <key>KeepAlive</key>
-    <dict>
-        <key>SuccessfulExit</key>
-        <false/>
-    </dict>
-    <key>Label</key>
-    <string>com.manselmi.devpi.server</string>
-    <key>ProgramArguments</key>
-    <array>
-        <string>${HOME}/.devpi/devpi-server</string>
-        <string>${DEVPI_PREFIX}/bin/devpi-server</string>
-        <string>--port</string>
-        <string>3141</string>
-        <string>--serverdir</string>
-        <string>${HOME}/.devpi/server</string>
-    </array>
-</dict>
-</plist>
-EOF
+``` xml title="net.devpi.server.plist"
+--8<-- "docs/assets/devpi/net.devpi.server.plist"
 ```
 
 If you would like to learn more about launchd, please see [Creating Launch Daemons and
 Agents](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html).
 
-Second, let's create the `${HOME}/.devpi/devpi-server` file invoked by the launchd service. The
-following code snippet does this for us, but assumes that the `DEVPI_PREFIX` shell variable is still
-set from a previous step. You may run the entire code snippet by copy-pasting it all at once.
+Second, let's create the `~/.devpi/devpi-server` file invoked by the launchd service, editing
+usernames and pathnames as needed:
 
-``` shell
-mkdir -p -- "${HOME}/.devpi"
-cat > "${HOME}/.devpi/devpi-server" << EOF
-#!${DEVPI_PREFIX}/bin/python
-# vim: set ft=python :
-
-import signal
-import subprocess
-import sys
-
-
-def main():
-    process = None
-
-    def handler(signum, frame):
-        if process is not None:
-            process.send_signal(signal.SIGINT)
-
-    signal.signal(signal.SIGINT, handler)
-    signal.signal(signal.SIGTERM, handler)
-
-    process = subprocess.Popen(sys.argv[1:], start_new_session=True)
-    process.wait()
-
-    sys.exit(process.returncode)
-
-
-if __name__ == '__main__':
-    main()
-EOF
-chmod +x "${HOME}/.devpi/devpi-server"
+``` python title="devpi-server"
+--8<-- "docs/assets/devpi/devpi-server"
 ```
 
 The launchd service we created will run when loaded, so let's load the service:
 
 ``` shell
-launchctl bootstrap "gui/$(id -u)/" ~/Library/LaunchAgents/com.manselmi.devpi.server.plist
+launchctl bootstrap "gui/$(id -u)/" ~/Library/LaunchAgents/net.devpi.server.plist
 ```
 
 Please note that upon future logins, the service will automatically be loaded and hence
 automatically started.
 
 Now let's confirm that devpi is up and running. Navigate your browser to
-[localhost:3141](http://localhost:3141/). If you see a devpi page, then so far so good.
+[http://localhost:3141](http://localhost:3141). If you see a devpi page, then so far so good.
 
 ## Configuration instructions
 
@@ -221,7 +174,8 @@ configure pip to use devpi.
 These commands configure devpi. I suggest running these specific commands one at a time.
 
 ``` shell
-micromamba activate devpi
+pushd -q -- "${HOME}/.taskfile/devpi"
+pixi shell
 unset DEVPI_INDEX
 devpi use --always-set-cfg no http://localhost:3141/  # this might complain; no worries
 devpi login --password root root
@@ -235,13 +189,14 @@ devpi index -c local \
   bases='root/python-local,root/pypi' \
   title='Local: personal index'
 devpi use --venv - root/local
-micromamba deactivate
+exit
+popd -q
 ```
 
 !!! note
 
     If you would like to cache _all_ packages (including those from PyPI), run the following command
-    before running `micromamba deactivate`:
+    before exiting the Pixi environment shell:
 
     ``` shell
     devpi index pypi mirror_use_external_urls=False
@@ -249,29 +204,18 @@ micromamba deactivate
 
     However, be aware that devpi will consume more disk space.
 
-This configures pip, distutils and buildout to use devpi. You may run the entire code snippet by
-copy-pasting it all at once.
+Configure pip, distutils, buildout etc to use devpi:
 
-``` shell
-mkdir -p -- "${HOME}/Library/Application Support/pip"
-cat > "${HOME}/Library/Application Support/pip/pip.conf" << 'EOF'
-[global]
-index-url = http://localhost:3141/root/local/+simple/
-trusted-host = localhost
-[search]
-index = http://localhost:3141/root/local/
-EOF
+``` cfg title="~/Library/Application Support/pip/pip.conf"
+--8<-- "docs/assets/devpi/pip.conf"
+```
 
-cat > "${HOME}/.pydistutils.cfg" << 'EOF'
-[easy_install]
-index_url = http://localhost:3141/root/local/+simple/
-EOF
+``` cfg title="~/.pydistutils.cfg"
+--8<-- "docs/assets/devpi/pydistutils.cfg"
+```
 
-mkdir -p -- "${HOME}/.buildout"
-cat > "${HOME}/.buildout/default.cfg" << 'EOF'
-[buildout]
-index = http://localhost:3141/root/local/+simple/
-EOF
+``` cfg title="~/.buildout/default.cfg"
+--8<-- "docs/assets/devpi/default.cfg"
 ```
 
 ## Validation
@@ -306,8 +250,8 @@ python -m pip --no-cache-dir download --no-deps -- private-package
 ```
 
 We're seeing a fast download speed because my `devpi` instance already has the latest version of
-`private-package` in its cache. devpi checked with Artifactory and determined that I already had the latest
-version cached, so devpi served the cached copy… very quickly.
+`private-package` in its cache. devpi checked with Artifactory and determined that I already had the
+latest version cached, so devpi served the cached copy… very quickly.
 
 Now let's try while _not_ connected to the intranet.
 
@@ -360,34 +304,39 @@ nerdctl container run \
 To stop the devpi service:
 
 ``` shell
-launchctl bootout "gui/$(id -u)/com.manselmi.devpi.server"
+launchctl bootout "gui/$(id -u)/net.devpi.server"
 ```
 
 To start the devpi service (if not already running):
 
 ``` shell
-launchctl bootstrap "gui/$(id -u)/" ~/Library/LaunchAgents/com.manselmi.devpi.server.plist
+launchctl bootstrap "gui/$(id -u)/" ~/Library/LaunchAgents/net.devpi.server.plist
 ```
 
 To upgrade devpi:
 
 ``` shell
-launchctl bootout "gui/$(id -u)/com.manselmi.devpi.server"
-micromamba update --name devpi --all
-launchctl bootstrap "gui/$(id -u)/" ~/Library/LaunchAgents/com.manselmi.devpi.server.plist
+launchctl bootout "gui/$(id -u)/net.devpi.server"
+pushd -q -- "${HOME}/.taskfile/devpi"
+pixi update
+pixi install
+popd -q
+launchctl bootstrap "gui/$(id -u)/" ~/Library/LaunchAgents/net.devpi.server.plist
 ```
 
 To uninstall devpi, run:
 
 ``` shell
-launchctl bootout "gui/$(id -u)/com.manselmi.devpi.server"
+launchctl bootout "gui/$(id -u)/net.devpi.server"
 rm -r -- \
   "${HOME}/.buildout" \
   "${HOME}/.devpi" \
   "${HOME}/.pydistutils.cfg" \
   "${HOME}/Library/Application Support/pip/pip.conf" \
-  "${HOME}/Library/LaunchAgents/com.manselmi.devpi.server.plist"
-micromamba env remove --name devpi
+  "${HOME}/Library/LaunchAgents/net.devpi.server.plist"
+pushd -q -- "${HOME}/.taskfile/devpi"
+pixi clean
+popd -q
 ```
 
 

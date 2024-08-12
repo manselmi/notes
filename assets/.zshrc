@@ -25,7 +25,6 @@ JAVA_HOME="$(/usr/libexec/java_home --version 21)"
 JUPYTERLAB_ROOT_PREFIX="${TASKFILE_LIBRARY_ROOT_DIR}/jupyterlab"
 KEYTIMEOUT=1
 LANG=en_US.UTF-8
-MAMBA_ROOT_PREFIX="${INSTALL_SW_DIR}/mamba"
 SAVEHIST=2000
 TASKFILE_INCLUDE_ROOT_DIR="${TASKFILE_LIBRARY_ROOT_DIR}/include"
 VISUAL=vim
@@ -49,7 +48,6 @@ RPS2="${RPS1}"
 export JAVA_HOME
 export JUPYTERLAB_ROOT_PREFIX
 export LANG
-export MAMBA_ROOT_PREFIX
 export TASKFILE_LIBRARY_ROOT_DIR
 export TASKFILE_INCLUDE_ROOT_DIR
 export VISUAL
@@ -58,14 +56,6 @@ export ZSH_COMPLETION_DIR
 #############
 # Functions #
 #############
-
-conda() {
-  mamba "${@}"
-}
-
-mamba() {
-  micromamba "${@}"
-}
 
 tm() {
   local SESSION_NAME
