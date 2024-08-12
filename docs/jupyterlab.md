@@ -35,7 +35,7 @@ First, install [Pixi](https://pixi.sh). Please note that Pixi installation and c
 instructions are outside of the scope of this document.
 
 This page assumes the `JUPYTERLAB_ROOT_PREFIX` environment variable is set to
-`~/.prefix/sw/jupyterlab` (see the example [`~/.zshrc`]({{ prefix_repo_url("assets/.zshrc") }})
+`~/.taskfile/jupyterlab` (see the example [`~/.zshrc`]({{ prefix_repo_url("assets/.zshrc") }})
 configuration file).
 
 Create some directories we'll need:
