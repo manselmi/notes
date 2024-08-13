@@ -34,21 +34,17 @@ feature rich, customizable experience compared to Jupyter Notebook.
 First, install [Pixi](https://pixi.sh). Please note that Pixi installation and configuration
 instructions are outside of the scope of this document.
 
-This page assumes the `JUPYTERLAB_ROOT_PREFIX` environment variable is set to
-`~/.taskfile/jupyterlab` (see the example [`~/.zshrc`]({{ prefix_repo_url("assets/.zshrc") }})
-configuration file).
-
 Create some directories we'll need:
 
 ``` shell
 mkdir -p -- \
   "${HOME}/.jupyterlab" \
+  "${HOME}/.taskfile/jupyterlab" \
   "${HOME}/Documents/Jupyter" \
-  "${HOME}/Library/LaunchAgents" \
-  "${JUPYTERLAB_ROOT_PREFIX}"
+  "${HOME}/Library/LaunchAgents"
 ```
 
-Place the Pixi manifest file in the `${JUPYTERLAB_ROOT_PREFIX}` directory:
+Place the Pixi manifest file in the `~/.taskfile/jupyterlab` directory:
 
 ``` toml title="pixi.toml"
 --8<-- "docs/assets/jupyterlab/pixi-jupyterlab.toml"
@@ -58,7 +54,7 @@ Create an isolated environment in which we'll install JupyterLab, then remove Ju
 kernels:
 
 ``` shell
-pushd -q -- "${JUPYTERLAB_ROOT_PREFIX}"
+pushd -q -- "${HOME}/.taskfile/jupyterlab"
 pixi update
 pixi install
 find -- .pixi/envs/default/share/jupyter/kernels -mindepth 1 -delete
@@ -149,7 +145,7 @@ in the `~/.taskfile/include` directory (create it if necessary), and ensure that
 variable `TASKFILE_INCLUDE_ROOT_DIR` is set to the same directory, as in the example
 [`~/.zshrc`]({{ prefix_repo_url("assets/.zshrc") }}) configuration file.
 
-Additionally, place this JupyterLab taskfile in the `${JUPYTERLAB_ROOT_PREFIX}` directory:
+Additionally, place this JupyterLab taskfile in the `~/.taskfile/jupyterlab` directory:
 
 ``` yaml title="taskfile.yaml"
 --8<-- "docs/assets/jupyterlab/taskfile.yaml"
@@ -160,19 +156,19 @@ Here are some common tasks:
 To stop the JupyterLab service, run:
 
 ``` shell
-task -d "${JUPYTERLAB_ROOT_PREFIX}" launchctl:bootout
+task -d "${HOME}/.taskfile/jupyterlab" launchctl:bootout
 ```
 
 To start the JupyterLab service (if not already running), run:
 
 ``` shell
-task -d "${JUPYTERLAB_ROOT_PREFIX}" launchctl:bootstrap
+task -d "${HOME}/.taskfile/jupyterlab" launchctl:bootstrap
 ```
 
 To upgrade the JupyterLab environment and remove any default kernel, run:
 
 ``` shell
-pushd -q -- "${JUPYTERLAB_ROOT_PREFIX}"
+pushd -q -- "${HOME}/.taskfile/jupyterlab"
 task launchctl:bootout
 task pixi:update
 task pixi:install
@@ -184,7 +180,7 @@ popd -q
 To perform the previous operations with a single command, run:
 
 ``` shell
-task -d "${JUPYTERLAB_ROOT_PREFIX}" upgrade
+task -d "${HOME}/.taskfile/jupyterlab" upgrade
 ```
 
 To disable JupyterLab, within `~/Library/LaunchAgents/org.jupyter.jupyterlab.server.plist` change
@@ -204,13 +200,13 @@ to
 then run:
 
 ``` shell
-task -d "${JUPYTERLAB_ROOT_PREFIX}" launchctl:bootout
+task -d "${HOME}/.taskfile/jupyterlab" launchctl:bootout
 ```
 
 To uninstall JupyterLab, first disable it and then run:
 
 ``` shell
-task -d "${JUPYTERLAB_ROOT_PREFIX}" pixi:clean
+task -d "${HOME}/.taskfile/jupyterlab" pixi:clean
 ```
 
 

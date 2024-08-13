@@ -22,7 +22,6 @@ HISTFILE="${HOME}/.zhistory"
 HISTSIZE=1000
 HOMEBREW_INSTALL_DIR="${INSTALL_SW_DIR}/homebrew"
 JAVA_HOME="$(/usr/libexec/java_home --version 21)"
-JUPYTERLAB_ROOT_PREFIX="${TASKFILE_LIBRARY_ROOT_DIR}/jupyterlab"
 KEYTIMEOUT=1
 LANG=en_US.UTF-8
 SAVEHIST=2000
@@ -46,7 +45,6 @@ RPS2="${RPS1}"
 # https://zsh.sourceforge.io/Doc/Release/Shell-Builtin-Commands.html#index-export-1
 
 export JAVA_HOME
-export JUPYTERLAB_ROOT_PREFIX
 export LANG
 export TASKFILE_LIBRARY_ROOT_DIR
 export TASKFILE_INCLUDE_ROOT_DIR
