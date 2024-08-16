@@ -8,12 +8,12 @@ platforms = ['osx-arm64']
 
 
 [dependencies]
-python = '*'
+python = { version = '>=3.12.5,<3.13' }
 
 
 [pypi-dependencies]
-mkdocs = { version = '>= 1.6.0' }
-mkdocs-macros-plugin = { version = '*' }
+mkdocs = { version = '>=1.6.0' }
+mkdocs-macros-plugin = { version = '>=1.0.5' }
 
 [pypi-dependencies.mkdocs-material]
 git = 'ssh://git-personal/squidfunk/mkdocs-material-insiders.git'
@@ -35,8 +35,8 @@ lint = { features = ['lint'], solve-group = 'default' }
 
 
 [feature.lint.pypi-dependencies]
-pre-commit = { version = '*' }
-pre-commit-hooks = { version = '*' }
+pre-commit = { version = '>=3.8.0' }
+pre-commit-hooks = { version = '>=4.6.0' }
 
 [feature.lint.tasks]
 lint = { depends-on = ['pre-commit-run'] }
