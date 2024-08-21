@@ -91,7 +91,7 @@ The four columns:
     i/lf
     i/mixed
     i/none
-    ````
+    ```
 
 1. `eolinfo` of the contents in the worktree for the path. Possible values:
 
@@ -102,7 +102,7 @@ The four columns:
     w/lf
     w/mixed
     w/none
-    ````
+    ```
 
 1. `eolattr` that applies to the path. Possible values:
 
