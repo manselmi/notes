@@ -12,7 +12,7 @@ python = { version = '>=3.12.5,<3.13' }
 
 
 [pypi-dependencies]
-mkdocs = { version = '>=1.6.0' }
+mkdocs = { version = '>=1.6.1' }
 mkdocs-macros-plugin = { version = '>=1.0.5' }
 
 [pypi-dependencies.mkdocs-material]
