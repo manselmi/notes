@@ -9,11 +9,9 @@
  /usr/local/share/*
 !/usr/local/share/ca-certificates/
 
- /home/ubuntu/*_helpers/
  /home/ubuntu/.android/
  /home/ubuntu/.ansible/
  /home/ubuntu/.aspnet/
- /home/ubuntu/.cache/
  /home/ubuntu/.cargo/
  /home/ubuntu/.config/JetBrains/
  /home/ubuntu/.config/pulse/
@@ -42,7 +40,6 @@
  /home/ubuntu/.local/share/JetBrains/
  /home/ubuntu/.local/share/podman-desktop/
  /home/ubuntu/.local/share/rstudio/
- /home/ubuntu/.local/share/virtualenv/
  /home/ubuntu/.m2/
  /home/ubuntu/.mc/session/
  /home/ubuntu/.megaCmd/*.db
@@ -61,6 +58,9 @@
  /home/ubuntu/.nextflow/plugins/
  /home/ubuntu/.nextflow/tmp/
  /home/ubuntu/.npm/
+ /home/ubuntu/.orbstack/data/
+ /home/ubuntu/.orbstack/log/
+ /home/ubuntu/.orbstack/run/
  /home/ubuntu/.openjfx/
  /home/ubuntu/.parallel/tmp/
  /home/ubuntu/.pcloud/
@@ -83,26 +83,21 @@
  /home/ubuntu/.rd/
  /home/ubuntu/.rnd
  /home/ubuntu/.sage/
- /home/ubuntu/.ssh/control_sockets/
  /home/ubuntu/.ssh/known_hosts.old
+ /home/ubuntu/.ssh/sockets/
  /home/ubuntu/.step/plugins/
  /home/ubuntu/.swiftpm/
- /home/ubuntu/.Trash/
  /home/ubuntu/.vim/backup/
  /home/ubuntu/.vim/bundle/
  /home/ubuntu/.vim/swap/
  /home/ubuntu/.viminfo
- /home/ubuntu/.virtualenvs/
  /home/ubuntu/.vscode/
- /home/ubuntu/.vscode-server/
  /home/ubuntu/.zcompcache/
  /home/ubuntu/.zcompdump
  /home/ubuntu/.zsh_sessions/
  /home/ubuntu/Applications*/
  /home/ubuntu/bin/
- /home/ubuntu/Gaming/ni-roms/
  /home/ubuntu/go/
- /home/ubuntu/ISO/
  /home/ubuntu/Library/*
 !/home/ubuntu/Library/Application Support/
  /home/ubuntu/Library/Application Support/*
@@ -163,6 +158,7 @@
  /home/ubuntu/Music/Music/Music Library.musiclibrary/
  /home/ubuntu/Music/Music/Previous Libraries.localized/
  /home/ubuntu/No Backup/
+ /home/ubuntu/OrbStack/
  /home/ubuntu/Parallels/
  /home/ubuntu/Pictures/Photo Booth Library/
  /home/ubuntu/Pictures/Photos Library.photoslibrary/
@@ -171,4 +167,3 @@
  /home/ubuntu/R/**/library/
  /home/ubuntu/Virtual Machines.localized/
  /home/ubuntu/VirtualBox VMs/
- /home/ubuntu/virtualenv/

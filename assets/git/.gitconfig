@@ -19,7 +19,7 @@
 	ll = log --pretty=format:"%C(yellow)%h%Creset\\ %C(cyan)[%ad\\ %an]%Creset\\ %C(magenta)[%cd\\ %cn]%Creset\\ %s%C(auto)%d%n" --date=short --graph --topo-order --numstat --show-signature
 	mg = merge
 	mt = mergetool
-	op = "!f() { git fsck --full --strict && git reflog expire --expire=all --all && git repack -A -d -f --depth=50 --window=250 && git gc --prune=now ; } ; f"
+	op = "!f() { git fsck --full --strict && git reflog expire --expire=all --all && git repack -A -d -f -F --depth=256 --window=1024 && git gc --prune=now ; } ; f"
 	rb = rebase
 	rt = remote --verbose
 	se = send-email --full-index
@@ -30,12 +30,18 @@
 	vi = log --pretty=format:"%C(yellow)%h%Creset\\ %C(cyan)[%ad\\ %an]%Creset\\ %C(magenta)[%cd\\ %cn]%Creset\\ %s%C(auto)%d" --date=short --graph --topo-order --all
 [apply]
 	whitespace = fix
+[checkout]
+	; https://stackoverflow.com/a/60724734
+	defaultRemote = origin
+[clone]
+	defaultRemoteName = origin
 [color]
 	ui = auto
 [commit]
 	gpgSign = true
 [core]
 	abbrev = 7
+	compression = 9
 	editor = vim
 	eol = native
 	pager = less -FRX -S --tabs=1,3
