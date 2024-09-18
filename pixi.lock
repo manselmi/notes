@@ -33,7 +33,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/f1/2a/8c3ac3d8bc94e6de8d7ae270bb5bc437b210bb9d6d9e46630c98f4abd20c/csscompressor-0.9.5.tar.gz
       - pypi: https://files.pythonhosted.org/packages/9d/3a/e39436efe51894243ff145a37c4f9a030839b97779ebcc4f13b3ba21c54e/cssselect2-0.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/07/6c/aa3f2f849e01cb6a001cd8554a88d4c77c5c1a31c95bdf1cf9301e6d9ef4/defusedxml-0.7.1-py2.py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/2f/95/f9310f35376024e1086c59cbb438d319fc9a4ef853289ce7c661539edbd4/filelock-3.16.0-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/b9/f8/feced7779d755758a52d1f6635d990b8d98dc0a29fa568bbe0625f18fdf3/filelock-3.16.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f7/ec/67fbef5d497f86283db54c22eec6f6140243aae73265799baaaa19cd17fb/ghp_import-2.1.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fd/5b/8f0c4a5bb9fd491c277c21eff7ccae71b47d43c4446c9d0c6cff2fe8c2c4/gitdb-4.0.11-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e9/bd/cc3a402a6439c15c3d4294333e13042b915bbeab54edc457c723931fed3f/GitPython-3.1.43-py3-none-any.whl
@@ -46,11 +46,11 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/53/bd/583bf3e4c8d6a321938c13f49d44024dbe5ed63e0a7ba127e454a66da974/MarkupSafe-2.1.5-cp312-cp312-macosx_10_9_universal2.whl
       - pypi: https://files.pythonhosted.org/packages/2c/19/04f9b178c2d8a15b076c8b5140708fa6ffc5601fb6f1e975537072df5b2a/mergedeep-1.3.4-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/22/5b/dbc6a8cddc9cfa9c4971d59fb12bb8d42e161b7e7f8cc89e49137c5b279c/mkdocs-1.6.1-py3-none-any.whl
-      - pypi: git+ssh://git-personal/squidfunk/mkdocs-material-insiders.git@f95b2c62626eadef91239290bdb522a3266cb83f
+      - pypi: git+ssh://git-personal/squidfunk/mkdocs-material-insiders.git@f1b4f6c4e567808ad528836928a50b92bbdc9cd1
       - pypi: https://files.pythonhosted.org/packages/9f/d4/029f984e8d3f3b6b726bd33cafc473b75e9e44c0f7e80a5b29abc466bdea/mkdocs_get_deps-0.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f8/b6/e27b563ac159fa3b003a9ea02af0a9ec8068e81365caa785a29b10e9b193/mkdocs_git_committers_plugin_2-1.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/bb/05/0edbbd3a0be3033c44d5cd9f1ac7646da2e7e3911513cc56a25aac9266a4/mkdocs_git_revision_date_localized_plugin-1.2.9-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/c5/60/81e3b580bafe20a3103163b8fd89f62911f0df2e50f331d316313f8c2dc8/mkdocs_macros_plugin-1.0.5-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/94/51/cdb21d8c31a5c6a4fd1c28aac707c68b4232c34f523ddf1fdd55539ab478/mkdocs_macros_plugin-1.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/5b/54/662a4743aa81d9582ee9339d4ffa3c8fd40a4965e033d77b9da9774d3960/mkdocs_material_extensions-1.3.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1b/cd/2e8d0d92421916e2ea4ff97f10a544a9bd5588eb747556701c983581df13/mkdocs_minify_plugin-0.8.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d3/9d/93a881fc5a23c50a4dd4a41dfd3d2a8403aa1dac52370ef43b7b336577a0/mkdocs_redirects-1.2.1-py3-none-any.whl
@@ -60,7 +60,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/90/96/04b8e52da071d28f5e21a805b19cb9390aa17a47462ac87f5e2696b9566d/paginate-0.5.7-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/cc/20/ff623b09d963f88bfde16306a54e12ee5ea43e9b597108672ff3a408aad6/pathspec-0.12.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e7/cf/5c558a0f247e0bf9cec92bff9b46ae6474dd736f6d906315e60e4075f737/pillow-10.4.0-cp312-cp312-macosx_11_0_arm64.whl
-      - pypi: https://files.pythonhosted.org/packages/69/e6/7c8e8c326903bd97c6c0c47e0a3c5de815faaae986cab7defdeddf5fddcd/platformdirs-4.3.3-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/3c/a6/bc1012356d8ece4d66dd75c4b9fc6c1f6650ddd5991e421177d9f8f671be/platformdirs-4.3.6-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/13/a3/a812df4e2dd5696d1f351d58b8fe16a405b234ad2886a0dab9183fb78109/pycparser-2.22-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f7/3f/01c8b82017c199075f8f788d0d906b9ffbbc5a47dc9918a945e13d5a2bda/pygments-2.18.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/7b/41/18b5dc5e97ec3ff1c2f51d372e570a9fbe231f1124dcc36dbc6b47f93058/pymdown_extensions-10.9-py3-none-any.whl
@@ -113,7 +113,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/9d/3a/e39436efe51894243ff145a37c4f9a030839b97779ebcc4f13b3ba21c54e/cssselect2-0.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/07/6c/aa3f2f849e01cb6a001cd8554a88d4c77c5c1a31c95bdf1cf9301e6d9ef4/defusedxml-0.7.1-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/8e/41/9307e4f5f9976bc8b7fea0b66367734e8faf3ec84bc0d412d8cfabbb66cd/distlib-0.3.8-py2.py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/2f/95/f9310f35376024e1086c59cbb438d319fc9a4ef853289ce7c661539edbd4/filelock-3.16.0-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/b9/f8/feced7779d755758a52d1f6635d990b8d98dc0a29fa568bbe0625f18fdf3/filelock-3.16.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f7/ec/67fbef5d497f86283db54c22eec6f6140243aae73265799baaaa19cd17fb/ghp_import-2.1.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fd/5b/8f0c4a5bb9fd491c277c21eff7ccae71b47d43c4446c9d0c6cff2fe8c2c4/gitdb-4.0.11-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e9/bd/cc3a402a6439c15c3d4294333e13042b915bbeab54edc457c723931fed3f/GitPython-3.1.43-py3-none-any.whl
@@ -127,11 +127,11 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/53/bd/583bf3e4c8d6a321938c13f49d44024dbe5ed63e0a7ba127e454a66da974/MarkupSafe-2.1.5-cp312-cp312-macosx_10_9_universal2.whl
       - pypi: https://files.pythonhosted.org/packages/2c/19/04f9b178c2d8a15b076c8b5140708fa6ffc5601fb6f1e975537072df5b2a/mergedeep-1.3.4-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/22/5b/dbc6a8cddc9cfa9c4971d59fb12bb8d42e161b7e7f8cc89e49137c5b279c/mkdocs-1.6.1-py3-none-any.whl
-      - pypi: git+ssh://git-personal/squidfunk/mkdocs-material-insiders.git@f95b2c62626eadef91239290bdb522a3266cb83f
+      - pypi: git+ssh://git-personal/squidfunk/mkdocs-material-insiders.git@f1b4f6c4e567808ad528836928a50b92bbdc9cd1
       - pypi: https://files.pythonhosted.org/packages/9f/d4/029f984e8d3f3b6b726bd33cafc473b75e9e44c0f7e80a5b29abc466bdea/mkdocs_get_deps-0.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f8/b6/e27b563ac159fa3b003a9ea02af0a9ec8068e81365caa785a29b10e9b193/mkdocs_git_committers_plugin_2-1.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/bb/05/0edbbd3a0be3033c44d5cd9f1ac7646da2e7e3911513cc56a25aac9266a4/mkdocs_git_revision_date_localized_plugin-1.2.9-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/c5/60/81e3b580bafe20a3103163b8fd89f62911f0df2e50f331d316313f8c2dc8/mkdocs_macros_plugin-1.0.5-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/94/51/cdb21d8c31a5c6a4fd1c28aac707c68b4232c34f523ddf1fdd55539ab478/mkdocs_macros_plugin-1.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/5b/54/662a4743aa81d9582ee9339d4ffa3c8fd40a4965e033d77b9da9774d3960/mkdocs_material_extensions-1.3.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1b/cd/2e8d0d92421916e2ea4ff97f10a544a9bd5588eb747556701c983581df13/mkdocs_minify_plugin-0.8.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d3/9d/93a881fc5a23c50a4dd4a41dfd3d2a8403aa1dac52370ef43b7b336577a0/mkdocs_redirects-1.2.1-py3-none-any.whl
@@ -142,7 +142,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/90/96/04b8e52da071d28f5e21a805b19cb9390aa17a47462ac87f5e2696b9566d/paginate-0.5.7-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/cc/20/ff623b09d963f88bfde16306a54e12ee5ea43e9b597108672ff3a408aad6/pathspec-0.12.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e7/cf/5c558a0f247e0bf9cec92bff9b46ae6474dd736f6d906315e60e4075f737/pillow-10.4.0-cp312-cp312-macosx_11_0_arm64.whl
-      - pypi: https://files.pythonhosted.org/packages/69/e6/7c8e8c326903bd97c6c0c47e0a3c5de815faaae986cab7defdeddf5fddcd/platformdirs-4.3.3-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/3c/a6/bc1012356d8ece4d66dd75c4b9fc6c1f6650ddd5991e421177d9f8f671be/platformdirs-4.3.6-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/07/92/caae8c86e94681b42c246f0bca35c059a2f0529e5b92619f6aba4cf7e7b6/pre_commit-3.8.0-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/95/d8/d09b270248bc2441f966dd094a3de8ae813112d2687036f621202bdef80b/pre_commit_hooks-4.6.0-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/13/a3/a812df4e2dd5696d1f351d58b8fe16a405b234ad2886a0dab9183fb78109/pycparser-2.22-py3-none-any.whl
@@ -162,7 +162,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/d9/5f/8c716e47b3a50cbd7c146f45881e11d9414def768b7cd9c5e6650ec2a80a/termcolor-2.4.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/2c/4d/0db5b8a613d2a59bbc29bc5bb44a2f8070eb9ceab11c50d477502a8a0092/tinycss2-1.3.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/ce/d9/5f4c13cecde62396b0d3fe530a50ccea91e7dfc1ccf0e09c228841bb5ba8/urllib3-2.2.3-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/5d/ea/12f774a18b55754c730c8383dad8f10d7b87397d1cb6b2b944c87381bb3b/virtualenv-20.26.4-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/c6/1d/e1a44fdd6d30829ba21fc58b5d98a67e7aae8f4165f11d091e53aec12560/virtualenv-20.26.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d8/a7/5c57f05def91ff11528f0aa0d4c23efc99fa064ec69c262fedc6c9885697/watchdog-5.0.2-cp312-cp312-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/f4/24/2a3e3df732393fed8b3ebf2ec078f05546de641fe1b667ee316ec1dcf3b7/webencodings-0.5.1-py2.py3-none-any.whl
 packages:
@@ -347,22 +347,22 @@ packages:
   sha256: 034db59a0b96f8ca18035f36290806a9a6e6bd9d1ff91e45a7f172eb17e51784
 - kind: pypi
   name: filelock
-  version: 3.16.0
-  url: https://files.pythonhosted.org/packages/2f/95/f9310f35376024e1086c59cbb438d319fc9a4ef853289ce7c661539edbd4/filelock-3.16.0-py3-none-any.whl
-  sha256: f6ed4c963184f4c84dd5557ce8fece759a3724b37b80c6c4f20a2f63a4dc6609
+  version: 3.16.1
+  url: https://files.pythonhosted.org/packages/b9/f8/feced7779d755758a52d1f6635d990b8d98dc0a29fa568bbe0625f18fdf3/filelock-3.16.1-py3-none-any.whl
+  sha256: 2082e5703d51fbf98ea75855d9d5527e33d8ff23099bec374a134febee6946b0
   requires_dist:
   - furo>=2024.8.6 ; extra == 'docs'
-  - sphinx-autodoc-typehints!=1.23.4,>=2.4 ; extra == 'docs'
+  - sphinx-autodoc-typehints>=2.4.1 ; extra == 'docs'
   - sphinx>=8.0.2 ; extra == 'docs'
   - covdefaults>=2.3 ; extra == 'testing'
   - coverage>=7.6.1 ; extra == 'testing'
-  - diff-cover>=9.1.1 ; extra == 'testing'
+  - diff-cover>=9.2 ; extra == 'testing'
   - pytest-asyncio>=0.24 ; extra == 'testing'
   - pytest-cov>=5 ; extra == 'testing'
   - pytest-mock>=3.14 ; extra == 'testing'
   - pytest-timeout>=2.3.1 ; extra == 'testing'
-  - pytest>=8.3.2 ; extra == 'testing'
-  - virtualenv>=20.26.3 ; extra == 'testing'
+  - pytest>=8.3.3 ; extra == 'testing'
+  - virtualenv>=20.26.4 ; extra == 'testing'
   - typing-extensions>=4.12.2 ; python_full_version < '3.11' and extra == 'typing'
   requires_python: '>=3.8'
 - kind: pypi
@@ -652,23 +652,24 @@ packages:
   requires_python: '>=3.8'
 - kind: pypi
   name: mkdocs-macros-plugin
-  version: 1.0.5
-  url: https://files.pythonhosted.org/packages/c5/60/81e3b580bafe20a3103163b8fd89f62911f0df2e50f331d316313f8c2dc8/mkdocs_macros_plugin-1.0.5-py3-none-any.whl
-  sha256: f60e26f711f5a830ddf1e7980865bf5c0f1180db56109803cdd280073c1a050a
+  version: 1.2.0
+  url: https://files.pythonhosted.org/packages/94/51/cdb21d8c31a5c6a4fd1c28aac707c68b4232c34f523ddf1fdd55539ab478/mkdocs_macros_plugin-1.2.0-py3-none-any.whl
+  sha256: 3e442f8f37aa69710a69b5389e6b6cd0f54f4fcaee354aa57a61735ba8f97d27
   requires_dist:
   - mkdocs>=0.17
   - jinja2
   - termcolor
   - pyyaml
   - python-dateutil
+  - packaging
   - mkdocs-macros-test ; extra == 'test'
   - mkdocs-material>=6.2 ; extra == 'test'
   - mkdocs-include-markdown-plugin ; extra == 'test'
   requires_python: '>=3.8'
 - kind: pypi
   name: mkdocs-material
-  version: 9.5.34+insiders.4.53.13
-  url: git+ssh://git-personal/squidfunk/mkdocs-material-insiders.git@f95b2c62626eadef91239290bdb522a3266cb83f
+  version: 9.5.35+insiders.4.53.13
+  url: git+ssh://git-personal/squidfunk/mkdocs-material-insiders.git@f1b4f6c4e567808ad528836928a50b92bbdc9cd1
   requires_dist:
   - babel~=2.10
   - colorama~=0.4
@@ -849,9 +850,9 @@ packages:
   requires_python: '>=3.8'
 - kind: pypi
   name: platformdirs
-  version: 4.3.3
-  url: https://files.pythonhosted.org/packages/69/e6/7c8e8c326903bd97c6c0c47e0a3c5de815faaae986cab7defdeddf5fddcd/platformdirs-4.3.3-py3-none-any.whl
-  sha256: 50a5450e2e84f44539718293cbb1da0a0885c9d14adf21b77bae4e66fc99d9b5
+  version: 4.3.6
+  url: https://files.pythonhosted.org/packages/3c/a6/bc1012356d8ece4d66dd75c4b9fc6c1f6650ddd5991e421177d9f8f671be/platformdirs-4.3.6-py3-none-any.whl
+  sha256: 73e575e1408ab8103900836b97580d5307456908a03e92031bab39e4554cc3fb
   requires_dist:
   - furo>=2024.8.6 ; extra == 'docs'
   - proselint>=0.14 ; extra == 'docs'
@@ -1098,9 +1099,9 @@ packages:
   requires_python: '>=3.8'
 - kind: pypi
   name: virtualenv
-  version: 20.26.4
-  url: https://files.pythonhosted.org/packages/5d/ea/12f774a18b55754c730c8383dad8f10d7b87397d1cb6b2b944c87381bb3b/virtualenv-20.26.4-py3-none-any.whl
-  sha256: 48f2695d9809277003f30776d155615ffc11328e6a0a8c1f0ec80188d7874a55
+  version: 20.26.5
+  url: https://files.pythonhosted.org/packages/c6/1d/e1a44fdd6d30829ba21fc58b5d98a67e7aae8f4165f11d091e53aec12560/virtualenv-20.26.5-py3-none-any.whl
+  sha256: 4f3ac17b81fba3ce3bd6f4ead2749a72da5929c01774948e243db9ba41df4ff6
   requires_dist:
   - distlib<1,>=0.3.7
   - filelock<4,>=3.12.2
