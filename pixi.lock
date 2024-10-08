@@ -46,7 +46,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/53/bd/583bf3e4c8d6a321938c13f49d44024dbe5ed63e0a7ba127e454a66da974/MarkupSafe-2.1.5-cp312-cp312-macosx_10_9_universal2.whl
       - pypi: https://files.pythonhosted.org/packages/2c/19/04f9b178c2d8a15b076c8b5140708fa6ffc5601fb6f1e975537072df5b2a/mergedeep-1.3.4-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/22/5b/dbc6a8cddc9cfa9c4971d59fb12bb8d42e161b7e7f8cc89e49137c5b279c/mkdocs-1.6.1-py3-none-any.whl
-      - pypi: git+ssh://git-personal/squidfunk/mkdocs-material-insiders.git@25369a5f44f22bd492a4be64b408e41a9257fea2
+      - pypi: git+ssh://git-personal/squidfunk/mkdocs-material-insiders.git@44552d3ba665563d345bee6c7f6c1eefea4904f3
       - pypi: https://files.pythonhosted.org/packages/9f/d4/029f984e8d3f3b6b726bd33cafc473b75e9e44c0f7e80a5b29abc466bdea/mkdocs_get_deps-0.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f8/b6/e27b563ac159fa3b003a9ea02af0a9ec8068e81365caa785a29b10e9b193/mkdocs_git_committers_plugin_2-1.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/bb/05/0edbbd3a0be3033c44d5cd9f1ac7646da2e7e3911513cc56a25aac9266a4/mkdocs_git_revision_date_localized_plugin-1.2.9-py3-none-any.whl
@@ -127,7 +127,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/53/bd/583bf3e4c8d6a321938c13f49d44024dbe5ed63e0a7ba127e454a66da974/MarkupSafe-2.1.5-cp312-cp312-macosx_10_9_universal2.whl
       - pypi: https://files.pythonhosted.org/packages/2c/19/04f9b178c2d8a15b076c8b5140708fa6ffc5601fb6f1e975537072df5b2a/mergedeep-1.3.4-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/22/5b/dbc6a8cddc9cfa9c4971d59fb12bb8d42e161b7e7f8cc89e49137c5b279c/mkdocs-1.6.1-py3-none-any.whl
-      - pypi: git+ssh://git-personal/squidfunk/mkdocs-material-insiders.git@25369a5f44f22bd492a4be64b408e41a9257fea2
+      - pypi: git+ssh://git-personal/squidfunk/mkdocs-material-insiders.git@44552d3ba665563d345bee6c7f6c1eefea4904f3
       - pypi: https://files.pythonhosted.org/packages/9f/d4/029f984e8d3f3b6b726bd33cafc473b75e9e44c0f7e80a5b29abc466bdea/mkdocs_get_deps-0.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f8/b6/e27b563ac159fa3b003a9ea02af0a9ec8068e81365caa785a29b10e9b193/mkdocs_git_committers_plugin_2-1.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/bb/05/0edbbd3a0be3033c44d5cd9f1ac7646da2e7e3911513cc56a25aac9266a4/mkdocs_git_revision_date_localized_plugin-1.2.9-py3-none-any.whl
@@ -669,7 +669,7 @@ packages:
 - kind: pypi
   name: mkdocs-material
   version: 9.5.39+insiders.4.53.14
-  url: git+ssh://git-personal/squidfunk/mkdocs-material-insiders.git@25369a5f44f22bd492a4be64b408e41a9257fea2
+  url: git+ssh://git-personal/squidfunk/mkdocs-material-insiders.git@44552d3ba665563d345bee6c7f6c1eefea4904f3
   requires_dist:
   - babel~=2.10
   - colorama~=0.4
