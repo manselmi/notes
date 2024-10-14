@@ -13,7 +13,7 @@ python = { version = '>=3.13.0,<3.14' }
 
 [pypi-dependencies]
 mkdocs = { version = '>=1.6.1' }
-mkdocs-macros-plugin = { version = '>=1.2.0' }
+mkdocs-macros-plugin = { version = '>=1.3.5' }
 
 [pypi-dependencies.mkdocs-material]
 git = 'ssh://git-personal/squidfunk/mkdocs-material-insiders.git'
