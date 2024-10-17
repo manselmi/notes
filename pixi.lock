@@ -16,7 +16,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libzlib-1.3.1-h8359307_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/ncurses-6.5-h7bae524_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/openssl-3.3.2-h8359307_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/python-3.13.0-h206b6c5_100_cp313.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/python-3.13.0-h75c3a9f_100_cp313.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/python_abi-3.13-5_cp313.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/readline-8.2-h92ec313_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/tk-8.6.13-h5083fa2_1.conda
@@ -53,7 +53,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/9f/d4/029f984e8d3f3b6b726bd33cafc473b75e9e44c0f7e80a5b29abc466bdea/mkdocs_get_deps-0.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f8/b6/e27b563ac159fa3b003a9ea02af0a9ec8068e81365caa785a29b10e9b193/mkdocs_git_committers_plugin_2-1.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/bb/05/0edbbd3a0be3033c44d5cd9f1ac7646da2e7e3911513cc56a25aac9266a4/mkdocs_git_revision_date_localized_plugin-1.2.9-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/ae/f4/3414dc733cf1018cbc724b51d21c127b2ce0dd19c18ee8d6a454322900f6/mkdocs_macros_plugin-1.3.5-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/fb/9c/ae4a7c99cef3832d863be009aad49ff0603182ef1d4660a895e47f4ccd41/mkdocs_macros_plugin-1.3.6-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/5b/54/662a4743aa81d9582ee9339d4ffa3c8fd40a4965e033d77b9da9774d3960/mkdocs_material_extensions-1.3.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1b/cd/2e8d0d92421916e2ea4ff97f10a544a9bd5588eb747556701c983581df13/mkdocs_minify_plugin-0.8.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d3/9d/93a881fc5a23c50a4dd4a41dfd3d2a8403aa1dac52370ef43b7b336577a0/mkdocs_redirects-1.2.1-py3-none-any.whl
@@ -98,7 +98,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libzlib-1.3.1-h8359307_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/ncurses-6.5-h7bae524_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/openssl-3.3.2-h8359307_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/python-3.13.0-h206b6c5_100_cp313.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/python-3.13.0-h75c3a9f_100_cp313.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/python_abi-3.13-5_cp313.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/readline-8.2-h92ec313_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/tk-8.6.13-h5083fa2_1.conda
@@ -138,7 +138,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/9f/d4/029f984e8d3f3b6b726bd33cafc473b75e9e44c0f7e80a5b29abc466bdea/mkdocs_get_deps-0.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f8/b6/e27b563ac159fa3b003a9ea02af0a9ec8068e81365caa785a29b10e9b193/mkdocs_git_committers_plugin_2-1.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/bb/05/0edbbd3a0be3033c44d5cd9f1ac7646da2e7e3911513cc56a25aac9266a4/mkdocs_git_revision_date_localized_plugin-1.2.9-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/ae/f4/3414dc733cf1018cbc724b51d21c127b2ce0dd19c18ee8d6a454322900f6/mkdocs_macros_plugin-1.3.5-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/fb/9c/ae4a7c99cef3832d863be009aad49ff0603182ef1d4660a895e47f4ccd41/mkdocs_macros_plugin-1.3.6-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/5b/54/662a4743aa81d9582ee9339d4ffa3c8fd40a4965e033d77b9da9774d3960/mkdocs_material_extensions-1.3.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1b/cd/2e8d0d92421916e2ea4ff97f10a544a9bd5588eb747556701c983581df13/mkdocs_minify_plugin-0.8.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d3/9d/93a881fc5a23c50a4dd4a41dfd3d2a8403aa1dac52370ef43b7b336577a0/mkdocs_redirects-1.2.1-py3-none-any.whl
@@ -679,22 +679,22 @@ packages:
   requires_python: '>=3.8'
 - kind: pypi
   name: mkdocs-macros-plugin
-  version: 1.3.5
-  url: https://files.pythonhosted.org/packages/ae/f4/3414dc733cf1018cbc724b51d21c127b2ce0dd19c18ee8d6a454322900f6/mkdocs_macros_plugin-1.3.5-py3-none-any.whl
-  sha256: 58bd47ea7097d1a2824dc9d0d912c211823c5e6e6fe8a19a3ecf33346f7d6547
+  version: 1.3.6
+  url: https://files.pythonhosted.org/packages/fb/9c/ae4a7c99cef3832d863be009aad49ff0603182ef1d4660a895e47f4ccd41/mkdocs_macros_plugin-1.3.6-py3-none-any.whl
+  sha256: 74fd418c8e1f9f021b7a45bb1c7d7461d8ae09ccec241787f3971e733374da8c
   requires_dist:
-  - mkdocs>=0.17
-  - jinja2
-  - termcolor
-  - pyyaml
   - hjson
+  - jinja2
+  - mkdocs>=0.17
+  - packaging
   - pathspec
   - python-dateutil
-  - packaging
+  - pyyaml
   - super-collections
+  - termcolor
+  - mkdocs-include-markdown-plugin ; extra == 'test'
   - mkdocs-macros-test ; extra == 'test'
   - mkdocs-material>=6.2 ; extra == 'test'
-  - mkdocs-include-markdown-plugin ; extra == 'test'
   - mkdocs-test ; extra == 'test'
   requires_python: '>=3.8'
 - kind: pypi
@@ -944,12 +944,12 @@ packages:
 - kind: conda
   name: python
   version: 3.13.0
-  build: h206b6c5_100_cp313
+  build: h75c3a9f_100_cp313
   build_number: 100
   subdir: osx-arm64
-  url: https://conda.anaconda.org/conda-forge/osx-arm64/python-3.13.0-h206b6c5_100_cp313.conda
-  sha256: a126d434dbe34ce188a46364966aeeb5a4c9c5a8547a3fec8aa095031e206c9a
-  md5: b09a725400f670179c355b975e2854cc
+  url: https://conda.anaconda.org/conda-forge/osx-arm64/python-3.13.0-h75c3a9f_100_cp313.conda
+  sha256: be9464399b76ae1fef77853eed70267ef657a98a5f69f7df012b7c6a34792151
+  md5: 94ae22ea862d056ad1bc095443d02d73
   depends:
   - __osx >=11.0
   - bzip2 >=1.0.8,<2.0a0
@@ -967,8 +967,8 @@ packages:
   - xz >=5.2.6,<6.0a0
   license: Python-2.0
   purls: []
-  size: 12873785
-  timestamp: 1728417702002
+  size: 12804842
+  timestamp: 1729168680448
 - kind: pypi
   name: python-dateutil
   version: 2.9.0.post0
