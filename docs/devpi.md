@@ -20,16 +20,16 @@ demonstrate how pip will work after following the instructions on this page.
 flowchart TB
 
   subgraph internet ["Internet"]
-    pypi-pub[("PyPI\n(Python Package Index)")]
+    pypi-pub[("PyPI<br>(Python Package Index)")]
   end
 
   subgraph intranet ["Intranet"]
-    internal-art[("python-local\n(Artifactory repo)")]
+    internal-art[("python-local<br>(Artifactory repo)")]
   end
 
   subgraph devpi ["devpi"]
-    pypi-devpi[\"pypi\n(pass-through)"/]
-    internal-devpi[("python-local\n(cache)")]
+    pypi-devpi[\"pypi<br>(pass-through)"/]
+    internal-devpi[("python-local<br>(cache)")]
     local[("local")]
 
     pypi-devpi & internal-devpi --> local
