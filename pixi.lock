@@ -12,7 +12,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libexpat-2.6.3-hf9b8971_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libffi-3.4.2-h3422bc3_5.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libmpdec-4.0.0-h99b78c6_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libsqlite-3.46.1-hc14010f_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libsqlite-3.47.0-hbaaea75_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libzlib-1.3.1-h8359307_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/ncurses-6.5-h7bae524_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/openssl-3.3.2-h8359307_0.conda
@@ -52,7 +52,7 @@ environments:
       - pypi: git+ssh://git-personal/squidfunk/mkdocs-material-insiders.git@081509ea389edeb1a6d8aad8836f756a47645cec
       - pypi: https://files.pythonhosted.org/packages/9f/d4/029f984e8d3f3b6b726bd33cafc473b75e9e44c0f7e80a5b29abc466bdea/mkdocs_get_deps-0.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f8/b6/e27b563ac159fa3b003a9ea02af0a9ec8068e81365caa785a29b10e9b193/mkdocs_git_committers_plugin_2-1.2.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bb/05/0edbbd3a0be3033c44d5cd9f1ac7646da2e7e3911513cc56a25aac9266a4/mkdocs_git_revision_date_localized_plugin-1.2.9-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/67/e5/ffeb92db53af8c3aa2d92e21a3cf6b5f83eee7e03b9cf9234ef6b30230d5/mkdocs_git_revision_date_localized_plugin-1.3.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fb/9c/ae4a7c99cef3832d863be009aad49ff0603182ef1d4660a895e47f4ccd41/mkdocs_macros_plugin-1.3.6-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/5b/54/662a4743aa81d9582ee9339d4ffa3c8fd40a4965e033d77b9da9774d3960/mkdocs_material_extensions-1.3.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1b/cd/2e8d0d92421916e2ea4ff97f10a544a9bd5588eb747556701c983581df13/mkdocs_minify_plugin-0.8.0-py3-none-any.whl
@@ -94,7 +94,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libexpat-2.6.3-hf9b8971_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libffi-3.4.2-h3422bc3_5.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libmpdec-4.0.0-h99b78c6_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libsqlite-3.46.1-hc14010f_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libsqlite-3.47.0-hbaaea75_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libzlib-1.3.1-h8359307_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/ncurses-6.5-h7bae524_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/openssl-3.3.2-h8359307_0.conda
@@ -137,7 +137,7 @@ environments:
       - pypi: git+ssh://git-personal/squidfunk/mkdocs-material-insiders.git@081509ea389edeb1a6d8aad8836f756a47645cec
       - pypi: https://files.pythonhosted.org/packages/9f/d4/029f984e8d3f3b6b726bd33cafc473b75e9e44c0f7e80a5b29abc466bdea/mkdocs_get_deps-0.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f8/b6/e27b563ac159fa3b003a9ea02af0a9ec8068e81365caa785a29b10e9b193/mkdocs_git_committers_plugin_2-1.2.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/bb/05/0edbbd3a0be3033c44d5cd9f1ac7646da2e7e3911513cc56a25aac9266a4/mkdocs_git_revision_date_localized_plugin-1.2.9-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/67/e5/ffeb92db53af8c3aa2d92e21a3cf6b5f83eee7e03b9cf9234ef6b30230d5/mkdocs_git_revision_date_localized_plugin-1.3.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fb/9c/ae4a7c99cef3832d863be009aad49ff0603182ef1d4660a895e47f4ccd41/mkdocs_macros_plugin-1.3.6-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/5b/54/662a4743aa81d9582ee9339d4ffa3c8fd40a4965e033d77b9da9774d3960/mkdocs_material_extensions-1.3.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1b/cd/2e8d0d92421916e2ea4ff97f10a544a9bd5588eb747556701c983581df13/mkdocs_minify_plugin-0.8.0-py3-none-any.whl
@@ -510,19 +510,19 @@ packages:
   timestamp: 1723817629767
 - kind: conda
   name: libsqlite
-  version: 3.46.1
-  build: hc14010f_0
+  version: 3.47.0
+  build: hbaaea75_0
   subdir: osx-arm64
-  url: https://conda.anaconda.org/conda-forge/osx-arm64/libsqlite-3.46.1-hc14010f_0.conda
-  sha256: 3725f962f490c5d44dae326d5f5b2e3c97f71a6322d914ccc85b5ddc2e50d120
-  md5: 58050ec1724e58668d0126a1615553fa
+  url: https://conda.anaconda.org/conda-forge/osx-arm64/libsqlite-3.47.0-hbaaea75_0.conda
+  sha256: 76aa4bbbaa2334689b16048f04ac4c7406e9bfb1f225ac7107fd2a73f85329cf
+  md5: 5bbe4802d5460b80620411fe1da8fec3
   depends:
   - __osx >=11.0
   - libzlib >=1.3.1,<2.0a0
   license: Unlicense
   purls: []
-  size: 829500
-  timestamp: 1725353720793
+  size: 837789
+  timestamp: 1729592072314
 - kind: conda
   name: libzlib
   version: 1.3.1
@@ -644,9 +644,9 @@ packages:
   requires_python: '>=3.8,<4'
 - kind: pypi
   name: mkdocs-git-revision-date-localized-plugin
-  version: 1.2.9
-  url: https://files.pythonhosted.org/packages/bb/05/0edbbd3a0be3033c44d5cd9f1ac7646da2e7e3911513cc56a25aac9266a4/mkdocs_git_revision_date_localized_plugin-1.2.9-py3-none-any.whl
-  sha256: dea5c8067c23df30275702a1708885500fadf0abfb595b60e698bffc79c7a423
+  version: 1.3.0
+  url: https://files.pythonhosted.org/packages/67/e5/ffeb92db53af8c3aa2d92e21a3cf6b5f83eee7e03b9cf9234ef6b30230d5/mkdocs_git_revision_date_localized_plugin-1.3.0-py3-none-any.whl
+  sha256: c99377ee119372d57a9e47cff4e68f04cce634a74831c06bc89b33e456e840a1
   requires_dist:
   - mkdocs>=1.0
   - gitpython
