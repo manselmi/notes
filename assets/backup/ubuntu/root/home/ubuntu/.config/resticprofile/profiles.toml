@@ -124,6 +124,7 @@ tag = true
 
 [base.prune]
 max-unused = '0'
+repack-small = true
 verbose = true
 
 [base.repair-snapshots]
@@ -149,5 +150,6 @@ inherit = 'base'
 [vps.backup]
 source = [
   '/etc',
+  '/usr',
   '/home/ubuntu',
 ]

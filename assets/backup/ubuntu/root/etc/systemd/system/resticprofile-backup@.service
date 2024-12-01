@@ -17,4 +17,5 @@ User=ubuntu
 [Unit]
 After=network-online.target
 Description=Backup resticprofile profile %I
+StartLimitIntervalSec=0
 Wants=network-online.target

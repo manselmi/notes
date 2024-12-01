@@ -136,6 +136,7 @@ tag = true
 
 [base.prune]
 max-unused = '0'
+repack-small = true
 verbose = true
 
 [base.repair-snapshots]

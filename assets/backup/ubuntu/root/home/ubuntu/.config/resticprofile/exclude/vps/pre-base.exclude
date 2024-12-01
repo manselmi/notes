@@ -22,6 +22,7 @@
  /home/ubuntu/.devpi/server/
  /home/ubuntu/.docker/
  /home/ubuntu/.duckdb/extensions/
+ /home/ubuntu/.fuse-t/
  /home/ubuntu/.gnupg/.#*
  /home/ubuntu/.gnupg/reader_*.status
  /home/ubuntu/.gnupg/S.*

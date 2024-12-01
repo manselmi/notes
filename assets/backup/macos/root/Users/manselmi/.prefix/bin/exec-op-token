@@ -43,11 +43,11 @@ OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT="${OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT-"nidoking"}
 #   ⇒ user interaction is not allowed
 #   ⇒ STATUS = -25308 & ((1 << 8) - 1) = 36
 #
-# https://github.com/apple-open-source/macos/blob/14.6/Security/base/SecBase.h#L355
+# https://github.com/apple-open-source/macos/blob/15.0/Security/base/SecBase.h#L355
 #
 #   errSecInteractionNotAllowed = -25308,  /* User interaction is not allowed. */
 #
-# https://pubs.opengroup.org/onlinepubs/9699919799/functions/_exit.html
+# https://pubs.opengroup.org/onlinepubs/9799919799/functions/_exit.html
 #
 #   The value of `status` may be [any value], though only the least significant 8 bits (that is,
 #   `status & 0377`) shall be available from `wait()` and `waitpid()`; the full value shall be
