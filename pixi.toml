@@ -17,7 +17,7 @@ mkdocs-macros-plugin = { version = '>=1.3.7' }
 
 [pypi-dependencies.mkdocs-material]
 git = 'ssh://git-personal/squidfunk/mkdocs-material-insiders.git'
-rev = 'master'
+rev = '84ea0613e62b09722b53a28643d61dff4563fb8f'
 extras = ['git', 'imaging', 'recommended']
 
 
