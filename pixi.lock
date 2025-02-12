@@ -16,7 +16,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libsqlite-3.48.0-h3f77e49_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libzlib-1.3.1-h8359307_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/ncurses-6.5-h5e97a16_3.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/openssl-3.4.0-h81ee809_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/openssl-3.4.1-h81ee809_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/python-3.13.1-h4f43103_105_cp313.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/python_abi-3.13-5_cp313.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/readline-8.2-h92ec313_1.conda
@@ -47,7 +47,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/2b/6d/9409f3684d3335375d04e5f05744dfe7e9f120062c9857df4ab490a1031a/MarkupSafe-3.0.2-cp313-cp313-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/2c/19/04f9b178c2d8a15b076c8b5140708fa6ffc5601fb6f1e975537072df5b2a/mergedeep-1.3.4-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/22/5b/dbc6a8cddc9cfa9c4971d59fb12bb8d42e161b7e7f8cc89e49137c5b279c/mkdocs-1.6.1-py3-none-any.whl
-      - pypi: git+ssh://git-personal/squidfunk/mkdocs-material-insiders?rev=master#134b874adc9f8a2dc6f7b9e6448ec382f2da5459
+      - pypi: git+ssh://git-personal/squidfunk/mkdocs-material-insiders?rev=master#7c54e9a6506a23cc1a7e8adbc2ec778ce487772a
       - pypi: https://files.pythonhosted.org/packages/9f/d4/029f984e8d3f3b6b726bd33cafc473b75e9e44c0f7e80a5b29abc466bdea/mkdocs_get_deps-0.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/8e/f5/768590251839a148c188d64779b809bde0e78a306295c18fc29d7fc71ce1/mkdocs_git_committers_plugin_2-2.5.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/67/e5/ffeb92db53af8c3aa2d92e21a3cf6b5f83eee7e03b9cf9234ef6b30230d5/mkdocs_git_revision_date_localized_plugin-1.3.0-py3-none-any.whl
@@ -95,7 +95,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libsqlite-3.48.0-h3f77e49_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libzlib-1.3.1-h8359307_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/ncurses-6.5-h5e97a16_3.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/openssl-3.4.0-h81ee809_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/openssl-3.4.1-h81ee809_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/python-3.13.1-h4f43103_105_cp313.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/python_abi-3.13-5_cp313.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/readline-8.2-h92ec313_1.conda
@@ -129,7 +129,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/2b/6d/9409f3684d3335375d04e5f05744dfe7e9f120062c9857df4ab490a1031a/MarkupSafe-3.0.2-cp313-cp313-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/2c/19/04f9b178c2d8a15b076c8b5140708fa6ffc5601fb6f1e975537072df5b2a/mergedeep-1.3.4-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/22/5b/dbc6a8cddc9cfa9c4971d59fb12bb8d42e161b7e7f8cc89e49137c5b279c/mkdocs-1.6.1-py3-none-any.whl
-      - pypi: git+ssh://git-personal/squidfunk/mkdocs-material-insiders?rev=master#134b874adc9f8a2dc6f7b9e6448ec382f2da5459
+      - pypi: git+ssh://git-personal/squidfunk/mkdocs-material-insiders?rev=master#7c54e9a6506a23cc1a7e8adbc2ec778ce487772a
       - pypi: https://files.pythonhosted.org/packages/9f/d4/029f984e8d3f3b6b726bd33cafc473b75e9e44c0f7e80a5b29abc466bdea/mkdocs_get_deps-0.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/8e/f5/768590251839a148c188d64779b809bde0e78a306295c18fc29d7fc71ce1/mkdocs_git_committers_plugin_2-2.5.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/67/e5/ffeb92db53af8c3aa2d92e21a3cf6b5f83eee7e03b9cf9234ef6b30230d5/mkdocs_git_revision_date_localized_plugin-1.3.0-py3-none-any.whl
@@ -163,7 +163,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/7f/be/df630c387a0a054815d60be6a97eb4e8f17385d5d6fe660e1c02750062b4/termcolor-2.5.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/e6/34/ebdc18bae6aa14fbee1a08b63c015c72b64868ff7dae68808ab500c492e2/tinycss2-1.4.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c8/19/4ec628951a74043532ca2cf5d97b7b14863931476d117c471e8e2b1eb39f/urllib3-2.3.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/89/9b/599bcfc7064fbe5740919e78c5df18e5dceb0887e676256a1061bb5ae232/virtualenv-20.29.1-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/93/fa/849483d56773ae29740ae70043ad88e068f98a6401aa819b5d6bee604683/virtualenv-20.29.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fe/c4/225c87bae08c8b9ec99030cd48ae9c4eca050a59bf5c2255853e18c87b50/watchdog-6.0.0-cp313-cp313-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/f4/24/2a3e3df732393fed8b3ebf2ec078f05546de641fe1b667ee316ec1dcf3b7/webencodings-0.5.1-py2.py3-none-any.whl
 packages:
@@ -284,7 +284,7 @@ packages:
   version: 8.1.8
   sha256: 63c132bbbed01578a06712a2d1f497bb62d9c1c0d329b7903a866228027263b2
   requires_dist:
-  - colorama ; platform_system == 'Windows'
+  - colorama ; sys_platform == 'win32'
   - importlib-metadata ; python_full_version < '3.8'
   requires_python: '>=3.7'
 - pypi: https://files.pythonhosted.org/packages/d1/d6/3965ed04c63042e047cb6a3e6ed1a63a35087b6a609aa3a15ed8ac56c221/colorama-0.4.6-py2.py3-none-any.whl
@@ -518,7 +518,7 @@ packages:
   sha256: db91759624d1647f3f34aa0c3f327dd2601beae39a366d6e064c03468d35c20e
   requires_dist:
   - click>=7.0
-  - colorama>=0.4 ; platform_system == 'Windows'
+  - colorama>=0.4 ; sys_platform == 'win32'
   - ghp-import>=1.0
   - importlib-metadata>=4.4 ; python_full_version < '3.10'
   - jinja2>=2.11.1
@@ -534,7 +534,7 @@ packages:
   - babel>=2.9.0 ; extra == 'i18n'
   - babel==2.9.0 ; extra == 'min-versions'
   - click==7.0 ; extra == 'min-versions'
-  - colorama==0.4 ; platform_system == 'Windows' and extra == 'min-versions'
+  - colorama==0.4 ; sys_platform == 'win32' and extra == 'min-versions'
   - ghp-import==1.0 ; extra == 'min-versions'
   - importlib-metadata==4.4 ; python_full_version < '3.10' and extra == 'min-versions'
   - jinja2==2.11.1 ; extra == 'min-versions'
@@ -621,9 +621,9 @@ packages:
   - mkdocs-test ; extra == 'test'
   - mkdocs-d2-plugin ; extra == 'test'
   requires_python: '>=3.8'
-- pypi: git+ssh://git-personal/squidfunk/mkdocs-material-insiders?rev=master#134b874adc9f8a2dc6f7b9e6448ec382f2da5459
+- pypi: git+ssh://git-personal/squidfunk/mkdocs-material-insiders?rev=master#7c54e9a6506a23cc1a7e8adbc2ec778ce487772a
   name: mkdocs-material
-  version: 9.6.3+insiders.4.53.15
+  version: 9.6.4+insiders.4.53.15
   requires_dist:
   - babel~=2.10
   - colorama~=0.4
@@ -717,9 +717,9 @@ packages:
   version: 1.9.1
   sha256: ba11c9782d29c27c70ffbdda2d7415098754709be8a7056d79a737cd901155c9
   requires_python: '>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*'
-- conda: https://conda.anaconda.org/conda-forge/osx-arm64/openssl-3.4.0-h81ee809_1.conda
-  sha256: 97772762abc70b3a537683ca9fc3ff3d6099eb64e4aba3b9c99e6fce48422d21
-  md5: 22f971393637480bda8c679f374d8861
+- conda: https://conda.anaconda.org/conda-forge/osx-arm64/openssl-3.4.1-h81ee809_0.conda
+  sha256: 4f8e2389e1b711b44182a075516d02c80fa7a3a7e25a71ff1b5ace9eae57a17a
+  md5: 75f9f0c7b1740017e2db83a53ab9a28e
   depends:
   - __osx >=11.0
   - ca-certificates
@@ -728,8 +728,8 @@ packages:
   license: Apache-2.0
   license_family: Apache
   purls: []
-  size: 2936415
-  timestamp: 1736086108693
+  size: 2934522
+  timestamp: 1739301896733
 - pypi: https://files.pythonhosted.org/packages/88/ef/eb23f262cca3c0c4eb7ab1933c3b1f03d021f2c48f54763065b6f0e321be/packaging-24.2-py3-none-any.whl
   name: packaging
   version: '24.2'
@@ -998,10 +998,10 @@ packages:
   - pysocks>=1.5.6,!=1.5.7,<2.0 ; extra == 'socks'
   - zstandard>=0.18.0 ; extra == 'zstd'
   requires_python: '>=3.9'
-- pypi: https://files.pythonhosted.org/packages/89/9b/599bcfc7064fbe5740919e78c5df18e5dceb0887e676256a1061bb5ae232/virtualenv-20.29.1-py3-none-any.whl
+- pypi: https://files.pythonhosted.org/packages/93/fa/849483d56773ae29740ae70043ad88e068f98a6401aa819b5d6bee604683/virtualenv-20.29.2-py3-none-any.whl
   name: virtualenv
-  version: 20.29.1
-  sha256: 4e4cb403c0b0da39e13b46b1b2476e505cb0046b25f242bee80f62bf990b2779
+  version: 20.29.2
+  sha256: febddfc3d1ea571bdb1dc0f98d7b45d24def7428214d4fb73cc486c9568cce6a
   requires_dist:
   - distlib>=0.3.7,<1
   - filelock>=3.12.2,<4
