@@ -74,7 +74,7 @@ Add this JupyterLab configuration file to the `~/.jupyter` directory:
 
 Now let's create a launchd service that will make it easy to automatically start and stop
 JupyterLab. Add this JupyterLab launchd service definition to the `~/Library/LaunchAgents`
-directory, editing usernames and pathnames as needed:
+directory, editing usernames, pathnames and the `PATH` and `TZ` environment variables as needed:
 
 ``` xml title="org.jupyter.jupyterlab.server.plist"
 --8<-- "docs/assets/jupyterlab/org.jupyter.jupyterlab.server.plist"
