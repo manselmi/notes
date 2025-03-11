@@ -32,9 +32,14 @@ feature rich, customizable experience compared to Jupyter Notebook.
 ## Installation instructions
 
 First, install [Pixi](https://pixi.sh). Please note that Pixi installation and configuration
-instructions are outside of the scope of this document.
+instructions are outside of the scope of this document, although if you use Homebrew, you may use it
+to quickly install Pixi:
 
-Create some directories we'll need:
+``` shell
+brew install -- pixi
+```
+
+Ensure that the following directories exist:
 
 ``` shell
 mkdir -p -- \
@@ -44,14 +49,14 @@ mkdir -p -- \
   "${HOME}/Library/LaunchAgents"
 ```
 
-Place the Pixi manifest file in the `~/.taskfile/jupyterlab` directory:
+Place the Pixi manifest file for an isolated JupyterLab environment in the `~/.taskfile/jupyterlab`
+directory:
 
 ``` toml title="pixi.toml"
 --8<-- "docs/assets/jupyterlab/pixi-jupyterlab.toml"
 ```
 
-Create an isolated environment in which we'll install JupyterLab, then remove JupyterLab's default
-kernels:
+Create the JupyterLab environment, then remove JupyterLab's default kernels:
 
 ``` shell
 pushd -q -- "${HOME}/.taskfile/jupyterlab"
@@ -139,6 +144,12 @@ Congratulations! 🥳
 ## Maintenance
 
 Routine maintenance tasks may be automated with [Task](https://taskfile.dev). Please install it.
+Please note that Task installation and configuration instructions are outside of the scope of this
+document, although if you use Homebrew, you may use it to quickly install Task:
+
+``` shell
+brew install -- go-task/tap/go-task
+```
 
 Place [these taskfile directories](https://github.com/manselmi/taskfile-library/tree/main/include)
 in the `~/.taskfile/include` directory (create it if necessary), and ensure that the environment
