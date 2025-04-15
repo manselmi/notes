@@ -79,6 +79,7 @@
 !/Users/manselmi/.prefix/sw/texlive/texmf-local/
  /Users/manselmi/.rd/
  /Users/manselmi/.rnd
+ /Users/manselmi/.rustup/
  /Users/manselmi/.sage/
  /Users/manselmi/.ssh/known_hosts.old
  /Users/manselmi/.ssh/sockets/
@@ -116,7 +117,19 @@
  /Users/manselmi/Library/Application Support/Firefox/Profiles/**/*.db-wal
  /Users/manselmi/Library/Application Support/Firefox/Profiles/**/*.sqlite-shm
  /Users/manselmi/Library/Application Support/Firefox/Profiles/**/*.sqlite-wal
+!/Users/manselmi/Library/Application Support/Google/
+ /Users/manselmi/Library/Application Support/Google/*
+!/Users/manselmi/Library/Application Support/Google/Chrome/
+ /Users/manselmi/Library/Application Support/Google/Chrome/*
+!/Users/manselmi/Library/Application Support/Google/Chrome/NativeMessagingHosts/
+ /Users/manselmi/Library/Application Support/Google/Chrome/NativeMessagingHosts/*
+!/Users/manselmi/Library/Application Support/Google/Chrome/NativeMessagingHosts/gpgmejson.json
 !/Users/manselmi/Library/Application Support/k9s/
+!/Users/manselmi/Library/Application Support/Mozilla/
+ /Users/manselmi/Library/Application Support/Mozilla/*
+!/Users/manselmi/Library/Application Support/Mozilla/NativeMessagingHosts/
+ /Users/manselmi/Library/Application Support/Mozilla/NativeMessagingHosts/*
+!/Users/manselmi/Library/Application Support/Mozilla/NativeMessagingHosts/gpgmejson.json
 !/Users/manselmi/Library/Application Support/Name Mangler/
 !/Users/manselmi/Library/Application Support/obsidian/
 !/Users/manselmi/Library/Application Support/rancher-desktop/
@@ -157,6 +170,7 @@
  /Users/manselmi/No Backup/
  /Users/manselmi/OrbStack/
  /Users/manselmi/Parallels/
+ /Users/manselmi/pCloud Drive/
  /Users/manselmi/Pictures/Photo Booth Library/
  /Users/manselmi/Pictures/Photos Library.photoslibrary/
  /Users/manselmi/Public/

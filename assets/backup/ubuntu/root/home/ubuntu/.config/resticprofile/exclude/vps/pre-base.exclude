@@ -83,6 +83,7 @@
 !/home/ubuntu/.prefix/sw/texlive/texmf-local/
  /home/ubuntu/.rd/
  /home/ubuntu/.rnd
+ /home/ubuntu/.rustup/
  /home/ubuntu/.sage/
  /home/ubuntu/.ssh/known_hosts.old
  /home/ubuntu/.ssh/sockets/
@@ -120,7 +121,19 @@
  /home/ubuntu/Library/Application Support/Firefox/Profiles/**/*.db-wal
  /home/ubuntu/Library/Application Support/Firefox/Profiles/**/*.sqlite-shm
  /home/ubuntu/Library/Application Support/Firefox/Profiles/**/*.sqlite-wal
+!/home/ubuntu/Library/Application Support/Google/
+ /home/ubuntu/Library/Application Support/Google/*
+!/home/ubuntu/Library/Application Support/Google/Chrome/
+ /home/ubuntu/Library/Application Support/Google/Chrome/*
+!/home/ubuntu/Library/Application Support/Google/Chrome/NativeMessagingHosts/
+ /home/ubuntu/Library/Application Support/Google/Chrome/NativeMessagingHosts/*
+!/home/ubuntu/Library/Application Support/Google/Chrome/NativeMessagingHosts/gpgmejson.json
 !/home/ubuntu/Library/Application Support/k9s/
+!/home/ubuntu/Library/Application Support/Mozilla/
+ /home/ubuntu/Library/Application Support/Mozilla/*
+!/home/ubuntu/Library/Application Support/Mozilla/NativeMessagingHosts/
+ /home/ubuntu/Library/Application Support/Mozilla/NativeMessagingHosts/*
+!/home/ubuntu/Library/Application Support/Mozilla/NativeMessagingHosts/gpgmejson.json
 !/home/ubuntu/Library/Application Support/Name Mangler/
 !/home/ubuntu/Library/Application Support/obsidian/
 !/home/ubuntu/Library/Application Support/rancher-desktop/
@@ -161,6 +174,7 @@
  /home/ubuntu/No Backup/
  /home/ubuntu/OrbStack/
  /home/ubuntu/Parallels/
+ /home/ubuntu/pCloud Drive/
  /home/ubuntu/Pictures/Photo Booth Library/
  /home/ubuntu/Pictures/Photos Library.photoslibrary/
  /home/ubuntu/Public/
