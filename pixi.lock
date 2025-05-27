@@ -51,12 +51,12 @@ environments:
       - pypi: git+ssh://github-personal/squidfunk/mkdocs-material-insiders.git?rev=master#ce2cca8c5240ae520e09a67954de09949bd04efe
       - pypi: https://files.pythonhosted.org/packages/9f/d4/029f984e8d3f3b6b726bd33cafc473b75e9e44c0f7e80a5b29abc466bdea/mkdocs_get_deps-0.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/8e/f5/768590251839a148c188d64779b809bde0e78a306295c18fc29d7fc71ce1/mkdocs_git_committers_plugin_2-2.5.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/da/c0/b63cb3008564242a3d1ba7a6dd6dc29d7fb297e65bda93cef655780757af/mkdocs_git_revision_date_localized_plugin-1.4.5-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/11/c4/6c8a4cc930d9c06948e9efd443e672f2f969455e177e3ec865bae7fbd8f7/mkdocs_git_revision_date_localized_plugin-1.4.6-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/55/cf/f03331298ee50a4da6fb72ccec79078041158c1f8b5fc24835c1be42232e/mkdocs_macros_plugin-1.3.7-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/5b/54/662a4743aa81d9582ee9339d4ffa3c8fd40a4965e033d77b9da9774d3960/mkdocs_material_extensions-1.3.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1b/cd/2e8d0d92421916e2ea4ff97f10a544a9bd5588eb747556701c983581df13/mkdocs_minify_plugin-0.8.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c4/ec/38443b1f2a3821bbcb24e46cd8ba979154417794d54baf949fefde1c2146/mkdocs_redirects-1.2.2-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/c6/53/387e9ff4e3857cac1a1a1f4d707ca1673c293174fd134de0c25513fb0c49/mkdocs_rss_plugin-1.17.1-py2.py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/42/a5/b075e1afe2daa7dee243ec2c3cb9a7e4ea638e5614fed6e80c7a2cbda5e9/mkdocs_rss_plugin-1.17.2-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/7e/3a/2919f63acca3c119565449681ad08a2f84b2171ddfcff1dba6959db2cceb/msgpack-1.1.0-cp313-cp313-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/20/12/38679034af332785aac8774540895e234f4d07f7545804097de4b666afd8/packaging-25.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/90/96/04b8e52da071d28f5e21a805b19cb9390aa17a47462ac87f5e2696b9566d/paginate-0.5.7-py2.py3-none-any.whl
@@ -122,7 +122,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/1d/9a/4114a9057db2f1462d5c8f8390ab7383925fe1ac012eaa42402ad65c2963/GitPython-3.1.44-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1f/7f/13cd798d180af4bf4c0ceddeefba2b864a63c71645abc0308b768d67bb81/hjson-3.1.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/be/31/a76f4bfa885f93b8167cb4c85cf32b54d1f64384d0b897d45bc6d19b7b45/htmlmin2-0.1.13-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/2b/d3/85feeba1d097b81a44bcffa6a0beab7b4dfffe78e82fc54978d3ac380736/identify-2.6.10-py2.py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/7a/cd/18f8da995b658420625f7ef13f037be53ae04ec5ad33f9b718240dcfd48c/identify-2.6.12-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/76/c6/c88e154df9c4e1a2a66ccf0005a88dfb2650c1dffb6f5ce603dfbd452ce3/idna-3.10-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/5e/73/e01e4c5e11ad0494f4407a3f623ad4d87714909f50b17a06ed121034ff6e/jsmin-3.0.1.tar.gz
@@ -133,12 +133,12 @@ environments:
       - pypi: git+ssh://github-personal/squidfunk/mkdocs-material-insiders.git?rev=master#ce2cca8c5240ae520e09a67954de09949bd04efe
       - pypi: https://files.pythonhosted.org/packages/9f/d4/029f984e8d3f3b6b726bd33cafc473b75e9e44c0f7e80a5b29abc466bdea/mkdocs_get_deps-0.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/8e/f5/768590251839a148c188d64779b809bde0e78a306295c18fc29d7fc71ce1/mkdocs_git_committers_plugin_2-2.5.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/da/c0/b63cb3008564242a3d1ba7a6dd6dc29d7fb297e65bda93cef655780757af/mkdocs_git_revision_date_localized_plugin-1.4.5-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/11/c4/6c8a4cc930d9c06948e9efd443e672f2f969455e177e3ec865bae7fbd8f7/mkdocs_git_revision_date_localized_plugin-1.4.6-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/55/cf/f03331298ee50a4da6fb72ccec79078041158c1f8b5fc24835c1be42232e/mkdocs_macros_plugin-1.3.7-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/5b/54/662a4743aa81d9582ee9339d4ffa3c8fd40a4965e033d77b9da9774d3960/mkdocs_material_extensions-1.3.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1b/cd/2e8d0d92421916e2ea4ff97f10a544a9bd5588eb747556701c983581df13/mkdocs_minify_plugin-0.8.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c4/ec/38443b1f2a3821bbcb24e46cd8ba979154417794d54baf949fefde1c2146/mkdocs_redirects-1.2.2-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/c6/53/387e9ff4e3857cac1a1a1f4d707ca1673c293174fd134de0c25513fb0c49/mkdocs_rss_plugin-1.17.1-py2.py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/42/a5/b075e1afe2daa7dee243ec2c3cb9a7e4ea638e5614fed6e80c7a2cbda5e9/mkdocs_rss_plugin-1.17.2-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/7e/3a/2919f63acca3c119565449681ad08a2f84b2171ddfcff1dba6959db2cceb/msgpack-1.1.0-cp313-cp313-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/d2/1d/1b658dbd2b9fa9c4c9f32accbfc0205d532c8c6194dc0f2a4c0428e7128a/nodeenv-1.9.1-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/20/12/38679034af332785aac8774540895e234f4d07f7545804097de4b666afd8/packaging-25.0-py3-none-any.whl
@@ -156,7 +156,8 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/45/9f/3b1c20a0b7a3200524eb0076cc027a970d320bd3a6592873c85c92a08731/PyYAML-6.0.2-cp313-cp313-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/04/11/432f32f8097b03e3cd5fe57e88efb685d964e2e5178a48ed61e841f7fdce/pyyaml_env_tag-1.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f9/9b/335f9764261e915ed497fcdeb11df5dfd6f7bf257d4a6a2a686d80da4d54/requests-2.32.3-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/c2/36/dfc1ebc0081e6d39924a2cc53654497f967a084a436bb64402dfce4254d9/ruamel.yaml-0.18.10-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/2e/62/615a16ebbca43fd4434843e9d346d795a134d0a1ff46101c858d93c9778d/ruamel.yaml-0.18.11-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/20/84/80203abff8ea4993a87d823a5f632e4d92831ef75d404c9fc78d0176d2b5/ruamel.yaml.clib-0.2.12.tar.gz
       - pypi: https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/04/be/d09147ad1ec7934636ad912901c5fd7667e1c858e19d355237db0d0cd5e4/smmap-5.0.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/07/6d/58de58c521e7fb79bceb4da90d55250070bb4adfa3c870b82519a561c79d/super_collections-0.5.3-py3-none-any.whl
@@ -387,10 +388,10 @@ packages:
   name: htmlmin2
   version: 0.1.13
   sha256: 75609f2a42e64f7ce57dbff28a39890363bde9e7e5885db633317efbdf8c79a2
-- pypi: https://files.pythonhosted.org/packages/2b/d3/85feeba1d097b81a44bcffa6a0beab7b4dfffe78e82fc54978d3ac380736/identify-2.6.10-py2.py3-none-any.whl
+- pypi: https://files.pythonhosted.org/packages/7a/cd/18f8da995b658420625f7ef13f037be53ae04ec5ad33f9b718240dcfd48c/identify-2.6.12-py2.py3-none-any.whl
   name: identify
-  version: 2.6.10
-  sha256: 5f34248f54136beed1a7ba6a6b5c4b6cf21ff495aac7c359e1ef831ae3b8ab25
+  version: 2.6.12
+  sha256: ad9672d5a72e0d2ff7c5c8809b62dfa60458626352fb0eb7b55e69bdc45334a2
   requires_dist:
   - ukkonen ; extra == 'license'
   requires_python: '>=3.9'
@@ -563,10 +564,10 @@ packages:
   - requests
   - gitpython
   requires_python: '>=3.8,<4'
-- pypi: https://files.pythonhosted.org/packages/da/c0/b63cb3008564242a3d1ba7a6dd6dc29d7fb297e65bda93cef655780757af/mkdocs_git_revision_date_localized_plugin-1.4.5-py3-none-any.whl
+- pypi: https://files.pythonhosted.org/packages/11/c4/6c8a4cc930d9c06948e9efd443e672f2f969455e177e3ec865bae7fbd8f7/mkdocs_git_revision_date_localized_plugin-1.4.6-py3-none-any.whl
   name: mkdocs-git-revision-date-localized-plugin
-  version: 1.4.5
-  sha256: 395ae0b9eec565c78a76fffc938b70f52774bf2971245482d31aba47018c5fa9
+  version: 1.4.6
+  sha256: d36e454db0904553274bc3a51e0b5f06d6c03dca946779fca8f905a3b5148f47
   requires_dist:
   - babel>=2.7.0
   - gitpython>=3.1.44
@@ -639,10 +640,10 @@ packages:
   requires_dist:
   - mkdocs>=1.1.1
   requires_python: '>=3.8'
-- pypi: https://files.pythonhosted.org/packages/c6/53/387e9ff4e3857cac1a1a1f4d707ca1673c293174fd134de0c25513fb0c49/mkdocs_rss_plugin-1.17.1-py2.py3-none-any.whl
+- pypi: https://files.pythonhosted.org/packages/42/a5/b075e1afe2daa7dee243ec2c3cb9a7e4ea638e5614fed6e80c7a2cbda5e9/mkdocs_rss_plugin-1.17.2-py2.py3-none-any.whl
   name: mkdocs-rss-plugin
-  version: 1.17.1
-  sha256: ff81f0ece33befd5a0152c196132e15eb93b4b9f7f53644c6d3db8e9a529e186
+  version: 1.17.2
+  sha256: 9990a7ebb16d866740d1cfd0af6f82331dc20887ea71e6d0ff82ff108dac367c
   requires_dist:
   - cachecontrol[filecache]>=0.14,<1
   - gitpython>=3.1.43,<3.2
@@ -655,15 +656,15 @@ packages:
   - flake8-builtins>=2.5 ; extra == 'dev'
   - flake8-eradicate>=1.5 ; extra == 'dev'
   - flake8-isort>=6.1.1 ; extra == 'dev'
-  - pre-commit>=3.7,<4 ; extra == 'dev'
-  - mkdocs-git-committers-plugin-2>=2.4.1,<2.5 ; extra == 'doc'
-  - mkdocs-git-revision-date-localized-plugin>=1.3,<1.4 ; extra == 'doc'
+  - pre-commit>=3.7,<5 ; extra == 'dev'
+  - mkdocs-git-committers-plugin-2>=2.4.1,<2.6 ; extra == 'doc'
+  - mkdocs-git-revision-date-localized-plugin>=1.3,<1.5 ; extra == 'doc'
   - mkdocs-material[imaging]>=9.5.47,<10 ; extra == 'doc'
   - mkdocs-minify-plugin>=0.8,<0.9 ; extra == 'doc'
-  - mkdocstrings[python]>=0.27,<1 ; extra == 'doc'
-  - termynal>=0.12.2,<0.13 ; extra == 'doc'
+  - mkdocstrings-python>=1.16.2,<1.17 ; extra == 'doc'
+  - termynal>=0.12.2,<0.14 ; extra == 'doc'
   - feedparser>=6.0.11,<6.1 ; extra == 'test'
-  - jsonfeed-util>=1.1.2,<2 ; extra == 'test'
+  - jsonfeed-util>=1.2,<2 ; extra == 'test'
   - mkdocs-material[imaging]>=9.5.47 ; extra == 'test'
   - pytest-cov>=6,<7 ; extra == 'test'
   - validator-collection>=1.5,<1.6 ; extra == 'test'
@@ -878,16 +879,21 @@ packages:
   - pysocks>=1.5.6,!=1.5.7 ; extra == 'socks'
   - chardet>=3.0.2,<6 ; extra == 'use-chardet-on-py3'
   requires_python: '>=3.8'
-- pypi: https://files.pythonhosted.org/packages/c2/36/dfc1ebc0081e6d39924a2cc53654497f967a084a436bb64402dfce4254d9/ruamel.yaml-0.18.10-py3-none-any.whl
+- pypi: https://files.pythonhosted.org/packages/2e/62/615a16ebbca43fd4434843e9d346d795a134d0a1ff46101c858d93c9778d/ruamel.yaml-0.18.11-py3-none-any.whl
   name: ruamel-yaml
-  version: 0.18.10
-  sha256: 30f22513ab2301b3d2b577adc121c6471f28734d3d9728581245f1e76468b4f1
+  version: 0.18.11
+  sha256: eca06c9fce6ee3220845c4c54e58376586e041a6127e4d1958e12a3142084897
   requires_dist:
-  - ruamel-yaml-clib>=0.2.7 ; python_full_version < '3.13' and platform_python_implementation == 'CPython'
+  - ruamel-yaml-clib>=0.2.7 ; python_full_version < '3.14' and platform_python_implementation == 'CPython'
+  - ruamel-yaml-jinja2>=0.2 ; extra == 'jinja2'
   - ryd ; extra == 'docs'
   - mercurial>5.7 ; extra == 'docs'
-  - ruamel-yaml-jinja2>=0.2 ; extra == 'jinja2'
   requires_python: '>=3.7'
+- pypi: https://files.pythonhosted.org/packages/20/84/80203abff8ea4993a87d823a5f632e4d92831ef75d404c9fc78d0176d2b5/ruamel.yaml.clib-0.2.12.tar.gz
+  name: ruamel-yaml-clib
+  version: 0.2.12
+  sha256: 6c8fbb13ec503f99a91901ab46e0b07ae7941cd527393187039aec586fdfd36f
+  requires_python: '>=3.9'
 - pypi: https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl
   name: six
   version: 1.17.0
