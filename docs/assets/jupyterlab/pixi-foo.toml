@@ -2,11 +2,11 @@
 
 
 [project]
-name = "foo"
-channels = ["conda-forge"]
+name = 'foo'
+channels = ['conda-forge']
 platforms = [
-  "osx-64",
-  "osx-arm64",
+  # 'osx-64',
+  'osx-arm64',
 ]
 
 

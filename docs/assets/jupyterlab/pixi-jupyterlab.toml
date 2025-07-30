@@ -2,20 +2,20 @@
 
 
 [project]
-name = "jupyterlab"
-channels = ["conda-forge"]
+name = 'jupyterlab'
+channels = ['conda-forge']
 platforms = [
-  "osx-64",
-  "osx-arm64",
+  # 'osx-64',
+  'osx-arm64',
 ]
 
 
 [dependencies]
-ipywidgets = "*"
-jupyterlab = "*"
-pixi-kernel = "*"
-python = "3.13.*"
+ipywidgets = '*'
+jupyterlab = '*'
+pixi-kernel = '*'
+python = '3.13.*'
 
 
 [pypi-dependencies]
-jupyterlab-quarto = "*"
+jupyterlab-quarto = '*'

@@ -2,14 +2,14 @@
 
 
 [project]
-name = "devpi"
-channels = ["conda-forge"]
+name = 'devpi'
+channels = ['conda-forge']
 platforms = [
-  "osx-64",
-  "osx-arm64",
+  # 'osx-64',
+  'osx-arm64',
 ]
 
 
 [dependencies]
-devpi-client = "*"
-devpi-server = "*"
+devpi-client = '*'
+devpi-server = '*'
