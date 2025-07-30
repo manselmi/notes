@@ -7,6 +7,8 @@ Cmnd_Alias RESTICPROFILE_CMDS = /Users/manselmi/.prefix/bin/resticprofile *
 Runas_Alias RESTICPROFILE_CMDS_RUNAS_USERS = #0  # root
 Runas_Alias RESTICPROFILE_CMDS_RUNAS_GROUPS = #80  # admin
 Defaults! RESTICPROFILE_CMDS \
+  env_keep += OP_CONNECT_HOST, \
+  env_keep += OP_CONNECT_TOKEN, \
   env_keep += OP_SERVICE_ACCOUNT_TOKEN, \
   env_keep += PATH, \
   env_keep += RCLONE_CONFIG, \

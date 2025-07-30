@@ -1,0 +1,87 @@
+#!/usr/bin/env -S -- python -B
+# vim: set ft=python :
+
+import os
+import shutil
+import signal
+import subprocess
+import sys
+from pathlib import Path
+
+COMPOSE = str(Path.home().joinpath(".config/op-connect/compose.yaml"))
+CURL = shutil.which("curl")
+DOCKER = shutil.which("docker")
+DOCKER_SOCKET = str(Path("/var/run/docker.sock"))
+
+
+def main():
+    # https://docs.docker.com/reference/api/engine/latest/#tag/System/operation/SystemPing
+    subprocess.run(
+        [
+            CURL,
+            "-q",
+            "-v",
+            "--fail",
+            "--max-time",
+            str(1),
+            "--no-progress-meter",
+            "--output",
+            os.devnull,
+            "--retry",
+            str(5),
+            "--retry-all-errors",
+            "--unix-socket",
+            DOCKER_SOCKET,
+            "--",
+            "http/_ping",
+        ],
+        check=True,
+    )
+
+    env = {
+        "OP_HTTP_PORT": os.environ.get("OP_HTTP_PORT", "5080"),
+        "OP_LOG_LEVEL": os.environ.get("OP_LOG_LEVEL", "info"),
+        "OP_SESSION": subprocess.run(
+            [
+                "/usr/bin/security",
+                "find-generic-password",
+                "-s",
+                "1password",
+                "-a",
+                "connect-server-creds",
+                "-w",
+            ],
+            check=True,
+            encoding="ascii",
+            stdout=subprocess.PIPE,
+        ).stdout,
+        "OP_SYNC_TIMEOUT": os.environ.get("OP_SYNC_TIMEOUT", "10s"),
+    }
+
+    process = None
+
+    def handler(signum, frame):
+        if process is not None:
+            subprocess.Popen(
+                [DOCKER, "compose", "-f", COMPOSE, "down"],
+                env=env,
+                start_new_session=True,
+                stderr=subprocess.DEVNULL,
+                stdout=subprocess.DEVNULL,
+            )
+
+    signal.signal(signal.SIGINT, handler)
+    signal.signal(signal.SIGTERM, handler)
+
+    process = subprocess.Popen(
+        [DOCKER, "compose", "-f", COMPOSE, "up"],
+        env=env,
+        start_new_session=True,
+    )
+    process.wait()
+
+    sys.exit(process.returncode)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,7 +1,7 @@
 sequenceDiagram
 
   participant KC as macOS "login" keychain
-  participant 1P as 1Password
+  participant 1P as 1Password Connect
 
   participant LD as launchd
   participant ER as exec-resticprofile
@@ -13,9 +13,9 @@ sequenceDiagram
   participant HC as Healthchecks.io
 
   LD ->> ER: Execute
-  ER ->> KC: Request 1Password service account token
-  KC ->> ER: Receive 1Password service account token
-  ER ->> RP: Execute w/ 1P svc acct token in env
+  ER ->> KC: Request 1Password Connect token
+  KC ->> ER: Receive 1Password Connect token
+  ER ->> RP: Execute w/ 1P Connect token in env
   RP ->> 1P: Request healthcheck endpoint UUID
   1P ->> RP: Receive healthcheck endpoint UUID
   RP ->> HC: Ping healthcheck endpoint

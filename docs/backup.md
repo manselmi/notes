@@ -47,8 +47,8 @@ The diagram may also be viewed with interactive controls
     1. the "login" keychain [automatically unlocks upon login][1] and has been [configured to remain
        unlocked while logged in][2].
 
-    This allows the 1Password service account token to be loaded from the "login" keychain with no
-    user interaction required.
+    This allows the 1Password Connect token to be loaded from the "login" keychain with no user
+    interaction required.
 
     !["login" keychain settings](/assets/backup/login-keychain-settings.png)
 
@@ -101,6 +101,9 @@ bkp
 * [`~/Library/LaunchAgents/com.manselmi.resticprofile.onedrive.backup.plist`]({{ prefix_repo_url("assets/backup/macos/root/Users/manselmi/Library/LaunchAgents/com.manselmi.resticprofile.onedrive.backup.plist") }})
   (triggered manually)
 
+* [`~/Library/LaunchAgents/com.manselmi.op.connect.server.plist`]({{ prefix_repo_url("assets/backup/macos/root/Users/manselmi/Library/LaunchAgents/com.manselmi.op.connect.server.plist") }})
+  (run at load)
+
 #### fdautil
 
 * [`/Library/Preferences/com.soma-zone.LaunchControl.fdautil.plist`]({{ prefix_repo_url("assets/backup/macos/root/Library/Preferences/com.soma-zone.LaunchControl.fdautil.plist") }})
@@ -126,6 +129,10 @@ bkp
 #### 1Password
 
 * [`~/.prefix/bin/exec-op-token`]({{ prefix_repo_url("assets/backup/macos/root/Users/manselmi/.prefix/bin/exec-op-token") }})
+
+* [`~/.prefix/bin/op-connect`]({{ prefix_repo_url("assets/backup/macos/root/Users/manselmi/.prefix/bin/op-connect") }})
+
+* [`~/.config/op-connect/compose.yaml`]({{ prefix_repo_url("assets/backup/macos/root/Users/manselmi/.config/op-connect/compose.yaml") }})
 
 #### Zsh
 
@@ -316,8 +323,6 @@ Healthchecks.io detects a missed check-in, it sends out alerts.
 
 * [1Password CLI](https://developer.1password.com/docs/cli/)
 
-* [1Password Service Accounts](https://developer.1password.com/docs/service-accounts/)
-
 * [`op inject`](https://developer.1password.com/docs/cli/reference/commands/inject/)
 
 * [`op read`](https://developer.1password.com/docs/cli/reference/commands/read/)
@@ -326,6 +331,20 @@ Healthchecks.io detects a missed check-in, it sends out alerts.
 
 1Password CLI allows you to securely provision secrets in development environments, use scripts to
 manage items and provision team members at scale, and authenticate with biometrics in the terminal.
+
+### 1Password Connect
+
+#### Project URL
+
+* [1Password Connect](https://developer.1password.com/docs/connect/)
+
+* [Use 1Password CLI with a Connect server](https://developer.1password.com/docs/connect/cli/)
+
+#### Project description
+
+1Password Connect servers are a type of [Secrets Automation
+workflow](https://developer.1password.com/docs/secrets-automation/) that allows you to securely
+access your 1Password items and vaults in your company's apps and cloud infrastructure.
 
 ### LaunchControl / fdautil
 

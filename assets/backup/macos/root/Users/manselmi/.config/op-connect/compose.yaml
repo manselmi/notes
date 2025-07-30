@@ -1,0 +1,44 @@
+name: 'op-connect'
+
+
+services:
+
+  op-connect-api:
+    container_name: 'op-connect-api'
+    depends_on:
+      - 'op-connect-sync'
+    environment:
+      OP_LOG_LEVEL: '${OP_LOG_LEVEL}'
+      OP_SESSION: '${OP_SESSION}'
+      OP_SYNC_TIMEOUT: '${OP_SYNC_TIMEOUT}'
+    image: 'docker.io/1password/connect-api:latest'
+    ports:
+      - app_protocol: 'http'
+        mode: 'host'
+        protocol: 'tcp'
+        published: '${OP_HTTP_PORT}'
+        target: 8080
+    pull_policy: 'missing'
+    restart: 'unless-stopped'
+    volumes:
+      - source: 'data'
+        target: '/home/opuser/.op/data'
+        type: 'volume'
+
+  op-connect-sync:
+    container_name: 'op-connect-sync'
+    environment:
+      OP_LOG_LEVEL: '${OP_LOG_LEVEL}'
+      OP_SESSION: '${OP_SESSION}'
+    image: 'docker.io/1password/connect-sync:latest'
+    pull_policy: 'missing'
+    restart: 'unless-stopped'
+    volumes:
+      - source: 'data'
+        target: '/home/opuser/.op/data'
+        type: 'volume'
+
+volumes:
+
+  data:
+    name: 'op-connect-data'

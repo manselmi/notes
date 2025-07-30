@@ -8,16 +8,20 @@
  /Users/manselmi/.android/
  /Users/manselmi/.ansible/
  /Users/manselmi/.aspnet/
+ /Users/manselmi/.bash_history
  /Users/manselmi/.cargo/
  /Users/manselmi/.config/JetBrains/
  /Users/manselmi/.config/pulse/
  /Users/manselmi/.config/rclone/**/*.log
  /Users/manselmi/.config/resticprofile/log/**/*.log
  /Users/manselmi/.config/resticprofile/status/**/*.json
+ /Users/manselmi/.cookiecutter_replay/
  /Users/manselmi/.cookiecutters/
  /Users/manselmi/.devpi/server/
+ /Users/manselmi/.dlt/pipelines/
  /Users/manselmi/.docker/
  /Users/manselmi/.duckdb/extensions/
+ /Users/manselmi/.duckdb_history
  /Users/manselmi/.fuse-t/
  /Users/manselmi/.gnupg/.#*
  /Users/manselmi/.gnupg/reader_*.status
@@ -26,18 +30,23 @@
  /Users/manselmi/.gradle/
  /Users/manselmi/.groovy/
  /Users/manselmi/.hawtjni/
+ /Users/manselmi/.indra/
  /Users/manselmi/.ipython/**/history.sqlite
  /Users/manselmi/.ivy2/
  /Users/manselmi/.jupyter/lab/workspaces/
  /Users/manselmi/.kube/cache/
  /Users/manselmi/.kube/http-cache/
  /Users/manselmi/.kuberlr/
+ /Users/manselmi/.lesshst
  /Users/manselmi/.local/bin/
  /Users/manselmi/.local/share/containers/
+ /Users/manselmi/.local/share/hashcat/
  /Users/manselmi/.local/share/JetBrains/
  /Users/manselmi/.local/share/podman-desktop/
  /Users/manselmi/.local/share/rstudio/
+ /Users/manselmi/.local/share/uv/
  /Users/manselmi/.m2/
+ /Users/manselmi/.maxima/
  /Users/manselmi/.mc/session/
  /Users/manselmi/.megaCmd/*.db
  /Users/manselmi/.megaCmd/*.db-shm
@@ -55,10 +64,10 @@
  /Users/manselmi/.nextflow/plugins/
  /Users/manselmi/.nextflow/tmp/
  /Users/manselmi/.npm/
+ /Users/manselmi/.openjfx/
  /Users/manselmi/.orbstack/data/
  /Users/manselmi/.orbstack/log/
  /Users/manselmi/.orbstack/run/
- /Users/manselmi/.openjfx/
  /Users/manselmi/.parallel/tmp/
  /Users/manselmi/.pcloud/
  /Users/manselmi/.pdfbox.cache
@@ -77,12 +86,16 @@
 !/Users/manselmi/.prefix/sw/texlive/
  /Users/manselmi/.prefix/sw/texlive/*
 !/Users/manselmi/.prefix/sw/texlive/texmf-local/
+ /Users/manselmi/.psql_history
+ /Users/manselmi/.pystow/
+ /Users/manselmi/.python_history
  /Users/manselmi/.rd/
  /Users/manselmi/.rnd
  /Users/manselmi/.rustup/
  /Users/manselmi/.sage/
+ /Users/manselmi/.sqlite_history
  /Users/manselmi/.ssh/known_hosts.old
- /Users/manselmi/.ssh/sockets/
+ /Users/manselmi/.ssh/sock/
  /Users/manselmi/.step/plugins/
  /Users/manselmi/.swiftpm/
  /Users/manselmi/.vim/backup/
@@ -92,9 +105,12 @@
  /Users/manselmi/.vscode/
  /Users/manselmi/.zcompcache/
  /Users/manselmi/.zcompdump
+ /Users/manselmi/.zhistory
+ /Users/manselmi/.zsh_history
  /Users/manselmi/.zsh_sessions/
  /Users/manselmi/Applications*/
  /Users/manselmi/bin/
+ /Users/manselmi/Documents/huggingface/
  /Users/manselmi/go/
  /Users/manselmi/Library/*
 !/Users/manselmi/Library/Application Support/
@@ -108,15 +124,8 @@
 !/Users/manselmi/Library/Application Support/Firefox/
  /Users/manselmi/Library/Application Support/Firefox/*
 !/Users/manselmi/Library/Application Support/Firefox/Profiles/
- /Users/manselmi/Library/Application Support/Firefox/Profiles/*/crashes/
- /Users/manselmi/Library/Application Support/Firefox/Profiles/*/datareporting/
- /Users/manselmi/Library/Application Support/Firefox/Profiles/*/gmp/
- /Users/manselmi/Library/Application Support/Firefox/Profiles/*/gmp-*/
- /Users/manselmi/Library/Application Support/Firefox/Profiles/*/storage/
- /Users/manselmi/Library/Application Support/Firefox/Profiles/**/*.db-shm
- /Users/manselmi/Library/Application Support/Firefox/Profiles/**/*.db-wal
- /Users/manselmi/Library/Application Support/Firefox/Profiles/**/*.sqlite-shm
- /Users/manselmi/Library/Application Support/Firefox/Profiles/**/*.sqlite-wal
+ /Users/manselmi/Library/Application Support/Firefox/Profiles/*/*
+!/Users/manselmi/Library/Application Support/Firefox/Profiles/*/bookmarkbackups/
 !/Users/manselmi/Library/Application Support/Google/
  /Users/manselmi/Library/Application Support/Google/*
 !/Users/manselmi/Library/Application Support/Google/Chrome/
@@ -130,8 +139,6 @@
 !/Users/manselmi/Library/Application Support/Mozilla/NativeMessagingHosts/
  /Users/manselmi/Library/Application Support/Mozilla/NativeMessagingHosts/*
 !/Users/manselmi/Library/Application Support/Mozilla/NativeMessagingHosts/gpgmejson.json
-!/Users/manselmi/Library/Application Support/Name Mangler/
-!/Users/manselmi/Library/Application Support/obsidian/
 !/Users/manselmi/Library/Application Support/rancher-desktop/
  /Users/manselmi/Library/Application Support/rancher-desktop/lima/*
 !/Users/manselmi/Library/Application Support/rancher-desktop/lima/_config/
@@ -143,21 +150,15 @@
  /Users/manselmi/Library/Application Support/Sublime Text/Log/
 !/Users/manselmi/Library/Application Support/Syncthing/
  /Users/manselmi/Library/Application Support/Syncthing/*.ldb
+ /Users/manselmi/Library/Application Support/Syncthing/*.lock
  /Users/manselmi/Library/Application Support/Syncthing/index-*/
-!/Users/manselmi/Library/Audio/
-!/Users/manselmi/Library/Fonts/
 !/Users/manselmi/Library/Jupyter/
  /Users/manselmi/Library/Jupyter/runtime/
 !/Users/manselmi/Library/Keychains/
  /Users/manselmi/Library/Keychains/*
 !/Users/manselmi/Library/Keychains/*.keychain-db
 !/Users/manselmi/Library/LaunchAgents/
-!/Users/manselmi/Library/Preferences/
-!/Users/manselmi/Library/Screen Savers/
 !/Users/manselmi/Library/Scripts/
-!/Users/manselmi/Library/Services/
-!/Users/manselmi/Library/Sounds/
-!/Users/manselmi/Library/Spelling/
 !/Users/manselmi/Library/Workflows/
 !/Users/manselmi/Library/yWorks/
  /Users/manselmi/Library/**/*.log

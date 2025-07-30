@@ -32,18 +32,28 @@ read-token() {
 }
 
 
-if [[ -v OP_SERVICE_ACCOUNT_TOKEN ]]; then
-  exec -- env -- OP_SERVICE_ACCOUNT_TOKEN="${OP_SERVICE_ACCOUNT_TOKEN}" "${@}"
-fi
+OP_CONNECT_HOST="${OP_CONNECT_HOST-"http://localhost:5080"}"
 
-OP_TOKEN_KEYCHAIN_RECORD_SERVICE="${OP_TOKEN_KEYCHAIN_RECORD_SERVICE-"1password"}"
-OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT="${OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT-"nidoking"}"
+OP_TOKEN_KEYCHAIN_RECORD_SERVICE='1password'
+if [[ -v OP_CONNECT_HOST ]]; then
+  if [[ -v OP_CONNECT_TOKEN ]]; then
+    exec -- env -- \
+      OP_CONNECT_HOST="${OP_CONNECT_HOST}" \
+      OP_CONNECT_TOKEN="${OP_CONNECT_TOKEN}" \
+      "${@}"
+  fi
+  OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT='connect-server'
+elif [[ -v OP_SERVICE_ACCOUNT_TOKEN ]]; then
+  exec -- env -- OP_SERVICE_ACCOUNT_TOKEN="${OP_SERVICE_ACCOUNT_TOKEN}" "${@}"
+else
+  OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT='service-account'
+fi
 
 #     keychain locked + headless session
 #   ⇒ user interaction is not allowed
 #   ⇒ STATUS = -25308 & ((1 << 8) - 1) = 36
 #
-# https://github.com/apple-open-source/macos/blob/15.3/Security/base/SecBase.h#L355
+# https://github.com/apple-open-source/macos/blob/15.5/Security/base/SecBase.h#L355
 #
 #   errSecInteractionNotAllowed = -25308,  /* User interaction is not allowed. */
 #
@@ -72,7 +82,13 @@ if [[ "${STATUS}" -eq 36 ]]; then
   fi
 fi
 if [[ "${STATUS}" -ne 0 ]]; then
-  die 'Unable to read 1Password service account token.'
+  die 'Unable to read 1Password token.'
 fi
 
-exec -- env -- OP_SERVICE_ACCOUNT_TOKEN="${OP_TOKEN}" "${@}"
+if [[ "${OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT}" == 'connect-server' ]]; then
+  exec -- env -- OP_CONNECT_HOST="${OP_CONNECT_HOST}" OP_CONNECT_TOKEN="${OP_TOKEN}" "${@}"
+elif [[ "${OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT}" == 'service-account' ]]; then
+  exec -- env -- OP_SERVICE_ACCOUNT_TOKEN="${OP_TOKEN}" "${@}"
+else
+  die "OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT is an unexpected value: ${OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT}"
+fi

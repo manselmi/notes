@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vim: set ft=xml : -->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Disabled</key>
+	<false/>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>OP_LOG_LEVEL</key>
+		<string>error</string>
+		<key>PATH</key>
+		<string>/Users/manselmi/.orbstack/bin:/Users/manselmi/.prefix/bin:/Users/manselmi/.prefix/sw/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+		<key>TZ</key>
+		<string>UTC</string>
+	</dict>
+	<key>ExitTimeOut</key>
+	<integer>15</integer><!-- seconds -->
+	<key>KeepAlive</key>
+	<dict>
+		<key>SuccessfulExit</key>
+		<false/>
+	</dict>
+	<key>Label</key>
+	<string>com.manselmi.op.connect.server</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Users/manselmi/.prefix/bin/op-connect</string>
+	</array>
+</dict>
+</plist>
