@@ -17,6 +17,8 @@
  /Users/manselmi/.config/resticprofile/status/**/*.json
  /Users/manselmi/.cookiecutter_replay/
  /Users/manselmi/.cookiecutters/
+ /Users/manselmi/.dagster/
+!/Users/manselmi/.dagster/dagster.yaml
  /Users/manselmi/.devpi/server/
  /Users/manselmi/.dlt/pipelines/
  /Users/manselmi/.docker/
@@ -45,6 +47,8 @@
  /Users/manselmi/.local/share/podman-desktop/
  /Users/manselmi/.local/share/rstudio/
  /Users/manselmi/.local/share/uv/
+ /Users/manselmi/.local/state/syncthing/*.lock
+ /Users/manselmi/.local/state/syncthing/index-*/
  /Users/manselmi/.m2/
  /Users/manselmi/.maxima/
  /Users/manselmi/.mc/session/
@@ -149,7 +153,6 @@
  /Users/manselmi/Library/Application Support/Sublime Text/Lib/
  /Users/manselmi/Library/Application Support/Sublime Text/Log/
 !/Users/manselmi/Library/Application Support/Syncthing/
- /Users/manselmi/Library/Application Support/Syncthing/*.ldb
  /Users/manselmi/Library/Application Support/Syncthing/*.lock
  /Users/manselmi/Library/Application Support/Syncthing/index-*/
 !/Users/manselmi/Library/Jupyter/

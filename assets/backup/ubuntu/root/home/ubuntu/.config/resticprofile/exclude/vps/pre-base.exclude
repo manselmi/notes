@@ -21,6 +21,8 @@
  /home/ubuntu/.config/resticprofile/status/**/*.json
  /home/ubuntu/.cookiecutter_replay/
  /home/ubuntu/.cookiecutters/
+ /home/ubuntu/.dagster/
+!/home/ubuntu/.dagster/dagster.yaml
  /home/ubuntu/.devpi/server/
  /home/ubuntu/.dlt/pipelines/
  /home/ubuntu/.docker/
@@ -49,6 +51,8 @@
  /home/ubuntu/.local/share/podman-desktop/
  /home/ubuntu/.local/share/rstudio/
  /home/ubuntu/.local/share/uv/
+ /home/ubuntu/.local/state/syncthing/*.lock
+ /home/ubuntu/.local/state/syncthing/index-*/
  /home/ubuntu/.m2/
  /home/ubuntu/.maxima/
  /home/ubuntu/.mc/session/
@@ -153,7 +157,6 @@
  /home/ubuntu/Library/Application Support/Sublime Text/Lib/
  /home/ubuntu/Library/Application Support/Sublime Text/Log/
 !/home/ubuntu/Library/Application Support/Syncthing/
- /home/ubuntu/Library/Application Support/Syncthing/*.ldb
  /home/ubuntu/Library/Application Support/Syncthing/*.lock
  /home/ubuntu/Library/Application Support/Syncthing/index-*/
 !/home/ubuntu/Library/Jupyter/
