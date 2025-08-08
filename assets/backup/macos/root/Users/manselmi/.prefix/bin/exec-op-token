@@ -25,14 +25,14 @@ read-token() {
         -a "${OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT}" \
         -w \
         -- \
-        ${OP_TOKEN_KEYCHAIN_PATH+"${OP_TOKEN_KEYCHAIN_PATH}"}
+        ${OP_TOKEN_KEYCHAIN_PATH:+"${OP_TOKEN_KEYCHAIN_PATH}"}
     )"
     STATUS="${?}"
   } || true
 }
 
 
-OP_CONNECT_HOST="${OP_CONNECT_HOST-"http://localhost:5080"}"
+OP_CONNECT_HOST="${OP_CONNECT_HOST:-"http://localhost:5080"}"
 
 OP_TOKEN_KEYCHAIN_RECORD_SERVICE='1password'
 if [[ -v OP_CONNECT_HOST ]]; then
@@ -73,11 +73,11 @@ fi
 #   number passed to `exit()`) if the process terminated normally.
 read-token
 if [[ "${STATUS}" -eq 36 ]]; then
-  msg "Keychain locked: ${OP_TOKEN_KEYCHAIN_PATH-"default"}"
+  msg "Keychain locked: ${OP_TOKEN_KEYCHAIN_PATH:-"default"}"
   # If stdin is associated with a terminal device, try to unlock keychain and read token again.
   if [[ -t 0 ]]; then
-    msg "Unlocking keychain: ${OP_TOKEN_KEYCHAIN_PATH-"default"}"
-    /usr/bin/security unlock-keychain -- ${OP_TOKEN_KEYCHAIN_PATH+"${OP_TOKEN_KEYCHAIN_PATH}"}
+    msg "Unlocking keychain: ${OP_TOKEN_KEYCHAIN_PATH:-"default"}"
+    /usr/bin/security unlock-keychain -- ${OP_TOKEN_KEYCHAIN_PATH:+"${OP_TOKEN_KEYCHAIN_PATH}"}
     read-token
   fi
 fi

@@ -12,9 +12,9 @@
 		<key>RESTICPROFILE_LOG</key>
     <string>/Users/manselmi/.config/resticprofile/log/onedrive/backup.log</string>
 		<key>RESTICPROFILE_NO_ANSI</key>
-		<string></string>
+		<string>1</string>
 		<key>RESTICPROFILE_NO_PRIO</key>
-		<string></string>
+		<string>1</string>
 		<key>TZ</key>
 		<string>UTC</string>
 	</dict>

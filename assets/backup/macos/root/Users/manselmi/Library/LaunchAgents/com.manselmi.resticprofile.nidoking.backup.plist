@@ -20,9 +20,9 @@
 		<key>RESTICPROFILE_LOG</key>
 		<string>/Users/manselmi/.config/resticprofile/log/nidoking/backup.log</string>
 		<key>RESTICPROFILE_NO_ANSI</key>
-		<string></string>
+		<string>1</string>
 		<key>RESTICPROFILE_NO_PRIO</key>
-		<string></string>
+		<string>1</string>
 		<key>RESTICPROFILE_UID</key>
 		<string>0</string><!-- root -->
 		<key>TZ</key>

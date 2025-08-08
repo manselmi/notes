@@ -8,6 +8,6 @@ set -o NO_UNSET
 set -o PIPE_FAIL
 
 
-RESTICPROFILE_CONFIG="${RESTICPROFILE_CONFIG-"${HOME}/.config/resticprofile/profiles.toml"}"
+RESTICPROFILE_CONFIG="${RESTICPROFILE_CONFIG:-"${HOME}/.config/resticprofile/profiles.toml"}"
 
 exec -- env -- TZ=UTC exec-op-token resticprofile --config "${RESTICPROFILE_CONFIG}" "${@}"

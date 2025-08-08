@@ -8,8 +8,8 @@ set -o NO_UNSET
 set -o PIPE_FAIL
 
 
-RCLONE_UID="${RCLONE_UID-"$(id -u)"}"
-RCLONE_GID="${RCLONE_GID-"$(id -g)"}"
+RCLONE_UID="${RCLONE_UID:-"$(id -u)"}"
+RCLONE_GID="${RCLONE_GID:-"$(id -g)"}"
 
 exec -- env -- TZ=UTC exec-op-token sudo -n -u "#${RCLONE_UID}" -g "#${RCLONE_GID}" -- \
   "$(whence -p -- rclone)" "${@}"
