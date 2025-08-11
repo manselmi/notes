@@ -209,9 +209,9 @@ sudo -u \#501 -g \#20 -- ln -s foo baz
 popd -q
 ```
 
-Now that we've modified the necessary files, let's prepare to archive them. First, make a copy the
-original manifest and add any new files to include them in the archive. Pathnames must not have a
-trailing slash.
+Now that we've modified the necessary files, let's prepare to archive them. First, make a copy of
+the original manifest and add any new files to include them in the archive. Pathnames must not have
+a trailing slash.
 
 ``` shell
 cp -- "${MANIFEST_ORIGINAL}" "${MANIFEST_MODIFIED}"
