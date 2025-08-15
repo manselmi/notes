@@ -1,3 +1,14 @@
+#  /etc/caddy/.*
+#  /etc/stdiscosrv/*.db
+#  /etc/step-ca/db/
+
+#  /usr/*
+# !/usr/local/
+#  /usr/local/*
+# !/usr/local/share/
+#  /usr/local/share/*
+# !/usr/local/share/ca-certificates/
+
  /Library/*
 !/Library/Preferences/
  /Library/Preferences/*
@@ -36,8 +47,8 @@
  /Users/manselmi/.ipython/**/history.sqlite
  /Users/manselmi/.ivy2/
  /Users/manselmi/.jupyter/lab/workspaces/
+ /Users/manselmi/.kube/*-cache/
  /Users/manselmi/.kube/cache/
- /Users/manselmi/.kube/http-cache/
  /Users/manselmi/.kuberlr/
  /Users/manselmi/.lesshst
  /Users/manselmi/.local/bin/

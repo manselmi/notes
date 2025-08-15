@@ -34,19 +34,20 @@ read-token() {
 
 OP_CONNECT_HOST="${OP_CONNECT_HOST:-"http://localhost:5080"}"
 
-OP_TOKEN_KEYCHAIN_RECORD_SERVICE='1password'
-if [[ -v OP_CONNECT_HOST ]]; then
-  if [[ -v OP_CONNECT_TOKEN ]]; then
+if [[ -n "${OP_CONNECT_HOST:-}" ]]; then
+  if [[ -n "${OP_CONNECT_TOKEN:-}" ]]; then
     exec -- env -- \
       OP_CONNECT_HOST="${OP_CONNECT_HOST}" \
       OP_CONNECT_TOKEN="${OP_CONNECT_TOKEN}" \
       "${@}"
   fi
-  OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT='connect-server'
-elif [[ -v OP_SERVICE_ACCOUNT_TOKEN ]]; then
+  OP_TOKEN_KEYCHAIN_RECORD_SERVICE="${OP_TOKEN_KEYCHAIN_RECORD_SERVICE:-"com.manselmi.op.connect"}"
+  OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT='OP_CONNECT_TOKEN'
+elif [[ -n "${OP_SERVICE_ACCOUNT_TOKEN:-}" ]]; then
   exec -- env -- OP_SERVICE_ACCOUNT_TOKEN="${OP_SERVICE_ACCOUNT_TOKEN}" "${@}"
 else
-  OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT='service-account'
+  OP_TOKEN_KEYCHAIN_RECORD_SERVICE="${OP_TOKEN_KEYCHAIN_RECORD_SERVICE:-"com.manselmi.op.service"}"
+  OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT='OP_SERVICE_ACCOUNT_TOKEN'
 fi
 
 #     keychain locked + headless session
@@ -85,10 +86,10 @@ if [[ "${STATUS}" -ne 0 ]]; then
   die 'Unable to read 1Password token.'
 fi
 
-if [[ "${OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT}" == 'connect-server' ]]; then
+if [[ "${OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT}" == 'OP_CONNECT_TOKEN' ]]; then
   exec -- env -- OP_CONNECT_HOST="${OP_CONNECT_HOST}" OP_CONNECT_TOKEN="${OP_TOKEN}" "${@}"
-elif [[ "${OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT}" == 'service-account' ]]; then
+elif [[ "${OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT}" == 'OP_SERVICE_ACCOUNT_TOKEN' ]]; then
   exec -- env -- OP_SERVICE_ACCOUNT_TOKEN="${OP_TOKEN}" "${@}"
 else
-  die "OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT is an unexpected value: ${OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT}"
+  die "OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT is an unexpected value: ${(q-)OP_TOKEN_KEYCHAIN_RECORD_ACCOUNT}"
 fi

@@ -8,10 +8,15 @@ import subprocess
 import sys
 from pathlib import Path
 
-COMPOSE = str(Path.home().joinpath(".config/op-connect/compose.yaml"))
+COMPOSE = os.environ.get("OP_CONNECT_COMPOSE") or str(
+    Path.home().joinpath(".config/op-connect/compose.yaml")
+)
 CURL = shutil.which("curl")
 DOCKER = shutil.which("docker")
-DOCKER_SOCKET = str(Path("/var/run/docker.sock"))
+UNIX_SOCKET_SCHEME = "unix://"
+UNIX_SOCKET_URL = (
+    os.environ.get("DOCKER_UNIX_SOCKET_URL") or f"{UNIX_SOCKET_SCHEME}/var/run/docker.sock"
+)
 
 
 def main():
@@ -23,15 +28,15 @@ def main():
             "-v",
             "--fail",
             "--max-time",
-            str(1),
+            os.environ.get("CURL_MAX_TIME_SECONDS") or "1",
             "--no-progress-meter",
             "--output",
             os.devnull,
             "--retry",
-            str(5),
+            os.environ.get("CURL_RETRY") or "5",
             "--retry-all-errors",
             "--unix-socket",
-            DOCKER_SOCKET,
+            UNIX_SOCKET_URL.removeprefix(UNIX_SOCKET_SCHEME),
             "--",
             "http/_ping",
         ],
@@ -42,15 +47,20 @@ def main():
         "OP_HTTP_PORT": os.environ.get("OP_HTTP_PORT") or "5080",
         "OP_HTTPS_PORT": os.environ.get("OP_HTTPS_PORT") or "5443",
         "OP_LOG_LEVEL": os.environ.get("OP_LOG_LEVEL") or "info",
-        "OP_SESSION": subprocess.run(
+        "OP_SESSION": subprocess.run(  # noqa:S603
             [
                 "/usr/bin/security",
                 "find-generic-password",
                 "-s",
-                "1password",
+                (
+                    os.environ.get("OP_SESSION_KEYCHAIN_RECORD_SERVICE")
+                    or "com.manselmi.op.connect.server"
+                ),
                 "-a",
-                "connect-server-creds",
+                os.environ.get("OP_SESSION_KEYCHAIN_RECORD_ACCOUNT") or "OP_SESSION",
                 "-w",
+                "--",
+                *list(filter(None, [os.environ.get("OP_SESSION_KEYCHAIN_PATH")])),
             ],
             check=True,
             encoding="ascii",
@@ -64,7 +74,7 @@ def main():
     def handler(signum, frame):  # noqa:ARG001
         if process is not None:
             subprocess.Popen(  # noqa:S603
-                [DOCKER, "compose", "-f", COMPOSE, "down"],
+                [DOCKER, "-H", UNIX_SOCKET_URL, "compose", "-f", COMPOSE, "down"],
                 env=env,
                 start_new_session=True,
                 stderr=subprocess.DEVNULL,
@@ -75,7 +85,7 @@ def main():
     signal.signal(signal.SIGTERM, handler)
 
     process = subprocess.Popen(  # noqa:S603
-        [DOCKER, "compose", "-f", COMPOSE, "up"],
+        [DOCKER, "-H", UNIX_SOCKET_URL, "compose", "-f", COMPOSE, "up"],
         env=env,
         start_new_session=True,
     )

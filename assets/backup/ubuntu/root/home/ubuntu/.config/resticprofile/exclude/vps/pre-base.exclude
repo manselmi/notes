@@ -9,6 +9,13 @@
  /usr/local/share/*
 !/usr/local/share/ca-certificates/
 
+#  /Library/*
+# !/Library/Preferences/
+#  /Library/Preferences/*
+# !/Library/Preferences/com.soma-zone.LaunchControl.fdautil.plist
+
+#  /opt/manselmi/rclone/mnt/
+
  /home/ubuntu/.android/
  /home/ubuntu/.ansible/
  /home/ubuntu/.aspnet/
@@ -40,8 +47,8 @@
  /home/ubuntu/.ipython/**/history.sqlite
  /home/ubuntu/.ivy2/
  /home/ubuntu/.jupyter/lab/workspaces/
+ /home/ubuntu/.kube/*-cache/
  /home/ubuntu/.kube/cache/
- /home/ubuntu/.kube/http-cache/
  /home/ubuntu/.kuberlr/
  /home/ubuntu/.lesshst
  /home/ubuntu/.local/bin/
