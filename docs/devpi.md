@@ -17,6 +17,11 @@ devpi lets you host one or more Python package indexes locally. The following di
 demonstrate how pip will work after following the instructions on this page.
 
 ``` mermaid
+---
+config:
+  layout: elk
+---
+
 flowchart TB
 
   subgraph internet ["Internet"]

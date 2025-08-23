@@ -31,6 +31,9 @@ extra:
     tmux: tmux
     windows: windows
 
+extra_javascript:
+  - 'assets/mermaid.mjs'
+
 markdown_extensions:
 
   # Python Markdown
