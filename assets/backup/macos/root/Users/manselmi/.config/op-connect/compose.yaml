@@ -1,6 +1,5 @@
 name: 'op-connect'
 
-
 services:
 
   op-connect-api:
@@ -8,15 +7,16 @@ services:
     depends_on:
       - 'op-connect-sync'
     environment:
-      OP_LOG_LEVEL: '${OP_LOG_LEVEL}'
+      OP_LOG_LEVEL: '${LOG_LEVEL}'
       OP_SESSION: '${OP_SESSION}'
-      OP_SYNC_TIMEOUT: '${OP_SYNC_TIMEOUT}'
+      OP_SYNC_TIMEOUT: '${SYNC_TIMEOUT}'
     image: 'docker.io/1password/connect-api:latest'
     ports:
       - app_protocol: 'http'
+        host_ip: '::1'
         mode: 'host'
         protocol: 'tcp'
-        published: '${OP_HTTP_PORT}'
+        published: '${HTTP_PORT}'
         target: 8080
     pull_policy: 'missing'
     restart: 'unless-stopped'
@@ -28,7 +28,7 @@ services:
   op-connect-sync:
     container_name: 'op-connect-sync'
     environment:
-      OP_LOG_LEVEL: '${OP_LOG_LEVEL}'
+      OP_LOG_LEVEL: '${LOG_LEVEL}'
       OP_SESSION: '${OP_SESSION}'
     image: 'docker.io/1password/connect-sync:latest'
     pull_policy: 'missing'

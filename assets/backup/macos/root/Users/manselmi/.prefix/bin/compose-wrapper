@@ -1,0 +1,147 @@
+#!/usr/bin/env -S -- python -B
+# vim: set ft=python :
+
+import os
+import shlex
+import signal
+import subprocess
+import sys
+from argparse import Action, ArgumentDefaultsHelpFormatter, ArgumentParser, Namespace
+from collections.abc import Mapping, Sequence
+from pathlib import Path
+from types import FrameType
+from typing import Any
+
+DOCKER = "docker"
+SCHEME_AUTHORITY = "unix://"
+SECRET = "secret"  # noqa:S105
+SECRET_METAVAR = "VAR=CMD"  # noqa:S105
+
+
+def main(  # noqa:PLR0913
+    compose: Path,
+    socket: Path,
+    secrets: Mapping[str, list[str]] | None,
+    retry: int,
+    retry_delay_seconds: int,
+    max_time_seconds: int,
+) -> None:
+    # https://docs.docker.com/reference/api/engine/latest/#tag/System/operation/SystemPing
+    subprocess.run(  # noqa:S603
+        list(
+            map(
+                str,
+                [
+                    "curl",
+                    "-q",
+                    "-v",
+                    "--fail",
+                    "--max-time",
+                    max_time_seconds,
+                    "--no-progress-meter",
+                    "--output",
+                    os.devnull,
+                    "--retry",
+                    retry,
+                    "--retry-all-errors",
+                    "--retry-delay",
+                    retry_delay_seconds,
+                    "--unix-socket",
+                    socket,
+                    "--",
+                    "http/_ping",
+                ],
+            )
+        ),
+        check=True,
+    )
+
+    env = os.environ.copy()
+    if secrets:
+        for var, args in secrets.items():
+            env[var] = subprocess.run(  # noqa:S603
+                args,
+                check=True,
+                encoding="ascii",
+                stdout=subprocess.PIPE,
+            ).stdout
+
+    process = None
+    uri = SCHEME_AUTHORITY + str(socket)
+
+    def handler(_signum: int, _frame: FrameType | None) -> None:
+        if process is not None:
+            subprocess.Popen(  # noqa:S603
+                [DOCKER, "-H", uri, "compose", "-f", compose, "down"],
+                env=env,
+                start_new_session=True,
+                stderr=subprocess.DEVNULL,
+                stdout=subprocess.DEVNULL,
+            )
+
+    signal.signal(signal.SIGINT, handler)
+    signal.signal(signal.SIGTERM, handler)
+
+    process = subprocess.Popen(  # noqa:S603
+        [DOCKER, "-H", uri, "compose", "-f", compose, "up"],
+        env=env,
+        start_new_session=True,
+    )
+    process.wait()
+
+    sys.exit(process.returncode)
+
+
+class StoreSecretAction(Action):
+    def __call__(
+        self,
+        _parser: ArgumentParser,
+        namespace: Namespace,
+        values: str | Sequence[Any] | None,
+        _option_string: str | None = None,
+    ) -> None:
+        if values is None:
+            return
+        if not isinstance(values, Sequence) or isinstance(values, str):
+            values = [values]
+        d = getattr(namespace, self.dest) or {}
+        for s in values:
+            if not isinstance(s, str):
+                msg = f"expected {str!r}, got {type(s)!r}"
+                raise TypeError(msg)
+            kv = s.split("=", 1)
+            if len(kv) < 2 or len(kv[1]) == 0:  # noqa:PLR2004
+                msg = f"{SECRET} must have format {SECRET_METAVAR!r}, got {s!r}"
+                raise ValueError(msg)
+            d[kv[0]] = shlex.split(kv[1])
+        setattr(namespace, self.dest, d)
+
+
+if __name__ == "__main__":
+    parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
+
+    curl = parser.add_argument_group("curl")
+    curl.add_argument("--retry", type=int, default=12)
+    curl.add_argument("--retry-delay-seconds", type=int, default=5)
+    curl.add_argument("--max-time-seconds", type=int, default=1)
+
+    docker = parser.add_argument_group("docker")
+    docker.add_argument("--socket", type=Path, default=Path("/var/run/docker.sock"))
+    docker.add_argument(
+        f"--{SECRET}",
+        action=StoreSecretAction,
+        dest="secrets",
+        metavar=SECRET_METAVAR,
+    )
+
+    parser.add_argument("compose", type=Path)
+
+    args = parser.parse_args()
+    main(
+        args.compose,
+        args.socket,
+        args.secrets,
+        args.retry,
+        args.retry_delay_seconds,
+        args.max_time_seconds,
+    )

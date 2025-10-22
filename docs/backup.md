@@ -130,7 +130,7 @@ bkp
 
 * [`~/.prefix/bin/exec-op-token`]({{ prefix_repo_url("assets/backup/macos/root/Users/manselmi/.prefix/bin/exec-op-token") }})
 
-* [`~/.prefix/bin/op-connect`]({{ prefix_repo_url("assets/backup/macos/root/Users/manselmi/.prefix/bin/op-connect") }})
+* [`~/.prefix/bin/compose-wrapper`]({{ prefix_repo_url("assets/backup/macos/root/Users/manselmi/.prefix/bin/compose-wrapper") }})
 
 * [`~/.config/op-connect/compose.yaml`]({{ prefix_repo_url("assets/backup/macos/root/Users/manselmi/.config/op-connect/compose.yaml") }})
 

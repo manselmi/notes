@@ -7,12 +7,14 @@
 	<false/>
 	<key>EnvironmentVariables</key>
 	<dict>
-		<key>OP_LOG_LEVEL</key>
+		<key>HTTP_PORT</key>
+		<string>5080</string>
+		<key>LOG_LEVEL</key>
 		<string>error</string>
 		<key>PATH</key>
 		<string>/Users/manselmi/.orbstack/bin:/Users/manselmi/.prefix/bin:/Users/manselmi/.prefix/sw/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
-		<key>TZ</key>
-		<string>UTC</string>
+		<key>SYNC_TIMEOUT</key>
+		<string>10s</string>
 	</dict>
 	<key>ExitTimeOut</key>
 	<integer>15</integer><!-- seconds -->
@@ -25,7 +27,11 @@
 	<string>com.manselmi.op.connect.server</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/Users/manselmi/.prefix/bin/op-connect</string>
+		<string>/Users/manselmi/.prefix/bin/compose-wrapper</string>
+		<string>--secret</string>
+		<string>OP_SESSION=/usr/bin/security find-generic-password -s com.manselmi.op.connect.server -a OP_SESSION -w --</string>
+		<string>--</string>
+		<string>/Users/manselmi/.config/op-connect/compose.yaml</string>
 	</array>
 </dict>
 </plist>

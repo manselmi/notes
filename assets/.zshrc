@@ -21,9 +21,10 @@ TASKFILE_LIBRARY_ROOT_DIR="${HOME}/.taskfile"
 HISTFILE="${HOME}/.zhistory"
 HISTSIZE=1000
 HOMEBREW_INSTALL_DIR="${INSTALL_SW_DIR}/homebrew"
-JAVA_HOME="$(/usr/libexec/java_home --version 21)"
+JAVA_HOME="$(/usr/libexec/java_home --version 25)"
 KEYTIMEOUT=1
 LANG=en_US.UTF-8
+ORBSTACK_INSTALL_DIR="${HOME}/.orbstack"
 SAVEHIST=2000
 TASKFILE_INCLUDE_ROOT_DIR="${TASKFILE_LIBRARY_ROOT_DIR}/include"
 VISUAL=vim
@@ -187,6 +188,7 @@ fpath=(
 )
 path=(
   "${INSTALL_DIR}/bin"
+  "${ORBSTACK_INSTALL_DIR}/bin"
   "${HOMEBREW_INSTALL_DIR}/bin"
   '/usr/local/bin'
   "${path[@]}"
