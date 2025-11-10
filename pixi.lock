@@ -14,7 +14,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libffi-3.5.2-he5f378a_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/liblzma-5.8.1-h39f12f2_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libmpdec-4.0.0-h5505292_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libsqlite-3.50.4-h4237e3c_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libsqlite-3.51.0-h8adb53f_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libzlib-1.3.1-h8359307_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/ncurses-6.5-h5e97a16_3.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/openssl-3.5.4-h5503f6c_0.conda
@@ -46,11 +46,11 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/0e/61/66938bbb5fc52dbdf84594873d5b51fb1f7c7794e9c0f5bd885f30bc507b/idna-3.11-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/5e/73/e01e4c5e11ad0494f4407a3f623ad4d87714909f50b17a06ed121034ff6e/jsmin-3.0.1.tar.gz
-      - pypi: https://files.pythonhosted.org/packages/70/ae/44c4a6a4cbb496d93c6257954260fe3a6e91b7bed2240e5dad2a717f5111/markdown-3.9-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/70/81/54e3ce63502cd085a0c556652a4e1b919c45a446bd1e5300e10c44c8c521/markdown-3.10-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/b5/64/7660f8a4a8e53c924d0fa05dc3a55c9cee10bbd82b11c5afb27d44b096ce/markupsafe-3.0.3-cp314-cp314-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/2c/19/04f9b178c2d8a15b076c8b5140708fa6ffc5601fb6f1e975537072df5b2a/mergedeep-1.3.4-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/22/5b/dbc6a8cddc9cfa9c4971d59fb12bb8d42e161b7e7f8cc89e49137c5b279c/mkdocs-1.6.1-py3-none-any.whl
-      - pypi: git+ssh://github-personal/squidfunk/mkdocs-material-insiders.git?rev=master#709778bbd2b8242cac734bb2ac534f85e9032e08
+      - pypi: git+ssh://github-personal/squidfunk/mkdocs-material-insiders.git?rev=master#afac15fadba101539b89b173baeb667f8953bec7
       - pypi: https://files.pythonhosted.org/packages/9f/d4/029f984e8d3f3b6b726bd33cafc473b75e9e44c0f7e80a5b29abc466bdea/mkdocs_get_deps-0.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/8e/f5/768590251839a148c188d64779b809bde0e78a306295c18fc29d7fc71ce1/mkdocs_git_committers_plugin_2-2.5.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/bc/51/fe0e3fdb16f6eed65c9459d12bae6a4e1f0bb4e2228cb037e7907b002678/mkdocs_git_revision_date_localized_plugin-1.5.0-py3-none-any.whl
@@ -58,7 +58,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/5b/54/662a4743aa81d9582ee9339d4ffa3c8fd40a4965e033d77b9da9774d3960/mkdocs_material_extensions-1.3.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1b/cd/2e8d0d92421916e2ea4ff97f10a544a9bd5588eb747556701c983581df13/mkdocs_minify_plugin-0.8.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c4/ec/38443b1f2a3821bbcb24e46cd8ba979154417794d54baf949fefde1c2146/mkdocs_redirects-1.2.2-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/92/1b/9d3d6f53f0b063789528a5bc8e47a8b8f3eb85b5740d949d149ccc89d685/mkdocs_rss_plugin-1.17.4-py2.py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/7e/b0/3707701c7dc03b082fec801662c43fc9c8fe7e78d94bf1a7d7d4aec509ed/mkdocs_rss_plugin-1.17.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1b/9f/38ff9e57a2eade7bf9dfee5eae17f39fc0e998658050279cbb14d97d36d9/msgpack-1.1.2-cp314-cp314-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/20/12/38679034af332785aac8774540895e234f4d07f7545804097de4b666afd8/packaging-25.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/90/96/04b8e52da071d28f5e21a805b19cb9390aa17a47462ac87f5e2696b9566d/paginate-0.5.7-py2.py3-none-any.whl
@@ -94,7 +94,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libffi-3.5.2-he5f378a_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/liblzma-5.8.1-h39f12f2_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libmpdec-4.0.0-h5505292_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libsqlite-3.50.4-h4237e3c_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libsqlite-3.51.0-h8adb53f_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libzlib-1.3.1-h8359307_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/ncurses-6.5-h5e97a16_3.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/openssl-3.5.4-h5503f6c_0.conda
@@ -129,11 +129,11 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/0e/61/66938bbb5fc52dbdf84594873d5b51fb1f7c7794e9c0f5bd885f30bc507b/idna-3.11-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/5e/73/e01e4c5e11ad0494f4407a3f623ad4d87714909f50b17a06ed121034ff6e/jsmin-3.0.1.tar.gz
-      - pypi: https://files.pythonhosted.org/packages/70/ae/44c4a6a4cbb496d93c6257954260fe3a6e91b7bed2240e5dad2a717f5111/markdown-3.9-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/70/81/54e3ce63502cd085a0c556652a4e1b919c45a446bd1e5300e10c44c8c521/markdown-3.10-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/b5/64/7660f8a4a8e53c924d0fa05dc3a55c9cee10bbd82b11c5afb27d44b096ce/markupsafe-3.0.3-cp314-cp314-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/2c/19/04f9b178c2d8a15b076c8b5140708fa6ffc5601fb6f1e975537072df5b2a/mergedeep-1.3.4-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/22/5b/dbc6a8cddc9cfa9c4971d59fb12bb8d42e161b7e7f8cc89e49137c5b279c/mkdocs-1.6.1-py3-none-any.whl
-      - pypi: git+ssh://github-personal/squidfunk/mkdocs-material-insiders.git?rev=master#709778bbd2b8242cac734bb2ac534f85e9032e08
+      - pypi: git+ssh://github-personal/squidfunk/mkdocs-material-insiders.git?rev=master#afac15fadba101539b89b173baeb667f8953bec7
       - pypi: https://files.pythonhosted.org/packages/9f/d4/029f984e8d3f3b6b726bd33cafc473b75e9e44c0f7e80a5b29abc466bdea/mkdocs_get_deps-0.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/8e/f5/768590251839a148c188d64779b809bde0e78a306295c18fc29d7fc71ce1/mkdocs_git_committers_plugin_2-2.5.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/bc/51/fe0e3fdb16f6eed65c9459d12bae6a4e1f0bb4e2228cb037e7907b002678/mkdocs_git_revision_date_localized_plugin-1.5.0-py3-none-any.whl
@@ -141,7 +141,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/5b/54/662a4743aa81d9582ee9339d4ffa3c8fd40a4965e033d77b9da9774d3960/mkdocs_material_extensions-1.3.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1b/cd/2e8d0d92421916e2ea4ff97f10a544a9bd5588eb747556701c983581df13/mkdocs_minify_plugin-0.8.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c4/ec/38443b1f2a3821bbcb24e46cd8ba979154417794d54baf949fefde1c2146/mkdocs_redirects-1.2.2-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/92/1b/9d3d6f53f0b063789528a5bc8e47a8b8f3eb85b5740d949d149ccc89d685/mkdocs_rss_plugin-1.17.4-py2.py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/7e/b0/3707701c7dc03b082fec801662c43fc9c8fe7e78d94bf1a7d7d4aec509ed/mkdocs_rss_plugin-1.17.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/1b/9f/38ff9e57a2eade7bf9dfee5eae17f39fc0e998658050279cbb14d97d36d9/msgpack-1.1.2-cp314-cp314-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/d2/1d/1b658dbd2b9fa9c4c9f32accbfc0205d532c8c6194dc0f2a4c0428e7128a/nodeenv-1.9.1-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/20/12/38679034af332785aac8774540895e234f4d07f7545804097de4b666afd8/packaging-25.0-py3-none-any.whl
@@ -149,7 +149,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/cc/20/ff623b09d963f88bfde16306a54e12ee5ea43e9b597108672ff3a408aad6/pathspec-0.12.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/41/b0/33d79e377a336247df6348a54e6d2a2b85d644ca202555e3faa0cf811ecc/pillow-11.3.0-cp314-cp314-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/73/cb/ac7874b3e5d58441674fb70742e6c374b28b0c7cb988d37d991cde47166c/platformdirs-4.5.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/5b/a5/987a405322d78a73b66e39e4a90e4ef156fd7141bf71df987e50717c321b/pre_commit-4.3.0-py2.py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/27/11/574fe7d13acf30bfd0a8dd7fa1647040f2b8064f13f43e8c963b1e65093b/pre_commit-4.4.0-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/12/46/eba9be9daa403fa94854ce16a458c29df9a01c6c047931c3d8be6016cd9a/pre_commit_hooks-6.0.0-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a0/e3/59cd50310fc9b59512193629e1984c1f95e5c8ae6e5d8c69532ccc65a7fe/pycparser-2.23-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c7/21/705964c7812476f378728bdf590ca4b771ec72385c533964653c68e86bdc/pygments-2.19.2-py3-none-any.whl
@@ -457,17 +457,17 @@ packages:
   purls: []
   size: 71829
   timestamp: 1748393749336
-- conda: https://conda.anaconda.org/conda-forge/osx-arm64/libsqlite-3.50.4-h4237e3c_0.conda
-  sha256: 802ebe62e6bc59fc26b26276b793e0542cfff2d03c086440aeaf72fb8bbcec44
-  md5: 1dcb0468f5146e38fae99aef9656034b
+- conda: https://conda.anaconda.org/conda-forge/osx-arm64/libsqlite-3.51.0-h8adb53f_0.conda
+  sha256: b43d198f147f46866e5336c4a6b91668beef698bfba69d1706158460eadb2c1b
+  md5: 5fb1945dbc6380e6fe7e939a62267772
   depends:
   - __osx >=11.0
   - icu >=75.1,<76.0a0
   - libzlib >=1.3.1,<2.0a0
   license: blessing
   purls: []
-  size: 902645
-  timestamp: 1753948599139
+  size: 909508
+  timestamp: 1762300078624
 - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libzlib-1.3.1-h8359307_2.conda
   sha256: ce34669eadaba351cd54910743e6a2261b67009624dbc7daeeafdef93616711b
   md5: 369964e85dc26bfe78f41399b366c435
@@ -480,12 +480,11 @@ packages:
   purls: []
   size: 46438
   timestamp: 1727963202283
-- pypi: https://files.pythonhosted.org/packages/70/ae/44c4a6a4cbb496d93c6257954260fe3a6e91b7bed2240e5dad2a717f5111/markdown-3.9-py3-none-any.whl
+- pypi: https://files.pythonhosted.org/packages/70/81/54e3ce63502cd085a0c556652a4e1b919c45a446bd1e5300e10c44c8c521/markdown-3.10-py3-none-any.whl
   name: markdown
-  version: '3.9'
-  sha256: 9f4d91ed810864ea88a6f32c07ba8bee1346c0cc1f6b1f9f6c822f2a9667d280
+  version: '3.10'
+  sha256: b5b99d6951e2e4948d939255596523444c0e677c669700b1d17aa4a8a464cb7c
   requires_dist:
-  - importlib-metadata>=4.4 ; python_full_version < '3.10'
   - coverage ; extra == 'testing'
   - pyyaml ; extra == 'testing'
   - mkdocs>=1.6 ; extra == 'docs'
@@ -495,7 +494,7 @@ packages:
   - mkdocs-gen-files ; extra == 'docs'
   - mkdocs-section-index ; extra == 'docs'
   - mkdocs-literate-nav ; extra == 'docs'
-  requires_python: '>=3.9'
+  requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/b5/64/7660f8a4a8e53c924d0fa05dc3a55c9cee10bbd82b11c5afb27d44b096ce/markupsafe-3.0.3-cp314-cp314-macosx_11_0_arm64.whl
   name: markupsafe
   version: 3.0.3
@@ -593,7 +592,7 @@ packages:
   - mkdocs-d2-plugin ; extra == 'test'
   - mkdocs-mermaid2-plugin ; extra == 'doc'
   requires_python: '>=3.8'
-- pypi: git+ssh://github-personal/squidfunk/mkdocs-material-insiders.git?rev=master#709778bbd2b8242cac734bb2ac534f85e9032e08
+- pypi: git+ssh://github-personal/squidfunk/mkdocs-material-insiders.git?rev=master#afac15fadba101539b89b173baeb667f8953bec7
   name: mkdocs-material
   version: 9.6.23+insiders.4.53.17
   requires_dist:
@@ -639,35 +638,36 @@ packages:
   requires_dist:
   - mkdocs>=1.1.1
   requires_python: '>=3.8'
-- pypi: https://files.pythonhosted.org/packages/92/1b/9d3d6f53f0b063789528a5bc8e47a8b8f3eb85b5740d949d149ccc89d685/mkdocs_rss_plugin-1.17.4-py2.py3-none-any.whl
+- pypi: https://files.pythonhosted.org/packages/7e/b0/3707701c7dc03b082fec801662c43fc9c8fe7e78d94bf1a7d7d4aec509ed/mkdocs_rss_plugin-1.17.5-py3-none-any.whl
   name: mkdocs-rss-plugin
-  version: 1.17.4
-  sha256: c05fdb5a63fdf396f8d05169e45a08388abc3eb6f55ca4d23682039aad0cce50
+  version: 1.17.5
+  sha256: c76090a9de68af7566ca6b16bbba8b210680f1d9e35bcba4fc54379e1e5a6c1f
   requires_dist:
-  - cachecontrol[filecache]>=0.14,<1
-  - gitpython>=3.1.43,<3.2
+  - cachecontrol[filecache]>=0.14.3,<1
+  - gitpython>=3.1.45,<3.2
   - mkdocs>=1.6.1,<2
-  - requests>=2.31,<3
-  - tzdata==2024.* ; python_full_version >= '3.9' and sys_platform == 'win32'
-  - black ; extra == 'dev'
-  - flake8>=7.1,<8 ; extra == 'dev'
+  - requests>=2.32.5,<3
+  - tzdata==2024.* ; sys_platform == 'win32'
+  - black>=25.9 ; extra == 'dev'
+  - flake8>=7.1 ; extra == 'dev'
   - flake8-bugbear>=24.10 ; extra == 'dev'
   - flake8-builtins>=2.5 ; extra == 'dev'
   - flake8-eradicate>=1.5 ; extra == 'dev'
   - flake8-isort>=6.1.1 ; extra == 'dev'
-  - pre-commit>=3.7,<5 ; extra == 'dev'
-  - mkdocs-git-committers-plugin-2>=2.4.1,<2.6 ; extra == 'doc'
-  - mkdocs-git-revision-date-localized-plugin>=1.3,<1.5 ; extra == 'doc'
-  - mkdocs-material[imaging]>=9.5.47,<10 ; extra == 'doc'
-  - mkdocs-minify-plugin>=0.8,<0.9 ; extra == 'doc'
-  - mkdocstrings-python>=1.16.2,<1.19 ; extra == 'doc'
-  - termynal>=0.12.2,<0.14 ; extra == 'doc'
-  - feedparser>=6.0.11,<6.1 ; extra == 'test'
+  - flake8-pyproject>=1.2.3 ; extra == 'dev'
+  - pre-commit>=4,<5 ; extra == 'dev'
+  - mkdocs-git-committers-plugin-2>=2.4.1,<2.6 ; extra == 'docs'
+  - mkdocs-git-revision-date-localized-plugin>=1.3,<1.6 ; extra == 'docs'
+  - mkdocs-material[imaging]>=9.5.47,<10 ; extra == 'docs'
+  - mkdocs-minify-plugin>=0.8,<0.9 ; extra == 'docs'
+  - mkdocstrings-python>=1.16.2,<1.19 ; extra == 'docs'
+  - termynal>=0.12.2,<0.14 ; extra == 'docs'
+  - feedparser>=6.0.12,<6.1 ; extra == 'test'
   - jsonfeed-util>=1.2,<2 ; extra == 'test'
-  - mkdocs-material[imaging]>=9.5.47 ; extra == 'test'
-  - pytest-cov>=6,<8 ; extra == 'test'
+  - mkdocs-material[imaging]>=9.6.23 ; extra == 'test'
+  - pytest-cov>=6.9.1,<8 ; extra == 'test'
   - validator-collection>=1.5,<1.6 ; extra == 'test'
-  requires_python: '>=3.9,<4'
+  requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/1b/9f/38ff9e57a2eade7bf9dfee5eae17f39fc0e998658050279cbb14d97d36d9/msgpack-1.1.2-cp314-cp314-macosx_11_0_arm64.whl
   name: msgpack
   version: 1.1.2
@@ -762,17 +762,17 @@ packages:
   - pytest>=8.4.2 ; extra == 'test'
   - mypy>=1.18.2 ; extra == 'type'
   requires_python: '>=3.10'
-- pypi: https://files.pythonhosted.org/packages/5b/a5/987a405322d78a73b66e39e4a90e4ef156fd7141bf71df987e50717c321b/pre_commit-4.3.0-py2.py3-none-any.whl
+- pypi: https://files.pythonhosted.org/packages/27/11/574fe7d13acf30bfd0a8dd7fa1647040f2b8064f13f43e8c963b1e65093b/pre_commit-4.4.0-py2.py3-none-any.whl
   name: pre-commit
-  version: 4.3.0
-  sha256: 2b0747ad7e6e967169136edffee14c16e148a778a54e4f967921aa1ebf2308d8
+  version: 4.4.0
+  sha256: b35ea52957cbf83dcc5d8ee636cbead8624e3a15fbfa61a370e42158ac8a5813
   requires_dist:
   - cfgv>=2.0.0
   - identify>=1.0.0
   - nodeenv>=0.11.1
   - pyyaml>=5.1
   - virtualenv>=20.10.0
-  requires_python: '>=3.9'
+  requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/12/46/eba9be9daa403fa94854ce16a458c29df9a01c6c047931c3d8be6016cd9a/pre_commit_hooks-6.0.0-py2.py3-none-any.whl
   name: pre-commit-hooks
   version: 6.0.0
