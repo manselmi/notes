@@ -14,11 +14,7 @@ python = { version = '>=3.14.3,<3.15' }
 [pypi-dependencies]
 mkdocs = { version = '>=1.6.1' }
 mkdocs-macros-plugin = { version = '>=1.5.0' }
-
-[pypi-dependencies.mkdocs-material]
-git = 'ssh://github-personal/squidfunk/mkdocs-material-insiders.git'
-rev = 'master'
-extras = ['git', 'imaging', 'recommended']
+mkdocs-material = { version = '>=9.7.1', extras = ['git', 'imaging', 'recommended'] }
 
 
 [tasks]
