@@ -1,0 +1,38 @@
+// vim: set ft=pkl :
+
+amends "package://github.com/jdx/hk/releases/download/v1.36.0/hk@1.36.0#/Config.pkl"
+import "package://github.com/jdx/hk/releases/download/v1.36.0/hk@1.36.0#/Builtins.pkl"
+
+local linters = new Mapping<String, Step> {
+  ["byte_order_marker"] = (Builtins.byte_order_marker) {}
+  ["check_added_large_files"] = (Builtins.check_added_large_files) {}
+  ["check_case_conflict"] = (Builtins.check_case_conflict) {}
+  ["check_executables_have_shebangs"] = (Builtins.check_executables_have_shebangs) {}
+  ["check_merge_conflict"] = (Builtins.check_merge_conflict) {
+    exclude = List("docs/aws-vault.md")
+  }
+  ["check_symlinks"] = (Builtins.check_symlinks) {}
+  ["detect_private_key"] = (Builtins.detect_private_key) {}
+  ["mise"] = (Builtins.mise) {}
+  ["mixed_line_ending"] = (Builtins.mixed_line_ending) {}
+  ["newlines"] = (Builtins.newlines) {}
+  ["pkl"] = (Builtins.pkl) {}
+  ["pkl_format"] = (Builtins.pkl_format) { depends = "pkl" }
+  ["trailing_whitespace"] = (Builtins.trailing_whitespace) { exclude = List("**/*.md") }
+}
+
+hooks {
+  ["pre-commit"] {
+    stage = false
+    steps = linters
+  }
+  ["check"] {
+    stage = false
+    steps = linters
+  }
+  ["fix"] {
+    fix = true
+    stage = false
+    steps = linters
+  }
+}

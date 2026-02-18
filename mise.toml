@@ -1,0 +1,57 @@
+# vim: set ft=toml :
+
+
+[settings]
+lockfile = true
+
+
+[tasks.deploy]
+env = { REMOTE_NAME = 'personal' }
+run = [
+  'git push -- "${REMOTE_NAME}"',
+  'pixi run -- mkdocs gh-deploy --no-history --remote-name "${REMOTE_NAME}"',
+]
+
+[tasks.hooks-install]
+hide = true
+run = [{ task = 'hooks-uninstall' }, 'hk install --mise']
+
+[tasks.hooks-uninstall]
+env = { GIT_HOOKS_DIR = '.git/hooks' }
+hide = true
+run = [
+  'mkdir -p -- "${GIT_HOOKS_DIR}"',
+  'find -- "${GIT_HOOKS_DIR}" -mindepth 1 -delete',
+]
+
+[tasks.install]
+run = ['mise install', { task = 'hooks-install' }, 'pixi install --all']
+
+[tasks.lint]
+run = 'hk fix --all'
+
+[tasks.lock]
+run = ['truncate -s 0 -- mise.lock', 'mise lock --platform macos-arm64']
+
+[tasks.serve]
+run = 'pixi run -- mkdocs serve --open'
+
+[tasks.upgrade]
+env = { PKL = 'hk.pkl' }
+run = [
+  """\
+str() { printf '%s' "package://github.com/jdx/hk/releases/download/v${1}/hk@${1}"; } && \
+OLD="$(str "$(mise tool --requested -- hk)")" && \
+mise upgrade --bump && \
+mise run lock && \
+NEW="$(str "$(mise tool --requested -- hk)")" && \
+sd -F -- "${OLD}" "${NEW}" "${PKL}";""",
+  'pixi update',
+]
+
+
+[tools]
+hk = "1.36.0"
+pixi = "0.63.2"
+pkl = "0.30.2"
+sd = "1.0.0"
