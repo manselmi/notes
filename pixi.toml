@@ -8,33 +8,10 @@ platforms = ['osx-arm64']
 
 
 [dependencies]
-python = { version = '>=3.14.3,<3.15' }
+python = { version = '>=3.14,<3.15' }
 
 
 [pypi-dependencies]
-mkdocs = { version = '>=1.6.1' }
-mkdocs-macros-plugin = { version = '>=1.5.0' }
-mkdocs-material = { version = '>=9.7.1', extras = ['git', 'imaging', 'recommended'] }
-
-
-[tasks]
-serve = { cmd = ['mkdocs', 'serve', '--open'] }
-push = { cmd = ['git', 'push', '--', 'personal'] }
-deploy = { depends-on = 'push', cmd = [
-  'mkdocs', 'gh-deploy','--no-history', '--remote-name', 'personal',
-] }
-
-
-[environments]
-default = { solve-group = 'default' }
-lint = { features = ['lint'], solve-group = 'default' }
-
-
-[feature.lint.dependencies]
-prek = { version = '>=0.3.2' }
-
-[feature.lint.tasks]
-lint = { depends-on = ['prek-run'] }
-# https://github.com/prefix-dev/pixi/discussions/1897
-prek-install = { cmd = ['prek', 'install', '-f'] }
-prek-run = { cmd = ['prek', 'run', '--all-files'] }
+mkdocs = { version = '*' }
+mkdocs-macros-plugin = { version = '*' }
+mkdocs-material = { version = '*', extras = ['git', 'imaging', 'recommended'] }
