@@ -1,0 +1,1411 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Mike Anselmi">
+      
+      
+        <link rel="canonical" href="https://manselmi.github.io/notes/gnupg-key-management/">
+      
+      
+        <link rel="prev" href="../git/">
+      
+      
+        <link rel="next" href="../jupyterlab/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>GnuPG key management - Mike Anselmi's notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gnupg-key-management" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Mike Anselmi&#39;s notes" class="md-header__button md-logo" aria-label="Mike Anselmi's notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Mike Anselmi's notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              GnuPG key management
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/manselmi/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    manselmi/notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Mike Anselmi&#39;s notes" class="md-nav__button md-logo" aria-label="Mike Anselmi's notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Mike Anselmi's notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/manselmi/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    manselmi/notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pages
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Pages
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automated backup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-vault/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    aws-vault
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devpi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    devpi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GnuPG key management
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GnuPG key management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#user-ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User IDs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subkeys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subkeys
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#omit-needless-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Omit Needless Keys
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passwords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passwords
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expiration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expiration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#revocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revocation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-most-important-feature-no-one-uses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Most Important Feature No One Uses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Most Important Feature No One Uses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finding-your-key-given-a-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding your key, given a key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-your-key-given-a-signature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding your key, given a signature
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Finding your key, given a signature">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-include-key-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. --include-key-block
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-sig-keyserver-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. --sig-keyserver-url
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-sender" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. --sender
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-nothing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Nothing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-your-key-given-a-user-id-or-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding your key, given a user ID or email
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-your-key-given-a-fingerprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding your key, given a fingerprint
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jupyterlab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JupyterLab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rclone/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rclone
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tar-ssh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    tar over SSH
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tmux-env-var-sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    tmux environment variable sync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Subsystem for Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#user-ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User IDs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subkeys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subkeys
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#omit-needless-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Omit Needless Keys
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passwords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passwords
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expiration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expiration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#revocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revocation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-most-important-feature-no-one-uses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Most Important Feature No One Uses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Most Important Feature No One Uses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finding-your-key-given-a-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding your key, given a key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-your-key-given-a-signature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding your key, given a signature
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Finding your key, given a signature">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-include-key-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. --include-key-block
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-sig-keyserver-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. --sig-keyserver-url
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-sender" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. --sender
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-nothing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Nothing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-your-key-given-a-user-id-or-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding your key, given a user ID or email
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-your-key-given-a-fingerprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding your key, given a fingerprint
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../backup/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Pages
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../tags/#tag:cryptography" class="md-tag md-tag-icon md-tag--cryptography">cryptography</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../tags/#tag:gnupg" class="md-tag md-tag-icon md-tag--gnupg">gnupg</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../tags/#tag:security" class="md-tag md-tag-icon md-tag--security">security</a>
+      
+    
+  </nav>
+
+
+  
+    <a href="https://github.com/manselmi/notes/edit/main/docs/gnupg-key-management.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/manselmi/notes/raw/main/docs/gnupg-key-management.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="gnupg-key-management">GnuPG Key Management<a class="headerlink" href="#gnupg-key-management" title="Permanent link">&para;</a></h1>
+<p>Original title: "Proper Key Management"</p>
+<p><a href="https://reddit.com/r/GnuPG/comments/vjas2e/proper_key_management/">permalink</a>
+by <em>Saklad5</em></p>
+<hr />
+<p>I've been using GnuPG for years now, and I've noticed that a lot of people misunderstand or overlook
+the intent of many features. People encounter the same thorny problems over and over, not realizing
+they've already been solved to some degree.</p>
+<p>With that in mind, I thought I'd share my own advice on the ideal way to use GnuPG (and OpenPGP
+in general). If you don't feel like reading through all of it, skip to the bottom for the most
+important feature no one uses.</p>
+<hr />
+<h2 id="user-ids">User IDs<a class="headerlink" href="#user-ids" title="Permanent link">&para;</a></h2>
+<p>Each UID is tied directly to a primary key, on a many-to-one basis. The same is true for subkeys.
+This means that every subkey is tied to <em>every</em> UID, and vice versa.</p>
+<p>If you want subkeys that are only tied to specific UIDs, you should make a new primary key. For
+instance, if you want to sign your Git commits on your work computer, you should make a new primary
+key with your work email as a UID, then use signing subkeys of that. That way, the signing keys can
+only be used in the name of your work identity, and your other signing keys cannot be used to do the
+same.</p>
+<p>Using multiple UIDs on the same primary key is only reasonable if you use all of them in the same
+capacity, or otherwise want to share subkeys between them.</p>
+<h2 id="subkeys">Subkeys<a class="headerlink" href="#subkeys" title="Permanent link">&para;</a></h2>
+<p>PGP keys have four functions. Two are fungible: signing and authenticating. This means that the
+specific key used to perform them isn't meaningful, and they can be used interchangeably so long
+as they share the same primary key. This means you can (and should) generate a new subkey for the
+purpose on each device you have, and avoid having multiple copies of them at all. When you stop
+using an old device, revoke these keys accordingly. Don't even worry about losing access to them:
+they are trivially replaceable.</p>
+<p>The other two functions, certifying and encrypting, are <strong>not</strong> fungible. The exact key you use is
+critical, and a different subkey will not work the same. This makes them much more important, and
+much more sensitive. Transitioning between them is painful and best avoided. They often have to be
+shared across devices, and should be locked with unique passwords to stop mistakes or malicious
+attacks.</p>
+<h2 id="omit-needless-keys">Omit Needless Keys<a class="headerlink" href="#omit-needless-keys" title="Permanent link">&para;</a></h2>
+<p>The default behavior of GnuPG generates a primary key capable of certifying and signing, and a
+subkey capable of encryption. I'm here to tell you that is stupid: you should never be signing
+anything with your precious certifying primary key when you could be using a fungible signing-only
+subkey, and you shouldn't generate encryption keys until you actually have a use for them in mind:
+it's not worth the hassle.</p>
+<p>Here's what I recommend putting in your configuration file:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>default-new-key-algo ed25519/cert
+</span></code></pre></div>
+<p>That will change the default to generate a single primary key capable only of certification. You are
+then free to make new subkeys as you deem useful, generally with only one function each.</p>
+<h2 id="passwords">Passwords<a class="headerlink" href="#passwords" title="Permanent link">&para;</a></h2>
+<p>As always, the trick is to keep as many of your passwords as possible in a password manager or other
+form of encrypted state, then focus on memorizing only what you need to unlock the rest. If password
+A can be used to access password B, don't bother memorizing password B.</p>
+<p>Most of your passwords should be completely random. The ones you need to memorize should instead use
+<a href="https://en.wikipedia.org/wiki/Diceware">diceware</a>. Keep the number you need to remember as low as possible (single digits), and drill
+yourself on them regularly: I test my memory of those passwords monthly at minimum, halving the
+period each time I get it wrong and doubling it each time I get it right.</p>
+<h2 id="expiration">Expiration<a class="headerlink" href="#expiration" title="Permanent link">&para;</a></h2>
+<p><strong>Every single key should have an expiration date, especially primary keys.</strong> If this sounds
+excessive, it is because you misunderstand the meaning of expiration.</p>
+<p>An expired key should not be considered no longer valid: that is what revocation is for. Instead,
+an expired key should be considered <strong>outdated</strong>, and in need of a refresh. Unless you forget (do
+set reminders) or die, your key should not become outdated: you can simply take the primary key and
+extend the expiration date.</p>
+<p>Expiration dates are for the copies <em>everyone else</em> has: when you make changes to your key, others
+do not magically find those changes. An expiration date is a way to inform others that they need
+to get a newer version, in case something changed. Without one, an old copy of your key could be
+floating around somewhere causing confusion indefinitely: with one, you have a cap on the amount of
+time it takes anyone using your key to see changes.</p>
+<p>I set expiration dates for keys based on when I expect an important change to happen (if I'm making
+a signing key for a computer I expect to stop using in a few months, I'm going to set it to expire
+around then).</p>
+<p>The vast majority of keys, of course, are intended for indefinite use without foreseeable changes.
+I generally set them to expire two years in the future, and set annual reminders to renew their
+expiration date each year. This allows a lot of cushion in case I am busy around then, and ensures
+anyone with my key has at least a year before they are forced to check for updates.</p>
+<p>If finding all the keys on all your devices sounds like a hassle, remember that you don't need the
+<em>private</em> keys to be renewed: all you need is the primary public key and private key. Whenever you
+add a copy of your public key somewhere you control (like a GitLab account, for instance), add a
+note to your renewal reminder that it'll need the fresh copy. In practice, this should take around
+ten minutes at worst even if you have a lot of places to update.</p>
+<h2 id="revocation">Revocation<a class="headerlink" href="#revocation" title="Permanent link">&para;</a></h2>
+<p>Revocation is possibly the most misunderstood part of the entire standard: even <a href="https://github.blog/changelog/2022-05-31-improved-verification-of-historic-git-commit-signatures">GitHub</a>, one of
+the most prominent users of GPG keys anywhere, only recently fixed their interpretation of it.</p>
+<p>Revocation is functionally similar to expiration, except it cannot be reversed. The meaning is quite
+different, however: while expiration indicates a key should be updated, revocation means a key
+should not be used again. Key revocation includes a reason, which is <strong>extremely important</strong>: unless
+it is revoked due to compromise, <strong>the key should still be considered trustworthy</strong>. A signature
+made with a key revoked due to no longer being used is a <strong>valid</strong> signature. Sure, it should be
+considered suspicious if the signature is newer than the revocation, but if the key was being used
+maliciously it'd be revoked as compromised.</p>
+<p><strong>Any key you do not intend to renew should be revoked.</strong> If you're never going to use a key again,
+revoke it and say so. If you're transitioning to a new key, revoke it and put the fingerprint (or
+the authoritative source, if you prefer) of the replacement in the revocation comment. It does
+not matter if it has already expired: when someone with an old copy of your key gets the current
+version, they need to understand how to proceed. If the latest version is also expired, all they can
+tell is that you've forgotten about it.</p>
+<h2 id="the-most-important-feature-no-one-uses">The Most Important Feature No One Uses<a class="headerlink" href="#the-most-important-feature-no-one-uses" title="Permanent link">&para;</a></h2>
+<p>Whether you use GnuPG as a tool or a toy is determined primarily by whether anyone else actually has
+a current version of your key. Without that, it is almost entirely useless except as a particularly
+convoluted approach to encryption.</p>
+<p>Over the years, many people have worked tirelessly to make sharing keys more complicated and
+difficult than it should be, and they've been broadly successful. Humor me for a moment, and forget
+about public keyservers. Forget about the distributed keypools, forget about TOFU, forget about the
+big complicated programs people have made for this.</p>
+<p>Now, look at your key's preferences. <a href="https://datatracker.ietf.org/doc/html/rfc4880#section-5.2.3.18">You see that option to set a "preferred keyserver"</a>? That
+is one of the most important and neglected parts of the entire OpenPGP specification.</p>
+<p>Set it to the URL where someone can get your key. This will become the One True Key, the canonical,
+authoritative, ultimate arbiter of what your public key consists of. Every time anything about your
+public key is changed, you will update this. It will contain every single element you consider part
+of your key, without exceptions. Contrary to the name, <strong>it does not have to be a keyserver</strong>. In
+fact, I recommend against it! Instead, simply set it to the URL of your exported public key. I host
+my keys named by fingerprint at the <code>openpgpkey</code> subdomain of my personal domain, accessible over
+direct HTTPS, secured by Let's Encrypt. That subdomain is also used for WKD, which I'll get to in a
+bit.</p>
+<h3 id="finding-your-key-given-a-key">Finding your key, given a key<a class="headerlink" href="#finding-your-key-given-a-key" title="Permanent link">&para;</a></h3>
+<p>Because you set the preferred keyserver field, anyone who has an old copy of your key can trivially
+get the newest copy, complete with revocations, additions, transitions, etcetera. In fact, GnuPG can
+do it for them, if they set <code>--keyserver-options honor-keyserver-url</code>!</p>
+<p>No matter how anyone actually gets your key, once they have it, they'll be able to use this source
+in the future. All other sources are merely backups for this one. Even if you forget to update other
+copies, they'll still point here, and that's all they really have to do.</p>
+<h3 id="finding-your-key-given-a-signature">Finding your key, given a signature<a class="headerlink" href="#finding-your-key-given-a-signature" title="Permanent link">&para;</a></h3>
+<p>We're not done yet: when you sign something (like a Git commit), you are doing so to make sure
+others can verify it. If they can't, it's just <a href="https://xkcd.com/1181/">theater</a>. So you need to make sure that's all
+they need.</p>
+<p>Thankfully, GnuPG already has solutions for this. In order of precedence:</p>
+<h4 id="1-include-key-block">1. <code>--include-key-block</code><a class="headerlink" href="#1-include-key-block" title="Permanent link">&para;</a></h4>
+<p>This configuration causes every signature you make to include a subset of your key. This is
+exceptionally inefficient given how big these keys tend to get, and I recommend against it. It
+strips key signatures, so the verifier can't really tell how trustworthy you are using the Web
+of Trust that underpins PGP. The only real merit it has is allowing the verifier to use other
+approaches, such as the preferred keyserver URL, to fetch the rest of the key. Speaking of which…</p>
+<h4 id="2-sig-keyserver-url">2. <code>--sig-keyserver-url</code><a class="headerlink" href="#2-sig-keyserver-url" title="Permanent link">&para;</a></h4>
+<p>Welcome to one of the runners-up for Most Important Feature No One Uses. For the low price of a
+few bytes, every signature you make can contain the definitive source of your <em>entire</em> public key,
+complete with all the key signatures from others, allowing the verifier to actually *gasp* verify
+the signature.</p>
+<p>Because I have this in my configuration file, my signatures carry actual value. When someone pulls
+a Git repository and runs <code>git log --show-signature</code>, assuming they have GnuPG set to auto-retrieve
+keys, <strong>Git will automatically fetch my current key and validate my commits according to the trust
+system of the local keyring</strong>.</p>
+<p>In fact, as a demonstration of how powerful this is, I've signed this post using my default
+settings and put the signature in a comment. Assuming you have a copy of GnuPG 2.3.6 with a default
+configuration in your path, you can pass the plain text content of this post into the following
+POSIX shell command and watch it automatically retrieve and evaluate my key to verify the signature.</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>gpg<span class="w"> </span>--auto-key-retrieve<span class="w"> </span>--keyserver-options<span class="w"> </span>honor-keyserver-url<span class="w"> </span>--verify
+</span></code></pre></div>
+<p>Yes, that can be used as a "web bug". I could also embed an image in this post and accomplish the
+exact same thing using your web browser, so I don't think that's a particularly serious problem.</p>
+<h4 id="3-sender">3. <code>--sender</code><a class="headerlink" href="#3-sender" title="Permanent link">&para;</a></h4>
+<p>This embeds one of your UIDs into the signature. It's a poor substitute for a URL in my mind, as it
+passes the buck to the section below for key retrieval. Nevertheless, you might find it useful to
+specify a specific UID for some reason anyway. Keep in mind, however, that each signing key is tied
+to <em>every</em> UID of the primary key, so this doesn't actually mean much.</p>
+<h4 id="4-nothing">4. Nothing<a class="headerlink" href="#4-nothing" title="Permanent link">&para;</a></h4>
+<p>With default signing options, you're left with just the fingerprint used to sign: see two sections
+down for how the verifier can proceed from there.</p>
+<h3 id="finding-your-key-given-a-user-id-or-email">Finding your key, given a user ID or email<a class="headerlink" href="#finding-your-key-given-a-user-id-or-email" title="Permanent link">&para;</a></h3>
+<p>If you have your own domain, and your primary UID is hosted on that domain, this is quite
+straightforward: use Web Key Directory and host a minimal subset of your key accordingly. If anyone
+has your email, they can then get that subset. From that subset, they can pull the full key from the
+preferred keyserver URL at their discretion.</p>
+<p>You could also configure a PGP CERT record to point directly to your canonical key file, thus saving
+them the trouble.</p>
+<p>If your primary UID can't be used with WKD, you're somewhat out of luck: pray they check a keyserver
+that has some form of your key floating around. If they do, they'll be able to fetch the latest
+version in the same manner.</p>
+<h3 id="finding-your-key-given-a-fingerprint">Finding your key, given a fingerprint<a class="headerlink" href="#finding-your-key-given-a-fingerprint" title="Permanent link">&para;</a></h3>
+<p>Ideally, this never comes up: the main reason it would is if someone gets a public key you've signed
+and wants to know who signed it (<a href="https://dev.gnupg.org/T457">a scenario rejected by GnuPG developers as unreasonable</a>).
+As with UIDs on domains outside your control, you just have to hope they check a keyserver you've
+uploaded a copy to.</p>
+<hr />
+<p>I hope this helps others get more use out of GnuPG, which has gathered an undeserved reputation for
+being obsolete or unusable. I read a lot of guides on how to use GPG over time, but I can't recall
+almost any of them covering the points I have here. A lot of people report problems that can be
+solved using these principles, and I hope these options become less obscure in the future.</p>
+<!-- vim: set ft=markdown : -->
+
+<!-- vim: set ft=markdown : -->
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": {"json": [".s2"]}, "base": "..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.code.select", "content.tooltips", "navigation.expand", "navigation.path", "navigation.prune", "navigation.sections", "navigation.tracking", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": {"aws": "aws", "cryptography": "cryptography", "git": "git", "gnupg": "gnupg", "launchd": "launchd", "mermaid": "mermaid", "python": "python", "rclone": "rclone", "security": "security", "shell": "shell", "ssh": "ssh", "taskfile": "taskfile", "tmux": "tmux", "windows": "windows"}, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../assets/mermaid.mjs" type="module"></script>
+      
+    
+  </body>
+</html>

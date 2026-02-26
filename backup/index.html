@@ -1,0 +1,2805 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Mike Anselmi">
+      
+      
+        <link rel="canonical" href="https://manselmi.github.io/notes/backup/">
+      
+      
+        <link rel="prev" href="../tags/">
+      
+      
+        <link rel="next" href="../aws-vault/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>Automated backup - Mike Anselmi's notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#automated-backup" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Mike Anselmi&#39;s notes" class="md-header__button md-logo" aria-label="Mike Anselmi's notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Mike Anselmi's notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Automated backup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/manselmi/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    manselmi/notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Mike Anselmi&#39;s notes" class="md-nav__button md-logo" aria-label="Mike Anselmi's notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Mike Anselmi's notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/manselmi/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    manselmi/notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pages
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Pages
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automated backup
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automated backup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preface
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequence-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sequence diagram
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sequence diagram">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macOS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ubuntu-vps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ubuntu (VPS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macos-ubuntu-vps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macOS / Ubuntu (VPS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google-drive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Google Drive
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-support-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration / support files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration / support files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macOS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="macOS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#launchd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        launchd
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fdautil" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fdautil
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resticprofile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        resticprofile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sudo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rclone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rclone
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1Password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zsh
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ubuntu-vps_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ubuntu (VPS)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ubuntu (VPS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#systemd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        systemd
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resticprofile_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        resticprofile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rclone_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rclone
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1password_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1Password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zsh_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zsh
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#restic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        restic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="restic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project description
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resticprofile_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        resticprofile
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="resticprofile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-url_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-description_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project description
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rclone_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rclone
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fuse-t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FUSE-T
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FUSE-T">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-url_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-description_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project description
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#healthchecksio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Healthchecks.io
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Healthchecks.io">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-url_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-description_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project description
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1password-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1Password CLI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1Password CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-url_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-description_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project description
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1password-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1Password Connect
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1Password Connect">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-url_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-description_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project description
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#launchcontrol-fdautil" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LaunchControl / fdautil
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LaunchControl / fdautil">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-url_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-description_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project description
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-disk-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full Disk Access
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Full Disk Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fdautil_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fdautil
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-does-it-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How does it work?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-gained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is gained?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#launchd_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        launchd
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="launchd">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-url_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-description_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project description
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systemd_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        systemd
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="systemd">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-url_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-description_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project description
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-vault/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    aws-vault
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devpi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    devpi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gnupg-key-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GnuPG key management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jupyterlab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JupyterLab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rclone/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rclone
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tar-ssh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    tar over SSH
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tmux-env-var-sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    tmux environment variable sync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Subsystem for Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preface
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequence-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sequence diagram
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sequence diagram">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macOS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ubuntu-vps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ubuntu (VPS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macos-ubuntu-vps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macOS / Ubuntu (VPS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google-drive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Google Drive
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-support-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration / support files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration / support files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macOS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="macOS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#launchd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        launchd
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fdautil" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fdautil
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resticprofile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        resticprofile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sudo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rclone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rclone
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1Password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zsh
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ubuntu-vps_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ubuntu (VPS)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ubuntu (VPS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#systemd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        systemd
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resticprofile_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        resticprofile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rclone_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rclone
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1password_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1Password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zsh_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zsh
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#restic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        restic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="restic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project description
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resticprofile_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        resticprofile
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="resticprofile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-url_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-description_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project description
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rclone_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rclone
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fuse-t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FUSE-T
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FUSE-T">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-url_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-description_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project description
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#healthchecksio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Healthchecks.io
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Healthchecks.io">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-url_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-description_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project description
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1password-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1Password CLI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1Password CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-url_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-description_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project description
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1password-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1Password Connect
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1Password Connect">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-url_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-description_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project description
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#launchcontrol-fdautil" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LaunchControl / fdautil
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LaunchControl / fdautil">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-url_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-description_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project description
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-disk-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full Disk Access
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Full Disk Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fdautil_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fdautil
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-does-it-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How does it work?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-gained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is gained?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#launchd_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        launchd
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="launchd">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-url_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-description_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project description
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systemd_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        systemd
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="systemd">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-url_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-description_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project description
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Pages
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../tags/#tag:launchd" class="md-tag md-tag-icon md-tag--launchd">launchd</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../tags/#tag:mermaid" class="md-tag md-tag-icon md-tag--mermaid">mermaid</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../rclone/#tag:rclone" class="md-tag md-tag-icon md-tag--rclone">rclone</a>
+      
+    
+      
+      
+      
+        
+        
+          
+        
+      
+      
+        <a href="../tags/#tag:security" class="md-tag md-tag-icon md-tag--security">security</a>
+      
+    
+  </nav>
+
+
+  
+    <a href="https://github.com/manselmi/notes/edit/main/docs/backup.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/manselmi/notes/raw/main/docs/backup.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="automated-backup">Automated backup<a class="headerlink" href="#automated-backup" title="Permanent link">&para;</a></h1>
+<h2 id="preface">Preface<a class="headerlink" href="#preface" title="Permanent link">&para;</a></h2>
+<p>This backup solution may appear to be a Rube Goldberg machine, and perhaps it is, but it works well
+for me and my family. I manage it headlessly over SSH (see <a href="../tar-ssh/">tar over SSH</a>). Thanks to
+<a href="#launchcontrol-fdautil"><code>fdautil</code></a> I can modify things without needing to authorize <a href="https://apple.stackexchange.com/a/352009">Full Disk
+Access via the System Settings GUI</a>.</p>
+<p>Recently I've also begun backing up my Ubuntu <abbr title="virtual private server">VPS</abbr> with this approach as well.</p>
+<p>Also, if restic is good enough for CERN, it's good enough for me!</p>
+<ul>
+<li>
+<p><a href="https://cds.cern.ch/record/2857156">Empowering CERNBox users with self-service restore
+  functionality</a></p>
+</li>
+<li>
+<p><a href="https://cds.cern.ch/record/2767135">Addressing a billion-entries multi-petabyte distributed filesystem backup problem with cback:
+  from files to objects</a></p>
+</li>
+<li>
+<p><a href="https://cds.cern.ch/record/2753986">Backing up CERNBox: Lessons learned.</a></p>
+</li>
+</ul>
+<h2 id="sequence-diagram">Sequence diagram<a class="headerlink" href="#sequence-diagram" title="Permanent link">&para;</a></h2>
+<h3 id="macos">macOS<a class="headerlink" href="#macos" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>sequenceDiagram
+
+  participant KC as macOS "login" keychain
+  participant 1P as 1Password Connect
+
+  participant LD as launchd
+  participant ER as exec-resticprofile
+  participant RP as resticprofile
+  participant RE as restic
+  participant RC as rclone
+
+  participant PC as pCloud
+  participant HC as Healthchecks.io
+
+  LD -&gt;&gt; ER: Execute
+  ER -&gt;&gt; KC: Request 1Password Connect token
+  KC -&gt;&gt; ER: Receive 1Password Connect token
+  ER -&gt;&gt; RP: Execute w/ 1P Connect token in env
+  RP -&gt;&gt; 1P: Request healthcheck endpoint UUID
+  1P -&gt;&gt; RP: Receive healthcheck endpoint UUID
+  RP -&gt;&gt; HC: Ping healthcheck endpoint
+  RP -&gt;&gt; RE: Execute
+  RE -&gt;&gt; 1P: Request restic repo password
+  1P -&gt;&gt; RE: Receive restic repo password
+  RE -&gt;&gt; RC: Start HTTP server
+  RC -&gt;&gt; 1P: Request rclone config password
+  1P -&gt;&gt; RC: Receive rclone config password
+  RC -&gt;&gt; RE: HTTP connection established
+
+  loop Data transfer: backup, forget old snapshots
+    RE -&gt;&gt; RC: HTTP
+    RC -&gt;&gt; PC: HTTPS
+    PC -&gt;&gt; RC: HTTPS
+    RC -&gt;&gt; RE: HTTP
+  end
+
+  RE -&gt;&gt; RP: Return status
+  RP -&gt;&gt; 1P: Request healthcheck endpoint UUID
+  1P -&gt;&gt; RP: Receive healthcheck endpoint UUID
+  RP -&gt;&gt; HC: Ping healthcheck endpoint w/ status and log file
+</code></pre>
+<p>The diagram may also be viewed with interactive controls
+<a href="https://github.com/manselmi/notes/blob/main/docs/assets/backup/macos-sequence-diagram.mmd">here</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We can assume the default "login" keychain is unlocked because</p>
+<ol>
+<li>
+<p>the launchd service is running in the logged-in user's launchd GUI domain, and</p>
+</li>
+<li>
+<p>the "login" keychain <a href="https://support.apple.com/guide/keychain-access/if-you-need-to-update-your-keychain-password-kyca2429/mac">automatically unlocks upon login</a> and has been <a href="https://support.apple.com/guide/keychain-access/mac-keychain-password-kyca1242/mac">configured to remain
+   unlocked while logged in</a>.</p>
+</li>
+</ol>
+<p>This allows the 1Password Connect token to be loaded from the "login" keychain with no user
+interaction required.</p>
+<p><img alt="&quot;login&quot; keychain settings" src="../assets/backup/login-keychain-settings.png" /></p>
+</div>
+<h3 id="ubuntu-vps">Ubuntu (<abbr title="virtual private server">VPS</abbr>)<a class="headerlink" href="#ubuntu-vps" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>sequenceDiagram
+
+  participant FS as Local filesystem
+  participant 1P as 1Password
+
+  participant SD as systemd
+  participant ER as exec-resticprofile
+  participant RP as resticprofile
+  participant RE as restic
+  participant RC as rclone
+
+  participant PC as pCloud
+  participant HC as Healthchecks.io
+
+  SD -&gt;&gt; ER: Execute
+  ER -&gt;&gt; FS: Request 1Password service account token
+  FS -&gt;&gt; ER: Receive 1Password service account token
+  ER -&gt;&gt; RP: Execute w/ 1P svc acct token in env
+  RP -&gt;&gt; 1P: Request healthcheck endpoint UUID
+  1P -&gt;&gt; RP: Receive healthcheck endpoint UUID
+  RP -&gt;&gt; HC: Ping healthcheck endpoint
+  RP -&gt;&gt; RE: Execute
+  RE -&gt;&gt; 1P: Request restic repo password
+  1P -&gt;&gt; RE: Receive restic repo password
+  RE -&gt;&gt; RC: Start HTTP server
+  RC -&gt;&gt; 1P: Request rclone config password
+  1P -&gt;&gt; RC: Receive rclone config password
+  RC -&gt;&gt; RE: HTTP connection established
+
+  loop Data transfer: backup, forget old snapshots
+    RE -&gt;&gt; RC: HTTP
+    RC -&gt;&gt; PC: HTTPS
+    PC -&gt;&gt; RC: HTTPS
+    RC -&gt;&gt; RE: HTTP
+  end
+
+  RE -&gt;&gt; RP: Return status
+  RP -&gt;&gt; 1P: Request healthcheck endpoint UUID
+  1P -&gt;&gt; RP: Receive healthcheck endpoint UUID
+  RP -&gt;&gt; HC: Ping healthcheck endpoint w/ status and log file
+</code></pre>
+<p>The diagram may also be viewed with interactive controls
+<a href="https://github.com/manselmi/notes/blob/main/docs/assets/backup/ubuntu-sequence-diagram.mmd">here</a>.</p>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<h3 id="macos-ubuntu-vps">macOS / Ubuntu (<abbr title="virtual private server">VPS</abbr>)<a class="headerlink" href="#macos-ubuntu-vps" title="Permanent link">&para;</a></h3>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Manually start backup and tail the backup log.</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>bk
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Log current backup progress.</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>bkp
+</span></code></pre></div>
+<h3 id="google-drive">Google Drive<a class="headerlink" href="#google-drive" title="Permanent link">&para;</a></h3>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Mount Google Drive locally (runs in foreground - interrupt when backup finished)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>mnt-gdrive
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Start Google Drive backup and tail the backup log.</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>bk-gdrive
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Log current backup progress.</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>bkp
+</span></code></pre></div>
+<h2 id="configuration-support-files">Configuration / support files<a class="headerlink" href="#configuration-support-files" title="Permanent link">&para;</a></h2>
+<h3 id="macos_1">macOS<a class="headerlink" href="#macos_1" title="Permanent link">&para;</a></h3>
+<h4 id="launchd">launchd<a class="headerlink" href="#launchd" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><a href="https://github.com/manselmi/notes/blob/main/assets/backup/macos/root/Users/manselmi/Library/LaunchAgents/com.manselmi.resticprofile.nidoking.backup.plist"><code>~/Library/LaunchAgents/com.manselmi.resticprofile.nidoking.backup.plist</code></a>
+  (triggered daily)</p>
+</li>
+<li>
+<p><a href="https://github.com/manselmi/notes/blob/main/assets/backup/macos/root/Users/manselmi/Library/LaunchAgents/com.manselmi.resticprofile.gdrive.backup.plist"><code>~/Library/LaunchAgents/com.manselmi.resticprofile.gdrive.backup.plist</code></a>
+  (triggered manually)</p>
+</li>
+<li>
+<p><a href="https://github.com/manselmi/notes/blob/main/assets/backup/macos/root/Users/manselmi/Library/LaunchAgents/com.manselmi.resticprofile.onedrive.backup.plist"><code>~/Library/LaunchAgents/com.manselmi.resticprofile.onedrive.backup.plist</code></a>
+  (triggered manually)</p>
+</li>
+<li>
+<p><a href="https://github.com/manselmi/notes/blob/main/assets/backup/macos/root/Users/manselmi/Library/LaunchAgents/com.manselmi.op.connect.server.plist"><code>~/Library/LaunchAgents/com.manselmi.op.connect.server.plist</code></a>
+  (run at load)</p>
+</li>
+</ul>
+<h4 id="fdautil">fdautil<a class="headerlink" href="#fdautil" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="https://github.com/manselmi/notes/blob/main/assets/backup/macos/root/Library/Preferences/com.soma-zone.LaunchControl.fdautil.plist"><code>/Library/Preferences/com.soma-zone.LaunchControl.fdautil.plist</code></a></li>
+</ul>
+<h4 id="resticprofile">resticprofile<a class="headerlink" href="#resticprofile" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><a href="https://github.com/manselmi/notes/blob/main/assets/backup/macos/root/Users/manselmi/.prefix/bin/exec-resticprofile"><code>~/.prefix/bin/exec-resticprofile</code></a></p>
+</li>
+<li>
+<p><a href="https://github.com/manselmi/notes/blob/main/assets/backup/macos/root/Users/manselmi/.config/resticprofile/profiles.toml"><code>~/.config/resticprofile/profiles.toml</code></a></p>
+</li>
+<li>
+<p><a href="https://github.com/manselmi/notes/tree/main/assets/backup/macos/root/Users/manselmi/.config/resticprofile/"><code>~/.config/resticprofile/</code></a></p>
+</li>
+</ul>
+<h4 id="sudo">Sudo<a class="headerlink" href="#sudo" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="https://github.com/manselmi/notes/tree/main/assets/backup/macos/root/private/etc/sudoers.d/"><code>/private/etc/sudoers.d/</code></a></li>
+</ul>
+<h4 id="rclone">Rclone<a class="headerlink" href="#rclone" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><a href="https://github.com/manselmi/notes/blob/main/assets/backup/macos/root/Users/manselmi/.prefix/bin/exec-rclone"><code>~/.prefix/bin/exec-rclone</code></a></p>
+</li>
+<li>
+<p><a href="https://github.com/manselmi/notes/blob/main/assets/backup/macos/root/Users/manselmi/.config/rclone/rclone.conf"><code>~/.config/rclone/rclone.conf</code></a></p>
+</li>
+</ul>
+<h4 id="1password">1Password<a class="headerlink" href="#1password" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><a href="https://github.com/manselmi/notes/blob/main/assets/backup/macos/root/Users/manselmi/.prefix/bin/exec-op-token"><code>~/.prefix/bin/exec-op-token</code></a></p>
+</li>
+<li>
+<p><a href="https://github.com/manselmi/notes/blob/main/assets/backup/macos/root/Users/manselmi/.prefix/bin/compose-wrapper"><code>~/.prefix/bin/compose-wrapper</code></a></p>
+</li>
+<li>
+<p><a href="https://github.com/manselmi/notes/blob/main/assets/backup/macos/root/Users/manselmi/.config/op-connect/compose.yaml"><code>~/.config/op-connect/compose.yaml</code></a></p>
+</li>
+</ul>
+<h4 id="zsh">Zsh<a class="headerlink" href="#zsh" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="https://github.com/manselmi/notes/blob/main/assets/backup/macos/root/Users/manselmi/.zshrc"><code>~/.zshrc</code></a></li>
+</ul>
+<h3 id="ubuntu-vps_1">Ubuntu (<abbr title="virtual private server">VPS</abbr>)<a class="headerlink" href="#ubuntu-vps_1" title="Permanent link">&para;</a></h3>
+<h4 id="systemd">systemd<a class="headerlink" href="#systemd" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><a href="https://github.com/manselmi/notes/blob/main/assets/backup/ubuntu/root/etc/systemd/system/resticprofile-backup@.service"><code>/etc/systemd/system/resticprofile-backup@.service</code></a></p>
+</li>
+<li>
+<p><a href="https://github.com/manselmi/notes/blob/main/assets/backup/ubuntu/root/etc/systemd/system/resticprofile-backup@.timer"><code>/etc/systemd/system/resticprofile-backup@.timer</code></a>
+  (triggered daily)</p>
+</li>
+</ul>
+<h4 id="resticprofile_1">resticprofile<a class="headerlink" href="#resticprofile_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><a href="https://github.com/manselmi/notes/blob/main/assets/backup/ubuntu/root/home/ubuntu/.prefix/bin/exec-resticprofile"><code>~/.prefix/bin/exec-resticprofile</code></a></p>
+</li>
+<li>
+<p><a href="https://github.com/manselmi/notes/blob/main/assets/backup/ubuntu/root/home/ubuntu/.config/resticprofile/profiles.toml"><code>~/.config/resticprofile/profiles.toml</code></a></p>
+</li>
+<li>
+<p><a href="https://github.com/manselmi/notes/tree/main/assets/backup/ubuntu/root/home/ubuntu/.config/resticprofile/"><code>~/.config/resticprofile/</code></a></p>
+</li>
+</ul>
+<h4 id="rclone_1">Rclone<a class="headerlink" href="#rclone_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><a href="https://github.com/manselmi/notes/blob/main/assets/backup/ubuntu/root/home/ubuntu/.prefix/bin/exec-rclone"><code>~/.prefix/bin/exec-rclone</code></a></p>
+</li>
+<li>
+<p><a href="https://github.com/manselmi/notes/blob/main/assets/backup/ubuntu/root/home/ubuntu/.config/rclone/rclone.conf"><code>~/.config/rclone/rclone.conf</code></a></p>
+</li>
+</ul>
+<h4 id="1password_1">1Password<a class="headerlink" href="#1password_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="https://github.com/manselmi/notes/blob/main/assets/backup/ubuntu/root/home/ubuntu/.prefix/bin/exec-op-token"><code>~/.prefix/bin/exec-op-token</code></a></li>
+</ul>
+<h4 id="zsh_1">Zsh<a class="headerlink" href="#zsh_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="https://github.com/manselmi/notes/blob/main/assets/backup/ubuntu/root/home/ubuntu/.zshrc"><code>~/.zshrc</code></a></li>
+</ul>
+<h2 id="components">Components<a class="headerlink" href="#components" title="Permanent link">&para;</a></h2>
+<h3 id="restic">restic<a class="headerlink" href="#restic" title="Permanent link">&para;</a></h3>
+<h4 id="project-url">Project URL<a class="headerlink" href="#project-url" title="Permanent link">&para;</a></h4>
+<p><a href="https://restic.net/">restic</a></p>
+<h4 id="project-description">Project description<a class="headerlink" href="#project-description" title="Permanent link">&para;</a></h4>
+<p>Restic is a modern backup program that can back up your files:</p>
+<ul>
+<li>
+<p>from <strong>Linux, BSD, Mac and Windows</strong></p>
+</li>
+<li>
+<p>to <strong>many different storage types</strong>, including self-hosted and online services</p>
+</li>
+<li>
+<p><strong>easily</strong>, being a single executable that you can run without a server or complex setup</p>
+</li>
+<li>
+<p><strong>effectively</strong>, only transferring the parts that actually changed in the files you back up</p>
+</li>
+<li>
+<p><strong>securely</strong>, by careful use of cryptography in every part of the process</p>
+</li>
+<li>
+<p><strong>verifiably</strong>, enabling you to make sure that your files can be restored when needed</p>
+</li>
+<li>
+<p><strong>freely</strong> - restic is entirely free to use and completely open source</p>
+</li>
+</ul>
+<h3 id="resticprofile_2">resticprofile<a class="headerlink" href="#resticprofile_2" title="Permanent link">&para;</a></h3>
+<h4 id="project-url_1">Project URL<a class="headerlink" href="#project-url_1" title="Permanent link">&para;</a></h4>
+<p><a href="https://creativeprojects.github.io/resticprofile/">resticprofile</a></p>
+<h4 id="project-description_1">Project description<a class="headerlink" href="#project-description_1" title="Permanent link">&para;</a></h4>
+<p>Configuration profiles manager for <a href="https://restic.net/">restic backup</a></p>
+<p><strong>resticprofile</strong> is the missing link between a configuration file and
+restic backup. Creating a configuration file for restic has been <a href="https://github.com/restic/restic/issues/16">discussed
+before</a>, but seems to be a very low priority right now.</p>
+<p>With resticprofile:</p>
+<ul>
+<li>
+<p>You no longer need to remember command parameters and environment variables</p>
+</li>
+<li>
+<p>You can create multiple profiles inside one configuration file</p>
+</li>
+<li>
+<p>A profile can inherit all the options from another profile</p>
+</li>
+<li>
+<p>You can run the forget command before or after a backup (in a section called <em>retention</em>)</p>
+</li>
+<li>
+<p>You can check a repository before or after a backup</p>
+</li>
+<li>
+<p>You can create groups of profiles that will run sequentially</p>
+</li>
+<li>
+<p>You can run <a href="https://creativeprojects.github.io/resticprofile/configuration/run_hooks/">shell
+  commands</a> before or
+  after running a profile: useful if you need to mount and unmount your backup disk for example</p>
+</li>
+<li>
+<p>You can run a <a href="https://creativeprojects.github.io/resticprofile/configuration/run_hooks/">shell
+  command</a> if an error
+  occurred (at any time)</p>
+</li>
+<li>
+<p>You can send a backup stream via <em>stdin</em></p>
+</li>
+<li>
+<p>You can start restic at a lower or higher priority (Priority Class in Windows, <em>nice</em> in all
+  unixes) and/or <em>ionice</em> (only available on Linux)</p>
+</li>
+<li>
+<p>It can check that you have <a href="https://creativeprojects.github.io/resticprofile/usage/memory/">enough
+  memory</a> before starting a backup.
+  (I've had some backups that literally killed a server with swap disabled)</p>
+</li>
+<li>
+<p>You can generate cryptographically secure random keys to use as a restic <a href="https://creativeprojects.github.io/resticprofile/usage/keyfile/">key
+  file</a></p>
+</li>
+<li>
+<p>You can easily <a href="https://creativeprojects.github.io/resticprofile/schedules/">schedule</a> backups,
+  retentions and checks (works for <em>systemd</em>, <em>crond</em>, <em>launchd</em> and <em>windows task scheduler</em>)</p>
+</li>
+<li>
+<p>You can generate a simple <a href="https://creativeprojects.github.io/resticprofile/status/">status file</a>
+  to send to some monitoring software and make sure your backups are running fine</p>
+</li>
+<li>
+<p>You can use a template syntax in your configuration file</p>
+</li>
+<li>
+<p>You can generate scheduled tasks using <em>crond</em></p>
+</li>
+<li>
+<p>Get backup statistics in your <a href="https://creativeprojects.github.io/resticprofile/status/">status
+  file</a></p>
+</li>
+<li>
+<p>Automatically clear up <a href="https://creativeprojects.github.io/resticprofile/usage/locks/">stale
+  locks</a></p>
+</li>
+<li>
+<p>Export a <a href="https://creativeprojects.github.io/resticprofile/status/prometheus/">prometheus</a> file
+  after a backup, or send the report to a push gateway automatically</p>
+</li>
+<li>
+<p>Run shell commands in the background when non fatal errors are detected from restic</p>
+</li>
+<li>
+<p>Send messages to <a href="https://creativeprojects.github.io/resticprofile/configuration/http_hooks/">HTTP
+  hooks</a> before, after a
+  successful or failed job (backup, forget, check, prune, copy)</p>
+</li>
+<li>
+<p>Automatically initialize the secondary repository using <code>copy-chunker-params</code> flag</p>
+</li>
+<li>
+<p>Send resticprofile logs to a syslog server</p>
+</li>
+<li>
+<p>Preventing your system from idle sleeping</p>
+</li>
+<li>
+<p>See the help from both restic and resticprofile via the <code>help</code> command or <code>-h</code> flag</p>
+</li>
+<li>
+<p>Don't schedule a job when the system is running on battery</p>
+</li>
+</ul>
+<h3 id="rclone_2">rclone<a class="headerlink" href="#rclone_2" title="Permanent link">&para;</a></h3>
+<p>Please see <a href="../rclone/">rclone</a>.</p>
+<h3 id="fuse-t">FUSE-T<a class="headerlink" href="#fuse-t" title="Permanent link">&para;</a></h3>
+<h4 id="project-url_2">Project URL<a class="headerlink" href="#project-url_2" title="Permanent link">&para;</a></h4>
+<p><a href="https://www.fuse-t.org/">FUSE-T</a></p>
+<h4 id="project-description_2">Project description<a class="headerlink" href="#project-description_2" title="Permanent link">&para;</a></h4>
+<p>FUSE-T is a kext-less implementation of FUSE for macOS that uses NFS v4 local server instead of a
+kernel extension.</p>
+<p>The main motivation for this project is to replace <a href="https://osxfuse.github.io/"><em>macfuse</em></a> that
+implements its own kext to make fuse work. With each version of macOS it's getting harder and
+harder to load kernel extensions. Apple strongly discourages it and, for this reason, software
+distributions that include <em>macfuse</em> are very difficult to install.</p>
+<p>Additionally, the <em>macfuse</em> kext is unstable, may cause frequent system crashes and kernel lock-ups.
+Given those limitations many software publishers are unable to use <em>macfuse</em> anymore.</p>
+<p>FUSE-T doesn't make use of kernel extension, it implements its own userspace server that converts
+between FUSE protocol and NFS calls and let macOS mount NFS volume instead of a kernel filesystem.</p>
+<h3 id="healthchecksio">Healthchecks.io<a class="headerlink" href="#healthchecksio" title="Permanent link">&para;</a></h3>
+<h4 id="project-url_3">Project URL<a class="headerlink" href="#project-url_3" title="Permanent link">&para;</a></h4>
+<p><a href="https://healthchecks.io/about/">Healthchecks.io</a></p>
+<h4 id="project-description_3">Project description<a class="headerlink" href="#project-description_3" title="Permanent link">&para;</a></h4>
+<p>Healthchecks.io is an online service for monitoring regularly running tasks such as cron jobs. It
+uses the <a href="https://en.wikipedia.org/wiki/Dead_man%27s_switch">Dead man's switch</a> technique: the
+monitored system must "check in" with Healthchecks.io at regular, configurable time intervals. When
+Healthchecks.io detects a missed check-in, it sends out alerts.</p>
+<h3 id="1password-cli">1Password CLI<a class="headerlink" href="#1password-cli" title="Permanent link">&para;</a></h3>
+<h4 id="project-url_4">Project URL<a class="headerlink" href="#project-url_4" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><a href="https://developer.1password.com/docs/cli/">1Password CLI</a></p>
+</li>
+<li>
+<p><a href="https://developer.1password.com/docs/cli/reference/commands/inject/"><code>op inject</code></a></p>
+</li>
+<li>
+<p><a href="https://developer.1password.com/docs/cli/reference/commands/read/"><code>op read</code></a></p>
+</li>
+</ul>
+<h4 id="project-description_4">Project description<a class="headerlink" href="#project-description_4" title="Permanent link">&para;</a></h4>
+<p>1Password CLI allows you to securely provision secrets in development environments, use scripts to
+manage items and provision team members at scale, and authenticate with biometrics in the terminal.</p>
+<h3 id="1password-connect">1Password Connect<a class="headerlink" href="#1password-connect" title="Permanent link">&para;</a></h3>
+<h4 id="project-url_5">Project URL<a class="headerlink" href="#project-url_5" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><a href="https://developer.1password.com/docs/connect/">1Password Connect</a></p>
+</li>
+<li>
+<p><a href="https://developer.1password.com/docs/connect/cli/">Use 1Password CLI with a Connect server</a></p>
+</li>
+</ul>
+<h4 id="project-description_5">Project description<a class="headerlink" href="#project-description_5" title="Permanent link">&para;</a></h4>
+<p>1Password Connect servers are a type of <a href="https://developer.1password.com/docs/secrets-automation/">Secrets Automation
+workflow</a> that allows you to securely
+access your 1Password items and vaults in your company's apps and cloud infrastructure.</p>
+<h3 id="launchcontrol-fdautil">LaunchControl / fdautil<a class="headerlink" href="#launchcontrol-fdautil" title="Permanent link">&para;</a></h3>
+<h4 id="project-url_6">Project URL<a class="headerlink" href="#project-url_6" title="Permanent link">&para;</a></h4>
+<p><a href="https://www.soma-zone.com/LaunchControl/">LaunchControl</a></p>
+<h4 id="project-description_6">Project description<a class="headerlink" href="#project-description_6" title="Permanent link">&para;</a></h4>
+<p>LaunchControl is a fully-featured launchd GUI allowing you to create, manage and debug system- and
+user services on your Mac.</p>
+<h4 id="full-disk-access">Full Disk Access<a class="headerlink" href="#full-disk-access" title="Permanent link">&para;</a></h4>
+<p>(This section is copied from the LaunchControl manual.)</p>
+<p>With macOS Mojave Apple added yet another security measure. Applications requiring
+access to sensitive data need special permissions beyond Unix permissions and
+ACLs. This is accomplished by granting them Full Disk Access in the <a href="x-apple.systempreferences:com.apple.preference.security?Privacy_AllFiles">Security &amp;
+Privacy</a> System
+Preferences Panel. While this solution works well for applications it is flawed when it comes to
+scripts. To grant a script (be it Shell, Python, Perl, …) Full Disk Access you have grant Full
+Disk Access to the executing interpreter. This approach is flawed as it grants every script of this
+type Full Disk Access.</p>
+<h5 id="fdautil_1">fdautil<a class="headerlink" href="#fdautil_1" title="Permanent link">&para;</a></h5>
+<p>LaunchControl provides a command line utility to avoid this situation. The utility is
+called <code>fdautil</code> and can be installed via the LaunchControl preferences Utilities panel to
+<code>/usr/local/bin</code>. When installing <code>fdautil</code> LaunchControl will ask you to add it to the list of
+programs with Full Disk Access.</p>
+<p>To grant a job Full Disk Access you’ll have to prefix the command line you’d like to execute
+with <code>/usr/local/bin/fdautil exec</code>. If for example your original job performed the command</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>/Users/Me/Scripts/CheckDownloads.py
+</span></code></pre></div>
+<p>you change it to</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>/usr/local/bin/fdautil<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>/Users/Me/Scripts/CheckDownloads.py
+</span></code></pre></div>
+<p>LaunchControl requires admin privileges to add your script (including the specific options and
+arguments) to the fdautil configuration file.</p>
+<p><em>Note:</em> On macOS Ventura services which run with fdautil are displayed as "Robby Pahlig" in System
+Settings → General → Login Items → Allow in the Background. Apple chose to display the name of
+the signing entity of an executable instead of a more informative text.</p>
+<h5 id="how-does-it-work">How does it work?<a class="headerlink" href="#how-does-it-work" title="Permanent link">&para;</a></h5>
+<p><code>fdautil</code> stores the complete command you want to execute with Full Disk Access in the configuration
+file <code>/Library/Preferences/com.soma-zone.LaunchControl.fdautil.plist</code>. This configuration file is
+writable only by root. Only commands (including arguments/options) stored in this configuration
+file are executed by fdautil, others are rejected. It uses <code>execvp(3)</code> to replace itself with the
+command you’d like to run. LaunchControl does all the configuration for you. When you change the
+<code>Program</code>/<code>ProgramArguments</code> key it is updating the fdautil configuration automatically.</p>
+<h5 id="what-is-gained">What is gained?<a class="headerlink" href="#what-is-gained" title="Permanent link">&para;</a></h5>
+<p>You get the benefit of Apple’s new security feature and can use scripts with Full Disk Access.</p>
+<h3 id="launchd_1">launchd<a class="headerlink" href="#launchd_1" title="Permanent link">&para;</a></h3>
+<h4 id="project-url_7">Project URL<a class="headerlink" href="#project-url_7" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/Introduction.html">Daemons and Services Programming
+  Guide</a></p>
+</li>
+<li>
+<p><a href="https://www.launchd.info/">A launchd Tutorial</a></p>
+</li>
+</ul>
+<h4 id="project-description_7">Project description<a class="headerlink" href="#project-description_7" title="Permanent link">&para;</a></h4>
+<p>launchd is an init and operating system service management daemon created by Apple Inc. as part of
+macOS to replace its BSD-style init and SystemStarter.</p>
+<h3 id="systemd_1">systemd<a class="headerlink" href="#systemd_1" title="Permanent link">&para;</a></h3>
+<h4 id="project-url_8">Project URL<a class="headerlink" href="#project-url_8" title="Permanent link">&para;</a></h4>
+<p><a href="https://systemd.io/">The systemd System and Service Manager</a></p>
+<h4 id="project-description_8">Project description<a class="headerlink" href="#project-description_8" title="Permanent link">&para;</a></h4>
+<p>systemd is a suite of basic building blocks for a Linux system. It provides a system and service
+manager that runs as PID 1 and starts the rest of the system.</p>
+<p>systemd provides aggressive parallelization capabilities, uses socket and D-Bus activation for
+starting services, offers on-demand starting of daemons, keeps track of processes using Linux
+control groups, maintains mount and automount points, and implements an elaborate transactional
+dependency-based service control logic. systemd supports SysV and LSB init scripts and works as a
+replacement for sysvinit.</p>
+<p>Other parts include a logging daemon, utilities to control basic system configuration like the
+hostname, date, locale, maintain a list of logged-in users and running containers and virtual
+machines, system accounts, runtime directories and settings, and daemons to manage simple network
+configuration, network time synchronization, log forwarding, and name resolution.</p>
+<!-- vim: set ft=markdown : -->
+
+<!-- vim: set ft=markdown : -->
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": {"json": [".s2"]}, "base": "..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.code.select", "content.tooltips", "navigation.expand", "navigation.path", "navigation.prune", "navigation.sections", "navigation.tracking", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": {"aws": "aws", "cryptography": "cryptography", "git": "git", "gnupg": "gnupg", "launchd": "launchd", "mermaid": "mermaid", "python": "python", "rclone": "rclone", "security": "security", "shell": "shell", "ssh": "ssh", "taskfile": "taskfile", "tmux": "tmux", "windows": "windows"}, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../assets/mermaid.mjs" type="module"></script>
+      
+    
+  </body>
+</html>
