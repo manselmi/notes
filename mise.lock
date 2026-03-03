@@ -1,7 +1,7 @@
 [[tools.hk]]
-version = "1.36.0"
+version = "1.37.0"
 backend = "aqua:jdx/hk"
-"platforms.macos-arm64" = { checksum = "sha256:553ff3c7c18d91f1c1dcdbae44315db0324b52336b5a02ed5b9c382f08499b3b", url = "https://github.com/jdx/hk/releases/download/v1.36.0/hk-aarch64-apple-darwin.tar.gz"}
+"platforms.macos-arm64" = { checksum = "sha256:11a924978b7526b5e363c97293c62f5b1cdbf29abb26d3d40f5317f46ad65835", url = "https://github.com/jdx/hk/releases/download/v1.37.0/hk-aarch64-apple-darwin.tar.gz"}
 
 [[tools.jq]]
 version = "1.8.1"
