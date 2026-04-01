@@ -1,0 +1,21 @@
+# vim: set ft=toml :
+
+
+[project]
+name = 'jupyterlab'
+channels = ['conda-forge']
+platforms = [
+  # 'osx-64',
+  'osx-arm64',
+]
+
+
+[dependencies]
+ipywidgets = '*'
+jupyterlab = '*'
+pixi-kernel = '*'
+python = '3.13.*'
+
+
+[pypi-dependencies]
+jupyterlab-quarto = '*'
