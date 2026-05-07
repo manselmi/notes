@@ -79,7 +79,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/17/43/47c7cf84b3bd74a8631b02d47db356656bb8dff6f2e61a4c749963814d0d/super_collections-0.6.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/33/d1/8bb87d21e9aeb323cc03034f5eaf2c8f69841e40e4853c2627edf8111ed3/termcolor-3.3.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/60/45/c7b5c3168458db837e8ceab06dc77824e18202679d0463f0e8f002143a97/tinycss2-1.5.1-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/39/08/aaaad47bc4e9dc8c725e68f9d04865dbcb2052843ff09c97b08904852d84/urllib3-2.6.3-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/7f/3e/5db95bcf282c52709639744ca2a8b149baccf648e39c8cc87553df9eae0c/urllib3-2.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/db/7d/7f3d619e951c88ed75c6037b246ddcf2d322812ee8ea189be89511721d54/watchdog-6.0.0.tar.gz
       - pypi: https://files.pythonhosted.org/packages/f4/24/2a3e3df732393fed8b3ebf2ec078f05546de641fe1b667ee316ec1dcf3b7/webencodings-0.5.1-py2.py3-none-any.whl
 packages:
@@ -817,17 +817,17 @@ packages:
   purls: []
   size: 119135
   timestamp: 1767016325805
-- pypi: https://files.pythonhosted.org/packages/39/08/aaaad47bc4e9dc8c725e68f9d04865dbcb2052843ff09c97b08904852d84/urllib3-2.6.3-py3-none-any.whl
+- pypi: https://files.pythonhosted.org/packages/7f/3e/5db95bcf282c52709639744ca2a8b149baccf648e39c8cc87553df9eae0c/urllib3-2.7.0-py3-none-any.whl
   name: urllib3
-  version: 2.6.3
-  sha256: bf272323e553dfb2e87d9bfd225ca7b0f467b919d7bbd355436d3fd37cb0acd4
+  version: 2.7.0
+  sha256: 9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897
   requires_dist:
   - brotli>=1.2.0 ; platform_python_implementation == 'CPython' and extra == 'brotli'
   - brotlicffi>=1.2.0.0 ; platform_python_implementation != 'CPython' and extra == 'brotli'
   - h2>=4,<5 ; extra == 'h2'
   - pysocks>=1.5.6,!=1.5.7,<2.0 ; extra == 'socks'
   - backports-zstd>=1.0.0 ; python_full_version < '3.14' and extra == 'zstd'
-  requires_python: '>=3.9'
+  requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/db/7d/7f3d619e951c88ed75c6037b246ddcf2d322812ee8ea189be89511721d54/watchdog-6.0.0.tar.gz
   name: watchdog
   version: 6.0.0
