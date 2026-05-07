@@ -1,0 +1,26 @@
+#!/Users/manselmi/.taskfile/devpi/.pixi/envs/default/bin/python
+# vim: set ft=python :
+
+import signal
+import subprocess
+import sys
+
+
+def main():
+    process = None
+
+    def handler(signum, frame):
+        if process is not None:
+            process.send_signal(signal.SIGINT)
+
+    signal.signal(signal.SIGINT, handler)
+    signal.signal(signal.SIGTERM, handler)
+
+    process = subprocess.Popen(sys.argv[1:], start_new_session=True)
+    process.wait()
+
+    sys.exit(process.returncode)
+
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,15 @@
+# vim: set ft=toml :
+
+
+[project]
+name = 'devpi'
+channels = ['conda-forge']
+platforms = [
+  # 'osx-64',
+  'osx-arm64',
+]
+
+
+[dependencies]
+devpi-client = '*'
+devpi-server = '*'

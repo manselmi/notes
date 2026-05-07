@@ -1,0 +1,39 @@
+# vim: set ft=yaml :
+#
+# https://taskfile.dev
+
+
+version: '3'
+
+set: ['errexit', 'nounset', 'pipefail']
+
+vars:
+  USER_ID:
+    sh: 'id -u'
+
+includes:
+
+  launchctl:
+    taskfile: '{{ env "TASKFILE_INCLUDE_ROOT_DIR" }}/launchctl'
+    vars:
+      DOMAIN_TARGET: 'gui/{{ .USER_ID }}/'
+      SERVICE_NAME: 'org.jupyter.jupyterlab.server'
+      SERVICE_PATH: '{{ env "HOME" }}/Library/LaunchAgents/{{ .SERVICE_NAME }}.plist'
+
+  pixi:
+    taskfile: '{{ env "TASKFILE_INCLUDE_ROOT_DIR" }}/pixi'
+
+tasks:
+
+  upgrade:
+    aliases: ['default']
+    cmds:
+      - task: 'launchctl:bootout'
+      - task: 'pixi:update'
+      - task: 'pixi:install'
+      - task: 'remove-default-kernels'
+      - task: 'launchctl:bootstrap'
+
+  remove-default-kernels:
+    cmds:
+      - 'find -- .pixi/envs/default/share/jupyter/kernels -mindepth 1 -delete'
