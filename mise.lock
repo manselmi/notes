@@ -9,16 +9,16 @@ checksum = "sha256:17bd1d9eccbfc894c4b0191871a964dc67df80c1bfbee072e5c12d4bb893a
 url = "https://github.com/jdx/hk/releases/download/v1.45.0/hk-aarch64-apple-darwin.tar.gz"
 
 [[tools.pixi]]
-version = "0.67.2"
+version = "0.68.1"
 backend = "github:prefix-dev/pixi"
 
 [tools.pixi."platforms.macos-arm64"]
-checksum = "sha256:c440c760169ced6969e50612f173f7b68f3e171377f1c8967416c5a6ccbd7155"
-url = "https://github.com/prefix-dev/pixi/releases/download/v0.67.2/pixi-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/prefix-dev/pixi/releases/assets/403298931"
+checksum = "sha256:31a15146f404230858a7a921b1eb76db894e1ec8b99e37efe6aeac2984af92a2"
+url = "https://github.com/prefix-dev/pixi/releases/download/v0.68.1/pixi-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/prefix-dev/pixi/releases/assets/418286876"
 
 [tools.pixi."platforms.macos-arm64".provenance.slsa]
-url = "https://github.com/prefix-dev/pixi/releases/download/v0.67.2/attestations-aarch64-apple-darwin.intoto.jsonl"
+url = "https://github.com/prefix-dev/pixi/releases/download/v0.68.1/attestations-aarch64-apple-darwin.intoto.jsonl"
 
 [[tools.pkl]]
 version = "0.31.1"
