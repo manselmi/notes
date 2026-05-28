@@ -4,7 +4,10 @@
 [workspace]
 name = 'notes'
 channels = ['conda-forge']
-platforms = ['osx-arm64']
+platforms = [
+  'linux-64',
+  'osx-arm64',
+]
 
 
 [dependencies]
@@ -12,6 +15,4 @@ python = { version = '>=3.14,<3.15' }
 
 
 [pypi-dependencies]
-mkdocs = { version = '*' }
-mkdocs-macros-plugin = { version = '*' }
-mkdocs-material = { version = '*', extras = ['git', 'imaging', 'recommended'] }
+zensical = { version = '*' }

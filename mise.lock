@@ -4,6 +4,10 @@
 version = "1.46.0"
 backend = "aqua:jdx/hk"
 
+[tools.hk."platforms.linux-x64"]
+checksum = "sha256:85b2cc167443cd27b49e323ef9b9d1a946d4bc18196eccb66112842d30fb90cb"
+url = "https://github.com/jdx/hk/releases/download/v1.46.0/hk-x86_64-unknown-linux-gnu.tar.gz"
+
 [tools.hk."platforms.macos-arm64"]
 checksum = "sha256:9db3fac25754cfb929dc3f92b294fffdb966d4e838b8e0adeaf5b9b7eccc4f6c"
 url = "https://github.com/jdx/hk/releases/download/v1.46.0/hk-aarch64-apple-darwin.tar.gz"
@@ -11,6 +15,14 @@ url = "https://github.com/jdx/hk/releases/download/v1.46.0/hk-aarch64-apple-darw
 [[tools.pixi]]
 version = "0.69.0"
 backend = "github:prefix-dev/pixi"
+
+[tools.pixi."platforms.linux-x64"]
+checksum = "sha256:285e021a8dd81d151e1dd03541ef6525a8205e0e6422aae3dfe17772b20cdd41"
+url = "https://github.com/prefix-dev/pixi/releases/download/v0.69.0/pixi-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/prefix-dev/pixi/releases/assets/426018899"
+
+[tools.pixi."platforms.linux-x64".provenance.slsa]
+url = "https://github.com/prefix-dev/pixi/releases/download/v0.69.0/attestations-x86_64-unknown-linux-musl.intoto.jsonl"
 
 [tools.pixi."platforms.macos-arm64"]
 checksum = "sha256:640de30196141d6b67c745675cec6d6b784fb42df34b02ee25fde2bb2b542aac"
@@ -23,6 +35,10 @@ url = "https://github.com/prefix-dev/pixi/releases/download/v0.69.0/attestations
 [[tools.pkl]]
 version = "0.31.1"
 backend = "aqua:apple/pkl"
+
+[tools.pkl."platforms.linux-x64"]
+checksum = "sha256:618f13955d755cafbfe8c9cba1d27635848cd49dbc6abffd398d2751db1231bf"
+url = "https://github.com/apple/pkl/releases/download/0.31.1/pkl-linux-amd64"
 
 [tools.pkl."platforms.macos-arm64"]
 checksum = "sha256:1b6a5438d9624cd2798a7530721bbbfa27ef72efe5c878a1b6c546c6e7ca0e8f"

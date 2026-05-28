@@ -12,17 +12,10 @@ postinstall = [{ task = 'hooks-install' }, { run = 'pixi install --all' }]
 experimental = true
 locked = true
 lockfile = true
-lockfile_platforms = ['macos-arm64']
-unix_default_file_shell_args = 'sh -euo pipefail'
-unix_default_inline_shell_args = 'sh -euo pipefail -c'
+lockfile_platforms = ['linux-x64', 'macos-arm64']
+unix_default_file_shell_args = 'sh -eu'
+unix_default_inline_shell_args = 'sh -eu -c'
 
-
-[tasks.deploy]
-env = { REMOTE_NAME = 'personal' }
-run = [
-  'git push -- "${REMOTE_NAME}"',
-  'pixi run -- mkdocs gh-deploy --no-history --remote-name "${REMOTE_NAME}"',
-]
 
 [tasks.hooks-install]
 hide = true
@@ -36,7 +29,7 @@ run = 'hk uninstall'
 run = 'hk fix --all'
 
 [tasks.serve]
-run = 'pixi run -- mkdocs serve --open'
+run = 'pixi run -- zensical serve --open --strict'
 
 [tasks.upgrade]
 env.MISE_LOCKED = '0'

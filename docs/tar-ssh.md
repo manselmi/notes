@@ -8,7 +8,7 @@ tags:
 
 ## Introduction
 
-As described on my [backup](/backup.md) page, I headlessly manage backups of my family's Macs over
+As described on my [backup](./backup.md) page, I headlessly manage backups of my family's Macs over
 SSH, and occasionally I need to add or update configuration files, scripts and binaries. Instead
 of dealing with files individually, I prefer to transfer all relevant files in one operation, make
 changes locally, then transfer everything back in one operation, preserving file ownership and

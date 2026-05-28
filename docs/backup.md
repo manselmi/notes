@@ -11,8 +11,8 @@ tags:
 ## Preface
 
 This backup solution may appear to be a Rube Goldberg machine, and perhaps it is, but it works well
-for me and my family. I manage it headlessly over SSH (see [tar over SSH](/tar-ssh.md)). Thanks to
-[`fdautil`](#launchcontrol-fdautil) I can modify things without needing to authorize [Full Disk
+for me and my family. I manage it headlessly over SSH (see [tar over SSH](./tar-ssh.md)). Thanks
+to [`fdautil`](#launchcontrol-fdautil) I can modify things without needing to authorize [Full Disk
 Access via the System Settings GUI](https://apple.stackexchange.com/a/352009).
 
 Recently I've also begun backing up my Ubuntu VPS with this approach as well.
