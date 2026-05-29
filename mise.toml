@@ -18,6 +18,10 @@ unix_default_file_shell_args = 'sh -eu'
 unix_default_inline_shell_args = 'sh -eu -c'
 
 
+[tasks.build]
+depends = ['lint']
+run = 'pixi run -- zensical build --clean --strict'
+
 [tasks.hooks-install]
 hide = true
 run = [{ task = 'hooks-uninstall' }, 'hk install --mise']
@@ -27,7 +31,13 @@ hide = true
 run = 'hk uninstall'
 
 [tasks.lint]
-run = 'hk fix --all'
+run = """\
+if test -n "${CI:-}"; then \
+  HK_CMD='check'; \
+else \
+  HK_CMD='fix'; \
+fi; \
+hk "${HK_CMD}" --all"""
 
 [tasks.serve]
 run = 'pixi run -- zensical serve --open --strict'
