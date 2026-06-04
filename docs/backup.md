@@ -44,8 +44,8 @@ The diagram may also be viewed with interactive controls
 
     1. the launchd service is running in the logged-in user's launchd GUI domain, and
 
-    1. the "login" keychain [automatically unlocks upon login][1] and has been [configured to remain
-       unlocked while logged in][2].
+    1. the "login" keychain automatically unlocks upon login[^1] and has been configured to remain
+       unlocked while logged in[^2].
 
     This allows the 1Password Connect token to be loaded from the "login" keychain with no user
     interaction required.
@@ -446,8 +446,8 @@ hostname, date, locale, maintain a list of logged-in users and running container
 machines, system accounts, runtime directories and settings, and daemons to manage simple network
 configuration, network time synchronization, log forwarding, and name resolution.
 
-[1]: https://support.apple.com/guide/keychain-access/if-you-need-to-update-your-keychain-password-kyca2429/mac
-[2]: https://support.apple.com/guide/keychain-access/mac-keychain-password-kyca1242/mac
+[^1]: https://support.apple.com/guide/keychain-access/if-you-need-to-update-your-keychain-password-kyca2429/mac
+[^2]: https://support.apple.com/guide/keychain-access/mac-keychain-password-kyca1242/mac
 
 
 <!-- vim: set ft=markdown : -->

@@ -140,3 +140,7 @@ custom_checkbox = true
 module_name = 'macros'
 on_error_fail = true
 on_undefined = 'strict'
+
+
+[project.validation]
+unused_footnotes = false  # workaround a bug

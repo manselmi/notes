@@ -3,13 +3,7 @@
 # https://mkdocs-macros-plugin.readthedocs.io/en/stable/macros/
 
 
-import tomllib
-from pathlib import Path
-
-
 PATH_SEP = "/"
-with Path(__file__).with_name("zensical.toml").open(mode="rb") as file:
-    ZENSICAL_CONFIG = tomllib.load(file)
 
 
 def define_env(env):
@@ -19,7 +13,7 @@ def define_env(env):
 
     @env.macro
     def prefix_repo_url(s):
-        url = [ZENSICAL_CONFIG["project"]["repo_url"].rstrip(PATH_SEP)]
+        url = [env.conf["repo_url"]]
         if s.endswith(PATH_SEP):
             url.append("tree")
         else:
