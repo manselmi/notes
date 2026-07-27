@@ -50,7 +50,7 @@ The diagram may also be viewed with interactive controls
     This allows the 1Password Connect token to be loaded from the "login" keychain with no user
     interaction required.
 
-    !["login" keychain settings](/assets/backup/login-keychain-settings.png)
+    !["login" keychain settings](assets/backup/login-keychain-settings.png)
 
 ### Ubuntu (VPS)
 

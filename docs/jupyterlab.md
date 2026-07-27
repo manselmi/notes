@@ -130,13 +130,13 @@ Now let's confirm that we can start a notebook using our new kernel. Navigate yo
 kernel available.
 
 <figure markdown>
-  ![](/assets/jupyterlab/landing-page.png)
+  ![](assets/jupyterlab/landing-page.png)
 </figure>
 
 Create a new notebook with the `Foo` kernel and run something simple like `1+1`.
 
 <figure markdown>
-  ![](/assets/jupyterlab/notebook.png)
+  ![](assets/jupyterlab/notebook.png)
 </figure>
 
 Congratulations! 🥳

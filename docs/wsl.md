@@ -152,20 +152,20 @@ Start or restart VS Code. Click the blue Remote Development icon in the lower-le
 click **Connect Current Window to Host…**.
 
 <figure markdown>
-  ![](/assets/wsl/vscode-remote-ssh-01.png)
+  ![](assets/wsl/vscode-remote-ssh-01.png)
 </figure>
 
 Type the name of a SSH host alias defined in the SSH config file, such as `jump`, then press Enter.
 
 <figure markdown>
-  ![](/assets/wsl/vscode-remote-ssh-02.png)
+  ![](assets/wsl/vscode-remote-ssh-02.png)
 </figure>
 
 VS Code will then connect and launch a remote session. If you were to select the **TERMINAL** tab,
 VS Code would launch a remote shell session.
 
 <figure markdown>
-  ![](/assets/wsl/vscode-remote-ssh-03.png)
+  ![](assets/wsl/vscode-remote-ssh-03.png)
 </figure>
 
 Learn more about [VS Code Remote
