@@ -17,7 +17,9 @@
         "digest",
         "lockFileMaintenance"
       ],
-      "automerge": true
+      "automerge": true,
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-non-major"
     },
     {
       "matchPackageNames": [
