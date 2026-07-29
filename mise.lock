@@ -15,19 +15,18 @@ url = "https://github.com/jdx/hk/releases/download/v1.53.0/hk-aarch64-apple-darw
 url_api = "https://api.github.com/repos/jdx/hk/releases/assets/487429255"
 
 [[tools.pixi]]
-version = "0.74.0"
+version = "0.75.0"
 backend = "github:prefix-dev/pixi"
 
 [tools.pixi."platforms.linux-x64"]
-checksum = "sha256:5729e99fb569a25f0b65dd6f5d1f32fcf3b967b36c1e89b9bab6a3bf845cc655"
-url = "https://github.com/prefix-dev/pixi/releases/download/v0.74.0/pixi-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/prefix-dev/pixi/releases/assets/491454402"
+checksum = "sha256:bcd825d62905c29b3c754b71f9cdc9d6f119454398f58330f111a7b6a0de0a3f"
+url = "https://github.com/prefix-dev/pixi/releases/download/v0.75.0/pixi-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/prefix-dev/pixi/releases/assets/494089814"
 provenance = "github-attestations"
 provenance_verified = true
 
 [tools.pixi."platforms.macos-arm64"]
-checksum = "sha256:abe8daa74933609e65f5cb7a2ae99a1fe292289854d731d1d46b44606fec2acc"
-url = "https://github.com/prefix-dev/pixi/releases/download/v0.74.0/pixi-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/prefix-dev/pixi/releases/assets/491454236"
+checksum = "sha256:52a43f9268f3accb7155cf229937f2f5333559b1333615d610362c6151fded66"
+url = "https://github.com/prefix-dev/pixi/releases/download/v0.75.0/pixi-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/prefix-dev/pixi/releases/assets/494089704"
 provenance = "github-attestations"
-provenance_verified = true
