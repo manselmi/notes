@@ -42,7 +42,7 @@ jobs:
         uses: 'renovatebot/github-action@v46.1.21'
         env:
           RENOVATE_ALLOWED_COMMANDS: '^mise run sync-hk-pkl-version$'
-          RENOVATE_ALLOWED_UNSAFE_EXECUTIONS: 'mise'
+          RENOVATE_ALLOWED_UNSAFE_EXECUTIONS: 'mise,pixi'
           RENOVATE_REPOSITORIES: '${{ github.repository }}'
         with:
           configurationFile: 'renovate.json'
