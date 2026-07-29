@@ -18,8 +18,9 @@ permissions:
   contents: 'read'
 
 jobs:
+
   renovate:
-    if: 'github.ref_name == github.event.repository.default_branch'
+    name: 'Renovate'
     environment:
       name: 'renovate'
       deployment: false
@@ -35,8 +36,8 @@ jobs:
           repositories: '${{ github.repository }}'
       - name: 'Checkout'
         uses: 'actions/checkout@v7.0.1'
-      - name: 'mise setup'
-        uses: 'jdx/mise-action@v4.2.3'
+      # - name: 'mise setup'
+      #   uses: 'jdx/mise-action@v4.2.3'
       - name: 'Renovate'
         uses: 'renovatebot/github-action@v46.1.21'
         env:
