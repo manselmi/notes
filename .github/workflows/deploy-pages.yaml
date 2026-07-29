@@ -1,0 +1,42 @@
+# vim: set ft=yaml :
+
+
+name: 'Deploy pages'
+
+on:
+  push:
+    branches:
+      - 'main'
+
+defaults:
+  run:
+    shell: 'sh -euo pipefail {0}'
+
+permissions:
+  contents: 'read'
+
+jobs:
+  deploy-pages:
+    environment:
+      name: 'github-pages'
+      url: '${{ steps.deployment.outputs.page_url }}'
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+      pages: 'write'
+    runs-on: 'ubuntu-26.04'
+    steps:
+      - name: 'Configure pages'
+        uses: 'actions/configure-pages@v6.0.0'
+      - name: 'Checkout'
+        uses: 'actions/checkout@v7.0.1'
+      - name: 'mise setup'
+        uses: 'jdx/mise-action@v4.2.3'
+      - run: 'mise run build'
+      - name: 'Upload pages artifact'
+        uses: 'actions/upload-pages-artifact@v5.0.0'
+        with:
+          path: 'site'
+      - name: 'Deploy pages'
+        id: 'deployment'
+        uses: 'actions/deploy-pages@v5.0.0'
