@@ -17,7 +17,7 @@ lockfile_platforms = ['linux-x64', 'macos-arm64']
 
 
 [task_config]
-shell = 'sh -euo pipefail -c'
+shell = 'sh -eu -c'
 
 
 [tasks.build]
@@ -49,12 +49,27 @@ run = ['mise install', 'mise lock', 'pixi lock']
 [tasks.serve]
 run = 'pixi run -- zensical serve --open --strict'
 
+[tasks.sync-hk-pkl-version]
+env.BAK = '.bak'
+env.HK_PKL = 'hk.pkl'
+env.HK_VERSION = '''{{ exec(command='hk version --quiet') }}'''
+hide = true
+run = [
+  'sed -Ei"${BAK}" -- "/^(amends|import) / s/[0-9]+\.[0-9]+\.[0-9]+/${HK_VERSION}/g" "${HK_PKL}"',
+  'rm -- "${HK_PKL}${BAK}"',
+]
+
 [tasks.upgrade]
 # required to correctly initialize lockfile when locked = true
 env.MISE_LOCKED = '0'
-run = ['mise upgrade --local', 'mise lock', 'pixi update']
+run = [
+  'mise upgrade --local',
+  'mise lock',
+  { task = 'sync-hk-pkl-version' },
+  'pixi update',
+]
 
 
 [tools]
-hk = 'latest'
-pixi = 'latest'
+hk = '1.52.0'
+pixi = '0.74.0'
