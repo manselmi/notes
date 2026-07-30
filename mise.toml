@@ -17,10 +17,11 @@ lockfile_platforms = ['linux-x64', 'macos-arm64']
 
 
 [task_config]
-shell = 'sh -eu -c'
+shell = 'sh -euo pipefail -c'
 
 
 [tasks.build]
+alias = 'check'
 depends = ['lint']
 run = 'pixi run -- zensical build --clean --strict'
 
