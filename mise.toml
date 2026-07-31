@@ -59,6 +59,7 @@ run = [
   'sed -Ei"${BAK}" -- "/^(amends|import) / s/[0-9]+\.[0-9]+\.[0-9]+/${HK_VERSION}/g" "${HK_PKL}"',
   'rm -- "${HK_PKL}${BAK}"',
 ]
+shell = 'sh -eu -c'
 
 [tasks.upgrade]
 # required to correctly initialize lockfile when locked = true
@@ -72,5 +73,5 @@ run = [
 
 
 [tools]
-hk = '1.54.0'
-pixi = 'v0.75.0'
+hk = '1.53.0'
+pixi = '0.75.0'
