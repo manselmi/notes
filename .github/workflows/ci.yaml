@@ -22,7 +22,7 @@ jobs:
       - name: 'Checkout'
         uses: 'actions/checkout@v7.0.1'
       - name: 'mise setup'
-        uses: 'jdx/mise-action@v4.2.3'
+        uses: 'jdx/mise-action@v4.2.4'
       - name: 'Check'
         run: 'mise run check'
 
@@ -44,7 +44,7 @@ jobs:
       - name: 'Checkout'
         uses: 'actions/checkout@v7.0.1'
       - name: 'mise setup'
-        uses: 'jdx/mise-action@v4.2.3'
+        uses: 'jdx/mise-action@v4.2.4'
       - name: 'Build'
         run: 'mise run build'
       - name: 'Upload pages artifact'
