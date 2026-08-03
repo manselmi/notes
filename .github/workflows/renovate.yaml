@@ -39,7 +39,7 @@ jobs:
       - name: 'mise setup'
         uses: 'jdx/mise-action@v4.2.4'
       - name: 'Renovate'
-        uses: 'renovatebot/github-action@v46.2.0'
+        uses: 'renovatebot/github-action@v46.2.1'
         env:
           RENOVATE_ALLOWED_COMMANDS: '^mise run sync-hk-pkl-version$'
           RENOVATE_ALLOWED_UNSAFE_EXECUTIONS: 'mise,pixi'
