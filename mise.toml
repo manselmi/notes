@@ -23,7 +23,7 @@ shell = 'sh -euo pipefail -c'
 [tasks.build]
 alias = 'check'
 depends = ['lint']
-run = 'pixi run -- zensical build --clean --strict'
+run = 'pixi run -- zensical build --clean'
 
 [tasks.hooks-install]
 hide = true
@@ -48,7 +48,7 @@ env.MISE_LOCKED = '0'
 run = ['mise install', 'mise lock', 'pixi lock']
 
 [tasks.serve]
-run = 'pixi run -- zensical serve --open --strict'
+run = 'pixi run -- zensical serve --open'
 
 [tasks.sync-hk-pkl-version]
 env.BAK = '.bak'

@@ -27,6 +27,7 @@ repo_url = 'https://github.com/manselmi/notes'
 site_author = 'Mike Anselmi'
 site_name = "Mike Anselmi's notes"
 site_url = 'https://manselmi.github.io/notes/'
+strict = true
 
 
 [project.extra]
