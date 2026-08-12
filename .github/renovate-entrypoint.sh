@@ -5,10 +5,10 @@
 # any command in the pipeline exits with a non-zero exit code.
 set -o errexit
 set -o nounset
-set -o pipefail
 
 
 BIN_DIR='/usr/local/bin'
+INSTALLER='/tmp/installer'
 
 
 curl() {
@@ -16,5 +16,11 @@ curl() {
 }
 
 
-curl -- 'https://mise.jdx.dev/install.sh' | env -- MISE_INSTALL_PATH="${BIN_DIR}/mise" sh
-curl -- 'https://pixi.sh/install.sh' | env -- PIXI_BIN_DIR="${BIN_DIR}" sh
+export MISE_INSTALL_PATH="${BIN_DIR}/mise" PIXI_BIN_DIR="${BIN_DIR}"
+for URL in 'https://mise.jdx.dev/install.sh' 'https://pixi.sh/install.sh'
+do
+  curl --output "${INSTALLER}" -- "${URL}"
+  chmod +x -- "${INSTALLER}"
+  "${INSTALLER}"
+  rm -- "${INSTALLER}"
+done
