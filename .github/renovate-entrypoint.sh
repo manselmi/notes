@@ -24,3 +24,5 @@ do
   "${INSTALLER}"
   rm -- "${INSTALLER}"
 done
+
+exec runuser -u ubuntu -- renovate
