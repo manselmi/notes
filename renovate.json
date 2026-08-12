@@ -11,6 +11,10 @@
   },
   "packageRules": [
     {
+      "groupName": "all packages",
+      "groupSlug": "all-packages"
+    },
+    {
       "matchPackageNames": [
         "python"
       ],
