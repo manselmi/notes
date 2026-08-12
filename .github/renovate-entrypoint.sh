@@ -12,7 +12,7 @@ INSTALLER='/tmp/installer'
 
 
 curl() {
-  "$(command -v curl)" -v --fail --max-time 10 --no-progress-meter --retry 2 "${@}"
+  /usr/bin/curl -v --fail --max-time 10 --no-progress-meter --retry 2 "${@}"
 }
 
 
