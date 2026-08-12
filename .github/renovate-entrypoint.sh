@@ -7,7 +7,7 @@ set -o errexit
 set -o nounset
 
 
-BIN_DIR='/usr/local/bin'
+INSTALL_PREFIX='/usr/local'
 INSTALLER='/tmp/installer'
 
 
@@ -16,8 +16,14 @@ curl() {
 }
 
 
-export MISE_INSTALL_PATH="${BIN_DIR}/mise" PIXI_BIN_DIR="${BIN_DIR}"
-for URL in 'https://mise.jdx.dev/install.sh' 'https://pixi.prefix.dev/install.sh'
+export \
+  MISE_INSTALL_PATH="${INSTALL_PREFIX}/bin/mise" \
+  MISE_QUIET=1 \
+  PIXI_BIN_DIR="${INSTALL_PREFIX}/bin" \
+  PIXI_NO_PATH_UPDATE=1
+for URL in \
+  'https://mise.jdx.dev/install.sh' \
+  'https://pixi.prefix.dev/install.sh'
 do
   curl --output "${INSTALLER}" -- "${URL}"
   chmod -- +x "${INSTALLER}"
