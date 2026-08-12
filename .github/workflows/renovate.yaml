@@ -44,5 +44,5 @@ jobs:
           RENOVATE_REPOSITORIES: '${{ github.repository }}'
         with:
           configurationFile: 'renovate.json'
-          renovate-version: 'full'
+          docker-cmd-file: '.github/renovate-entrypoint.sh'
           token: '${{ steps.app-token.outputs.token }}'
