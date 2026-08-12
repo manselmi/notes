@@ -12,7 +12,7 @@ INSTALLER='/tmp/installer'
 
 
 curl() {
-  /usr/bin/curl -v --fail --max-time 10 --no-progress-meter --retry 2 "${@}"
+  /usr/bin/curl --fail --max-time 10 --no-progress-meter --retry 2 "${@}"
 }
 
 
@@ -20,7 +20,6 @@ export MISE_INSTALL_PATH="${BIN_DIR}/mise" PIXI_BIN_DIR="${BIN_DIR}"
 for URL in 'https://mise.jdx.dev/install.sh' 'https://pixi.sh/install.sh'
 do
   curl --output "${INSTALLER}" -- "${URL}"
-  chmod +x -- "${INSTALLER}"
-  "${INSTALLER}"
+  bash "${INSTALLER}"
   rm -- "${INSTALLER}"
 done
