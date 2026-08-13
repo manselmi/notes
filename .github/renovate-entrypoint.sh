@@ -1,14 +1,9 @@
 #!/usr/bin/env sh
 # vim: set ft=sh :
 
-# Stop at any error, treat unset vars as errors and make pipelines exit with a non-zero exit code if
-# any command in the pipeline exits with a non-zero exit code.
+# Stop at any error and treat unset vars as errors.
 set -o errexit
 set -o nounset
-
-
-INSTALL_PREFIX='/usr/local'
-INSTALLER='/tmp/installer'
 
 
 curl() {
@@ -16,19 +11,20 @@ curl() {
 }
 
 
-export \
-  MISE_INSTALL_PATH="${INSTALL_PREFIX}/bin/mise" \
-  MISE_QUIET=1 \
-  PIXI_BIN_DIR="${INSTALL_PREFIX}/bin" \
-  PIXI_NO_PATH_UPDATE=1
-for URL in \
-  'https://mise.jdx.dev/install.sh' \
-  'https://pixi.prefix.dev/install.sh'
-do
-  curl --output "${INSTALLER}" -- "${URL}"
-  chmod -- +x "${INSTALLER}"
-  "${INSTALLER}"
-  rm -- "${INSTALLER}"
-done
+MISE_INSTALL="$(mktemp)"
+MISE_DIR="${HOME}/.local/bin"
 
-exec renovate
+curl --output "${MISE_INSTALL}" -- 'https://mise.jdx.dev/install.sh'
+chmod -- +x "${MISE_INSTALL}"
+env -- \
+  MISE_INSTALL_PATH="${MISE_DIR}/mise" \
+  MISE_INSTALL_SKIP_IF_EXISTS=1 \
+  MISE_QUIET=1 \
+  "${MISE_INSTALL}"
+PATH="${MISE_DIR}:${PATH}"
+hash -r
+
+
+exec env -- \
+  MISE_GITHUB_TOKEN="${RENOVATE_TOKEN}" \
+  mise exec --quiet -- renovate

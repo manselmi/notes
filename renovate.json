@@ -1,18 +1,30 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended",
-    "helpers:pinGitHubActionDigestsToSemver"
-  ],
+  "abandonmentThreshold": "1 year",
   "automerge": true,
+  "dependencyDashboard": true,
   "lockFileMaintenance": {
     "enabled": true,
-    "schedule": null
+    "schedule": [
+      "* * * * 0"
+    ]
   },
   "packageRules": [
     {
-      "groupName": "all packages",
-      "groupSlug": "all-packages"
+      "matchDepTypes": [
+        "action"
+      ],
+      "pinDigests": true
+    },
+    {
+      "matchDepTypes": [
+        "*"
+      ],
+      "matchPackageNames": [
+        "*"
+      ],
+      "groupName": "all dependencies",
+      "groupSlug": "all"
     },
     {
       "matchPackageNames": [
@@ -34,5 +46,9 @@
       "hk.pkl"
     ]
   },
+  "rebaseWhen": "behind-base-branch",
+  "schedule": [
+    "* * * * 1-6"
+  ],
   "separateMajorMinor": false
 }
