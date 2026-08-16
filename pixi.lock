@@ -28,7 +28,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libgcc-16.1.0-ha9f2e26_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libgomp-16.1.0-he0feb66_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.3-hb03c661_1.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/libmpdec-4.0.0-hb03c661_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/libmpdec-4.0.0-hb03c661_2.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.53.4-hf4e2dac_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-16.1.0-h934c35e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.42.2-h5347b49_0.conda
@@ -38,16 +38,16 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/python-3.14.6-h242f9ac_102_cp314.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/readline-8.3-h853b02a_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_hd70dff1_3.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_6.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_7.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2026.7.22-hbd8a1cb_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/python_abi-3.14-8_cp314.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/tzdata-2026c-h151e31d_0.conda
-      - pypi: https://files.pythonhosted.org/packages/35/94/f73744d9f4b6107e2740aad58214285b84d4cf0997cde36bced43089b3d0/zensical-0.0.53-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/41/3c/a36c2450754618e62008bf7435ccb0f88053e07592e6028a34776213d877/markupsafe-3.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/51/25/2a75b47cb057b1e164c604fb81ab690a6cdb5e2260ce651194eae90f64a3/deepmerge-2.1.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/64/69/4a5af2bc115a9a33fefe51709749de8262be3f9ba063d1753a837cdbc49c/markdown-3.10.3-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/88/f9/16491d7ed2a919954993e48aa941b200f38040928474c9e85ea9e64222c3/pyyaml-6.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+      - pypi: https://files.pythonhosted.org/packages/a3/97/3224b3dd5d76cebddf9725ae871a5a6a8f2de177be59d802232d00073d8b/zensical-0.0.54-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/d6/54/da572c98c0b77626a91b5d3b89f0231d8bff5125c225420908632f8b342d/pymdown_extensions-11.0.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/df/6d/c5fad00d82b3c7a3ab6189bd4b10e60466f22cfe8a08a9394185c8a8111c/tomli-2.4.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/f4/7e/a72dd26f3b0f4f2bf1dd8923c85f7ceb43172af56d63c7383eb62b332364/pygments-2.20.0-py3-none-any.whl
@@ -61,7 +61,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libexpat-2.8.1-hf6b4638_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libffi-3.7.0-hcf2aa1b_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/liblzma-5.8.3-h8088a28_1.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libmpdec-4.0.0-h84a0fba_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libmpdec-4.0.0-h84a0fba_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libsqlite-3.53.4-h1ae2325_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libzlib-1.3.2-h8088a28_3.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/ncurses-6.6-he64c551_1.conda
@@ -69,12 +69,12 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/python-3.14.6-hf4d206d_102_cp314.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/readline-8.3-h46df422_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/tk-8.6.13-hd3d0363_3.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.7-hbf9d68e_6.conda
-      - pypi: https://files.pythonhosted.org/packages/33/73/49a64c2c44aec251336a1cedcccbec7ba3d3eba9dd75d52ed24c09217d86/zensical-0.0.53-cp310-abi3-macosx_11_0_arm64.whl
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.7-hf451053_7.conda
       - pypi: https://files.pythonhosted.org/packages/51/25/2a75b47cb057b1e164c604fb81ab690a6cdb5e2260ce651194eae90f64a3/deepmerge-2.1.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/62/05/d2f816630cc771ad836af54f5001f47a6f611d2d39535364f148b6a92d6b/tomli-2.4.1-cp314-cp314-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/64/69/4a5af2bc115a9a33fefe51709749de8262be3f9ba063d1753a837cdbc49c/markdown-3.10.3-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/82/ee/7fe1418fa31bc120cf9eb0fbce9e021c40752206ce993a7bc652c011f890/zensical-0.0.54-cp310-abi3-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/b5/64/7660f8a4a8e53c924d0fa05dc3a55c9cee10bbd82b11c5afb27d44b096ce/markupsafe-3.0.3-cp314-cp314-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/bd/9c/4d95bb87eb2063d20db7b60faa3840c1b18025517ae857371c4dd55a6b3a/pyyaml-6.0.3-cp314-cp314-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/d6/54/da572c98c0b77626a91b5d3b89f0231d8bff5125c225420908632f8b342d/pymdown_extensions-11.0.1-py3-none-any.whl
@@ -120,6 +120,7 @@ packages:
   - libstdcxx >=14
   - libgcc >=14
   license: MIT
+  license_family: MIT
   purls: []
   run_exports:
     weak:
@@ -211,9 +212,9 @@ packages:
     - liblzma >=5.8.3,<6.0a0
   size: 112995
   timestamp: 1786348617826
-- conda: https://conda.anaconda.org/conda-forge/linux-64/libmpdec-4.0.0-hb03c661_1.conda
-  sha256: fe171ed5cf5959993d43ff72de7596e8ac2853e9021dec0344e583734f1e0843
-  md5: 2c21e66f50753a083cbe6b80f38268fa
+- conda: https://conda.anaconda.org/conda-forge/linux-64/libmpdec-4.0.0-hb03c661_2.conda
+  sha256: 46820b4a835e175940ae20bec00fdddaff804cda27a1408ab1b95e77a2196437
+  md5: fcfed1dc5053eb1901b66e7b1fc32588
   depends:
   - __glibc >=2.17,<3.0.a0
   - libgcc >=14
@@ -221,8 +222,8 @@ packages:
   license_family: BSD
   purls: []
   run_exports: {}
-  size: 92400
-  timestamp: 1769482286018
+  size: 92759
+  timestamp: 1786650399772
 - conda: https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.53.4-hf4e2dac_0.conda
   sha256: 72023efc207fe681e26b65fc9d668062cf0b4f0eacf3431e6eb099b95c1f2efd
   md5: df088a279cd5e6fd2790b4c196434da1
@@ -374,20 +375,20 @@ packages:
     - tk >=8.6.13,<8.7.0a0
   size: 3550916
   timestamp: 1784229071544
-- conda: https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_6.conda
-  sha256: 68f0206ca6e98fea941e5717cec780ed2873ffabc0e1ed34428c061e2c6268c7
-  md5: 4a13eeac0b5c8e5b8ab496e6c4ddd829
+- conda: https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_7.conda
+  sha256: 47d682b9f6d6ec9eb1a6e6c3e75ea6273e899e78fb7fc59f81d39745009fbc60
+  md5: aa459086047c0e5e27023ab19f8cb86a
   depends:
   - __glibc >=2.17,<3.0.a0
-  - libzlib >=1.3.1,<2.0a0
+  - libzlib >=1.3.2,<2.0a0
   license: BSD-3-Clause
   license_family: BSD
   purls: []
   run_exports:
     weak:
     - zstd >=1.5.7,<1.6.0a0
-  size: 601375
-  timestamp: 1764777111296
+  size: 601301
+  timestamp: 1786599621503
 - conda: https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2026.7.22-hbd8a1cb_0.conda
   sha256: 0a0544cf95f64394fe4959286f5c71f5444ad58feb0602e53becb27448d24da6
   md5: 0f51e2391ade309db462a55611263e9c
@@ -437,6 +438,7 @@ packages:
   depends:
   - __osx >=11.0
   license: MIT
+  license_family: MIT
   purls: []
   run_exports:
     weak:
@@ -483,17 +485,17 @@ packages:
     - liblzma >=5.8.3,<6.0a0
   size: 91720
   timestamp: 1786348695846
-- conda: https://conda.anaconda.org/conda-forge/osx-arm64/libmpdec-4.0.0-h84a0fba_1.conda
-  sha256: 1089c7f15d5b62c622625ec6700732ece83be8b705da8c6607f4dabb0c4bd6d2
-  md5: 57c4be259f5e0b99a5983799a228ae55
+- conda: https://conda.anaconda.org/conda-forge/osx-arm64/libmpdec-4.0.0-h84a0fba_2.conda
+  sha256: 04cc136c5a956a73aa14e0a160b5822b0b29714e67b299fa1b1fd16dbcba5366
+  md5: ff33a4dbd93abc8a798cc4e0e7c8136d
   depends:
   - __osx >=11.0
   license: BSD-2-Clause
   license_family: BSD
   purls: []
   run_exports: {}
-  size: 73690
-  timestamp: 1769482560514
+  size: 73289
+  timestamp: 1786651074391
 - conda: https://conda.anaconda.org/conda-forge/osx-arm64/libsqlite-3.53.4-h1ae2325_0.conda
   sha256: 745662565e103f290e9dc4263bbd88285082f8cf699854fe2d5f1e35a4a0d326
   md5: 0e3477c0c3e718dcf2eb74ccc8f68570
@@ -606,48 +608,20 @@ packages:
     - tk >=8.6.13,<8.7.0a0
   size: 3338712
   timestamp: 1784229090530
-- conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.7-hbf9d68e_6.conda
-  sha256: 9485ba49e8f47d2b597dd399e88f4802e100851b27c21d7525625b0b4025a5d9
-  md5: ab136e4c34e97f34fb621d2592a393d8
+- conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.7-hf451053_7.conda
+  sha256: da867f5092eb0cb746d353694f0098031fd9817a4ce7d5743121209ae0f406ca
+  md5: 4ec2684c73812cc2c3d78379384a39cc
   depends:
   - __osx >=11.0
-  - libzlib >=1.3.1,<2.0a0
+  - libzlib >=1.3.2,<2.0a0
   license: BSD-3-Clause
   license_family: BSD
   purls: []
   run_exports:
     weak:
     - zstd >=1.5.7,<1.6.0a0
-  size: 433413
-  timestamp: 1764777166076
-- pypi: https://files.pythonhosted.org/packages/33/73/49a64c2c44aec251336a1cedcccbec7ba3d3eba9dd75d52ed24c09217d86/zensical-0.0.53-cp310-abi3-macosx_11_0_arm64.whl
-  name: zensical
-  version: 0.0.53
-  sha256: 0f4c1219c534d3cccc0b86093748dc009e0e9d80d4dad8d65e2150c846aa1123
-  requires_dist:
-  - click>=8.1.8
-  - deepmerge>=2.0
-  - jinja2>=3.1
-  - markdown>=3.7
-  - pygments>=2.20
-  - pymdown-extensions>=11.0
-  - pyyaml>=6.0.2
-  - tomli>=2.4.0
-  requires_python: '>=3.10'
-- pypi: https://files.pythonhosted.org/packages/35/94/f73744d9f4b6107e2740aad58214285b84d4cf0997cde36bced43089b3d0/zensical-0.0.53-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-  name: zensical
-  version: 0.0.53
-  sha256: 10b0cb72861b14bd985bc5ad0203c35b1da7a19c87c194df3189fab7a910db04
-  requires_dist:
-  - click>=8.1.8
-  - deepmerge>=2.0
-  - jinja2>=3.1
-  - markdown>=3.7
-  - pygments>=2.20
-  - pymdown-extensions>=11.0
-  - pyyaml>=6.0.2
-  - tomli>=2.4.0
-  requires_python: '>=3.10'
+  size: 433687
+  timestamp: 1786599629846
 - pypi: https://files.pythonhosted.org/packages/41/3c/a36c2450754618e62008bf7435ccb0f88053e07592e6028a34776213d877/markupsafe-3.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
   name: markupsafe
   version: 3.0.3
@@ -697,11 +671,39 @@ packages:
   - mkdocs-section-index ; extra == 'docs'
   - mkdocs-literate-nav ; extra == 'docs'
   requires_python: '>=3.10'
+- pypi: https://files.pythonhosted.org/packages/82/ee/7fe1418fa31bc120cf9eb0fbce9e021c40752206ce993a7bc652c011f890/zensical-0.0.54-cp310-abi3-macosx_11_0_arm64.whl
+  name: zensical
+  version: 0.0.54
+  sha256: 7b23c3b0c720885891b220c3e562074d93eb940314823d91875c6246976bd9b2
+  requires_dist:
+  - click>=8.1.8
+  - deepmerge>=2.0
+  - jinja2>=3.1
+  - markdown>=3.7
+  - pygments>=2.20
+  - pymdown-extensions>=11.0
+  - pyyaml>=6.0.2
+  - tomli>=2.4.0
+  requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/88/f9/16491d7ed2a919954993e48aa941b200f38040928474c9e85ea9e64222c3/pyyaml-6.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
   name: pyyaml
   version: 6.0.3
   sha256: c458b6d084f9b935061bc36216e8a69a7e293a2f1e68bf956dcd9e6cbcd143f5
   requires_python: '>=3.8'
+- pypi: https://files.pythonhosted.org/packages/a3/97/3224b3dd5d76cebddf9725ae871a5a6a8f2de177be59d802232d00073d8b/zensical-0.0.54-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  name: zensical
+  version: 0.0.54
+  sha256: da7781a906623fb7bc278cc874ec6f80691c8753b90fbdf90a451abb046ae204
+  requires_dist:
+  - click>=8.1.8
+  - deepmerge>=2.0
+  - jinja2>=3.1
+  - markdown>=3.7
+  - pygments>=2.20
+  - pymdown-extensions>=11.0
+  - pyyaml>=6.0.2
+  - tomli>=2.4.0
+  requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/b5/64/7660f8a4a8e53c924d0fa05dc3a55c9cee10bbd82b11c5afb27d44b096ce/markupsafe-3.0.3-cp314-cp314-macosx_11_0_arm64.whl
   name: markupsafe
   version: 3.0.3
