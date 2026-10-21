@@ -3,33 +3,33 @@
 lockfile_version = 2
 
 [[tools.hk]]
-version = "2.7.1"
+version = "2.8.0"
 backend = "packslip:github.com/jdx/hk"
-specifiers = ["2.7.1"]
+specifiers = ["2.8.0"]
 
 [tools.hk."platforms.linux-x64"]
-checksum = "sha256:f6efe9b7febc22cb0ec071ab727ead597752dedb6a36c4d1a7fef94f6d2d8fbf"
-url = "https://github.com/jdx/hk/releases/download/v2.7.1/hk-x86_64-unknown-linux-gnu.tar.gz"
+checksum = "sha256:5b5d7021625d12825b3d44496b466ad65697e02651c8b9fe00117f5c25c73d0a"
+url = "https://github.com/jdx/hk/releases/download/v2.8.0/hk-x86_64-unknown-linux-gnu.tar.gz"
 signer = "sigstore-oidc:https://github.com/jdx/hk/.github/workflows/release.yml"
 
 [tools.hk."platforms.macos-arm64"]
-checksum = "sha256:18914b99e1fdcc0415ba77c8d01b1f4df73b109ed90b3f418053e2f3eaf84cbd"
-url = "https://github.com/jdx/hk/releases/download/v2.7.1/hk-aarch64-apple-darwin.tar.gz"
+checksum = "sha256:9f0290ff3cbfa9f6baff640c846bf07f78dd29e2023b0c230d3d5226c23385ca"
+url = "https://github.com/jdx/hk/releases/download/v2.8.0/hk-aarch64-apple-darwin.tar.gz"
 signer = "sigstore-oidc:https://github.com/jdx/hk/.github/workflows/release.yml"
 
 [[tools.pixi]]
-version = "0.82.0"
+version = "0.82.1"
 backend = "github:prefix-dev/pixi"
-specifiers = ["v0.82.0"]
+specifiers = ["v0.82.1"]
 
 [tools.pixi."platforms.linux-x64"]
-checksum = "sha256:d305406a7630aab6484419833f9204b2fe9ea40632da8bb536496f123ca86e7f"
-url = "https://github.com/prefix-dev/pixi/releases/download/v0.82.0/pixi-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/prefix-dev/pixi/releases/assets/640219156"
+checksum = "sha256:7ac72af79c50653bfcfddb2473b6e9eff2654affe0057d19fe21b0d8556a7fe2"
+url = "https://github.com/prefix-dev/pixi/releases/download/v0.82.1/pixi-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/prefix-dev/pixi/releases/assets/661788733"
 provenance = "github-attestations"
 
 [tools.pixi."platforms.macos-arm64"]
-checksum = "sha256:3b48bd27de4db31381dc1d5b3d069c98852c0e923aefa30dae0452a088c0810e"
-url = "https://github.com/prefix-dev/pixi/releases/download/v0.82.0/pixi-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/prefix-dev/pixi/releases/assets/640218702"
+checksum = "sha256:cf02c669b8c4a3d7332b6aa30931d37587c299d906b30d9827b9d40cec9b0c47"
+url = "https://github.com/prefix-dev/pixi/releases/download/v0.82.1/pixi-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/prefix-dev/pixi/releases/assets/661788387"
 provenance = "github-attestations"
