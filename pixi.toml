@@ -11,8 +11,8 @@ platforms = [
 
 
 [dependencies]
-python = { version = '>=3.15,<3.16' }
+python = { version = '~=3.15.0' }
 
 
 [pypi-dependencies]
-zensical = { version = '>=0.0.71' }
+zensical = { version = '>=0.0.73' }
